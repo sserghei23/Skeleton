@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingInventoryManagement", "Testing5\TestingInventoryManagement.csproj", "{6B836712-3706-49E8-A57E-ADD4149D788B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tstCustomer", "Testing4\tstCustomer.csproj", "{D7E86DE2-138C-4B6B-A195-C247244515E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingCustomerManagement", "Testing4\TestingCustomerManagement.csproj", "{D7E86DE2-138C-4B6B-A195-C247244515E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingCheckoutManagement", "Testing3\TestingCheckoutManagement.csproj", "{7032FF54-9316-4FFF-9612-EBA55F9781BA}"
 EndProject

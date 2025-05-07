@@ -54,7 +54,7 @@ namespace Testing1
             anOrder.StaffId = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(anOrder.StaffId, TestData);
-        }
+        }                         
 
         [TestMethod]
         public void StatusPropertyOK()
