@@ -18,11 +18,11 @@ public partial class _1Viewer : System.Web.UI.Page
         
         Response.Write(AnOrder.OrderId);
         Response.Write("<br />");
-        Response.Write(AnOrder.Status);
-        Response.Write("<br />");
         Response.Write(AnOrder.CustomerId);
         Response.Write("<br />");
         Response.Write(AnOrder.StaffId);
+        Response.Write("<br />");
+        Response.Write(AnOrder.Status);
         Response.Write("<br />");
         Response.Write(AnOrder.TotalAmount);
         Response.Write("<br />");
