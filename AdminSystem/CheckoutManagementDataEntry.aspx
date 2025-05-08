@@ -18,7 +18,7 @@
         <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 10px; top: 91px; position: absolute; right: 286px;" Text="CustomerId" width="93px"></asp:Label>
         <asp:Label ID="lblDateAdded" runat="server" style="z-index: 1; left: 12px; top: 190px; position: absolute" Text="DateAdded" width="93px"></asp:Label>
         <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 158px; top: 83px; position: absolute; width: 98px;"></asp:TextBox>
-        <asp:TextBox ID="txtWatchId0" runat="server" style="z-index: 1; left: 157px; top: 142px; position: absolute; width: 98px;"></asp:TextBox>
+        <asp:TextBox ID="txtWatchId" runat="server" style="z-index: 1; left: 157px; top: 142px; position: absolute; width: 98px;"></asp:TextBox>
         <asp:TextBox ID="txtDateAdded" runat="server" style="z-index: 1; left: 149px; top: 186px; position: absolute; width: 98px;"></asp:TextBox>
         <asp:CheckBox ID="txtCheckedOut" runat="server" style="z-index: 1; left: 140px; top: 258px; position: absolute; height: 22px; width: 98px;" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 88px; top: 380px; position: absolute"></asp:Label>

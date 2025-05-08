@@ -107,7 +107,7 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mCartId = Convert.ToInt32(DB.DataTable.Rows[0]["CartId"]);
-                mDateAdded = Convert.DateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mWatchId = Convert.ToInt32(DB.DataTable.Rows[0]["WatchId"]);
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
                 mCheckedOut = Convert.ToBoolean(DB.DataTable.Rows[0]["CheckedOut"]);

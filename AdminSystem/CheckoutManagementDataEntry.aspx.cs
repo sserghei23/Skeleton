@@ -56,10 +56,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDateAdded.Text = AnCheckout.DateAdded.ToString;
             txtTotalCartValue.Text = AnCheckout.TotalCartValue;
             txtWatchId.Text = AnCheckout.WatchId.ToString();
-            txtCustomerId.Text = AnCheckout.CustomerId.ToString();
-
-
-            
+            txtCustomerId.Text = AnCheckout.CustomerId.ToString();            
         }
     }
 }
