@@ -28,6 +28,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("<br />");
         Response.Write(AnOrder.OrderDate);
         Response.Write("<br />");
-        Response.Write("Completed?: "+ AnOrder.Active);
+        Response.Write("Completed?: "+ AnOrder.Completed);
     }
 }

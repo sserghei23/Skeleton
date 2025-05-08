@@ -121,16 +121,32 @@ namespace ClassLibrary
 
         public bool Find(int OrderId)
         {
-            //set the private data member to the test data value
-            mOrderId = 1;
-            mCustomerId = 1;
-            mStaffId = 1;
-            mStatus = "Delivered";
-            mTotalAmount = 69.99m;
-            mOrderDate = Convert.ToDateTime("23/01/2003");
-            mCompleted = true;
-            //always return true
-            return true;
+            //create an instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the order id to search for
+            DB.AddParameter("@OrderId", OrderId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderId");
+            //if one record is found(there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the datbase to the private data members
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mStatus = Convert.ToString(DB.DataTable.Rows[0]["Status"]);
+                mTotalAmount = Convert.ToDecimal(DB.DataTable.Rows[0]["TotalAmount"]);
+                mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);
+                mCompleted = Convert.ToBoolean(DB.DataTable.Rows[0]["Completed"]);
+                //return that the data was found
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating that the data was not found
+                return false;
+            }
         }
     }
 }
