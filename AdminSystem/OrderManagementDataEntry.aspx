@@ -8,22 +8,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Label ID="lblOrderId" runat="server" style="z-index: 1; left: 14px; top: 49px; position: absolute; width: 87px;" Text="Order ID" height="19px"></asp:Label>
-        <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 120px; top: 80px; position: absolute; height: 20px;" width="128px"></asp:TextBox>
-        <asp:TextBox ID="txtOrderId" runat="server" style="z-index: 1; left: 120px; top: 46px; position: absolute; height: 20px;" width="128px"></asp:TextBox>
-        <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 14px; top: 82px; position: absolute; width: 87px;" Text="Customer ID" height="19px"></asp:Label>
-        <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 14px; top: 116px; position: absolute; width: 87px;" Text="Staff ID" height="19px"></asp:Label>
-        <asp:Label ID="lblStatus" runat="server" style="z-index: 1; left: 14px; top: 149px; position: absolute; width: 87px; height: 23px;" Text="Status"></asp:Label>
-        <asp:Label ID="lblTotalAmount" runat="server" style="z-index: 1; left: 14px; top: 182px; position: absolute; width: 100px;" Text="Total Amount" height="19px"></asp:Label>
-        <asp:Label ID="lblOrderDate" runat="server" style="z-index: 1; left: 14px; top: 215px; position: absolute; width: 87px;" Text="Order Date" height="19px"></asp:Label>
-        <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 120px; top: 112px; position: absolute" height="20px" width="128px"></asp:TextBox>
-        <asp:TextBox ID="txtStatus" runat="server" style="z-index: 1; left: 120px; top: 147px; position: absolute" height="20px" width="128px"></asp:TextBox>
-        <asp:TextBox ID="txtTotalAmount" runat="server" style="z-index: 1; left: 120px; top: 183px; position: absolute" width="128px" height="20px"></asp:TextBox>
-        <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 120px; top: 212px; position: absolute" height="20px" width="128px"></asp:TextBox>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 17px; top: 279px; position: absolute" height="26px" width="60px"></asp:Label>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 105px; top: 317px; position: absolute" Text="Cancel" />
-        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 22px; top: 317px; position: absolute" Text="OK" OnClick="btnOk_Click" height="26px" width="60px" />
-        <asp:CheckBox ID="chkCompleted" runat="server" style="z-index: 1; left: 120px; top: 250px; position: absolute" Text="Completed" />
+        <asp:Label ID="lblOrderId" runat="server" style="z-index: 1; left: 14px; top: 48px; position: absolute; width: 117px;" Text="Order ID" height="19px"></asp:Label>
+        <asp:TextBox ID="txtCustomerId" runat="server" style="z-index: 1; left: 178px; top: 93px; position: absolute; height: 20px;" width="128px"></asp:TextBox>
+        <asp:TextBox ID="txtOrderId" runat="server" style="z-index: 1; left: 178px; top: 47px; position: absolute; height: 20px;" width="128px"></asp:TextBox>
+        <asp:Label ID="lblCustomerId" runat="server" style="z-index: 1; left: 14px; top: 93px; position: absolute; width: 112px;" Text="Customer ID" height="19px"></asp:Label>
+        <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 14px; top: 140px; position: absolute; width: 122px;" Text="Staff ID" height="19px"></asp:Label>
+        <asp:Label ID="lblStatus" runat="server" style="z-index: 1; left: 14px; top: 185px; position: absolute; width: 114px; height: 23px;" Text="Status"></asp:Label>
+        <asp:Label ID="lblTotalAmount" runat="server" style="z-index: 1; left: 14px; top: 229px; position: absolute; width: 117px;" Text="Total Amount" height="19px"></asp:Label>
+        <asp:Label ID="lblOrderDate" runat="server" style="z-index: 1; left: 14px; top: 275px; position: absolute; width: 130px;" Text="Order Date" height="19px"></asp:Label>
+        <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 178px; top: 138px; position: absolute" height="20px" width="128px"></asp:TextBox>
+        <asp:TextBox ID="txtStatus" runat="server" style="z-index: 1; left: 178px; top: 184px; position: absolute" height="20px" width="128px"></asp:TextBox>
+        <asp:TextBox ID="txtTotalAmount" runat="server" style="z-index: 1; left: 178px; top: 229px; position: absolute" width="128px" height="20px"></asp:TextBox>
+        <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 178px; top: 275px; position: absolute" height="20px" width="128px"></asp:TextBox>
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 162px; top: 342px; position: absolute; height: 29px; width: 76px;" Text="Cancel"  />
+        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 41px; top: 342px; position: absolute; height: 29px; width: 76px;" Text="OK" OnClick="btnOk_Click" />
+        <asp:CheckBox ID="chkCompleted" runat="server" style="z-index: 1; left: 180px; top: 310px; position: absolute" Text="Completed" />
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 386px; position: absolute"></asp:Label>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 343px; top: 45px; position: absolute; width: 76px" Text="Find" />
+
     </form>
 </body>
 </html>

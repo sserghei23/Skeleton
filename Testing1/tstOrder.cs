@@ -116,7 +116,7 @@ namespace Testing1
             //create a boolean variable to store the result
             Boolean found = false;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             //invoke the method
             found = anOrder.Find(OrderId);
             //test to see that the order was found
@@ -133,11 +133,11 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             //invoke the method
             found = anOrder.Find(OrderId);
             //check the order id
-            if (anOrder.OrderId != 1)
+            if (anOrder.OrderId != 11)
             {
                 ok = false;
             }
@@ -155,11 +155,11 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             //invoke the method
             found = anOrder.Find(OrderId);
             //check the customer id
-            if (anOrder.CustomerId != 1)
+            if (anOrder.CustomerId != 5)
             {
                 ok = false;
             }
@@ -177,11 +177,11 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             //invoke the method
             found = anOrder.Find(OrderId);
             //check the staff id
-            if (anOrder.StaffId != 1)
+            if (anOrder.StaffId != 5)
             {
                 ok = false;
             }
@@ -199,7 +199,7 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             //invoke the method
             found = anOrder.Find(OrderId);
             //check the status
@@ -222,10 +222,10 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             found = anOrder.Find(OrderId);
             //check the total amount
-            if (anOrder.TotalAmount != 69.99m)
+            if (anOrder.TotalAmount != 1114.99m)
             {
                 ok = false;
             }
@@ -243,10 +243,10 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             found = anOrder.Find(OrderId);
             //check the order date
-            if (anOrder.OrderDate != Convert.ToDateTime("23/01/2003"))
+            if (anOrder.OrderDate != Convert.ToDateTime("05/05/2025"))
             {
                 ok = false;
             }
@@ -265,7 +265,7 @@ namespace Testing1
             //create a boolean variable to record if the data is ok
             Boolean ok = true;
             //create some test data to use with the method
-            Int32 OrderId = 1;
+            Int32 OrderId = 11;
             found = anOrder.Find(OrderId);
             //check the completed
             if (anOrder.Completed != true)
