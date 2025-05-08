@@ -111,10 +111,10 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
-            if (AnCheckout.CartId != 21)
+            if (AnCheckout.CartId != 6)
             {
                 OK = false;
             }
@@ -131,7 +131,7 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
@@ -152,7 +152,7 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
@@ -173,7 +173,7 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
@@ -193,11 +193,11 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.WatchId != "30")
+            if (AnCheckout.WatchId != 3)
             {
                 OK = false;
             }
@@ -213,125 +213,17 @@ namespace Testing3
             //Create a Boolean variable to  record if the data is OK
             Boolean OK = true;
             //Create test data to assign to the proprty
-            Int32 CartId = 21;
+            Int32 CartId = 6;
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.CustomerId != "32b")
+            if (AnCheckout.CustomerId != 3)
             {
                 OK = false;
             }
             //test to see that it exists
             Assert.IsTrue(OK);
         }
-
-        public class clsCheckout
-        {
-            //private data member for the address id property
-            private string mTotalCartValue;
-            //cartId public property
-            public string TotalCartValue
-            {
-                get
-                {
-                    return mTotalCartValue;
-                }
-                set
-                {
-                    mTotalCartValue = value;
-                }
-            }
-
-
-            public Boolean mCheckkedOut; //{ get; private set; }
-            //dateadded public property
-            public bool CheckedOut
-            {
-                get
-                {
-                    return mCheckkedOut;
-                }
-                set
-                {
-                    mCheckkedOut = value;
-                }
-            }
-
-            public Int32 mCustomerId; //{ get; private set; }
-
-            public int mCheckedOut { get; private set; }
-
-            //dateadded public property
-            public Int32 CustomerId
-            {
-                get
-                {
-                    return mCustomerId;
-                }
-                set
-                {
-                    mCustomerId = value;
-                }
-            }
-
-            public Int32 mWatchId; //{ get; private set; }
-            //dateadded public property
-            public Int32 WatchId
-            {
-                get
-                {
-                    return mWatchId;
-                }
-                set
-                {
-                    mWatchId = value;
-                }
-            }
-
-            public Int32 mCartId; //{ get; private set; }
-            //dateadded public property
-            public Int32 CartId
-            {
-                get
-                {
-                    return mCartId;
-                }
-                set
-                {
-                    mCartId = value;
-                }
-            }
-
-            public DateTime mDateAdded; //{ get; private set; }
-            //dateadded public property
-            public DateTime DateAdded
-            {
-                get
-                {
-                    return mDateAdded;
-                }
-                set
-                {
-                    mDateAdded = value;
-                }
-            }
-
-            
-
-            public bool Find(int cartId)
-            {
-                mCartId = 21;
-                mDateAdded = Convert.ToDateTime("23/12/2022");
-                mWatchId = 21;
-                mCustomerId = 21;
-                mCheckedOut = 21;
-                mTotalCartValue = "21b";
-                //always return true
-                return true;
-            }
-
-            
         }
     }
-}
 

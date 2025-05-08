@@ -119,6 +119,8 @@ namespace ClassLibrary
             }
         }
 
+        public bool Active { get; set; }
+
         public bool Find(int OrderId)
         {
             //set the private data member to the test data value

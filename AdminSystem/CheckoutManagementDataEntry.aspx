@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 507px; width: 360px">
+<body style="height: 355px; width: 496px">
     <form id="form1" runat="server">
         <asp:Label ID="lblCartId" runat="server" style="z-index: 1; left: 10px; top: 34px; position: absolute; bottom: 605px;" Text="CartId" width="93px"></asp:Label>
         <p>
@@ -23,9 +23,10 @@
         <asp:CheckBox ID="txtCheckedOut" runat="server" style="z-index: 1; left: 140px; top: 258px; position: absolute; height: 22px; width: 98px;" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 88px; top: 380px; position: absolute"></asp:Label>
         <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 42px; top: 457px; position: absolute; height: 26px;" Text="Ok" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 152px; top: 459px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnFind" runat="server" style="z-index: 1; left: 335px; top: 33px; position: absolute" Text="Find" OnClick="btnFind_Click" />
         <p>
         <asp:TextBox ID="txtTotalCartValue" runat="server" style="z-index: 1; left: 146px; top: 330px; position: absolute; width: 98px;"></asp:TextBox>
+        <asp:Button ID="btnCancel0" runat="server" style="z-index: 1; left: 152px; top: 459px; position: absolute" Text="Cancel" />
         </p>
     </form>
 </body>
