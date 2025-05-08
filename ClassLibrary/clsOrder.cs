@@ -119,6 +119,8 @@ namespace ClassLibrary
             }
         }
 
+        public bool Active { get; set; }
+
         public bool Find(int OrderId)
         {
             //create an instance of data connection
