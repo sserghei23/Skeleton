@@ -8,7 +8,7 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    public object txtWatchId { get; private set; }
+   
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -53,7 +53,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //display#
             txtCheckedOut.Checked = AnCheckout.CheckedOut;
-            txtDateAdded.Text = AnCheckout.DateAdded.ToString;
+            txtDateAdded.Text = AnCheckout.DateAdded.ToString();
+            txtDateAdded.Text = AnCheckout.DateAdded.ToString();
             txtTotalCartValue.Text = AnCheckout.TotalCartValue;
             txtWatchId.Text = AnCheckout.WatchId.ToString();
             txtCustomerId.Text = AnCheckout.CustomerId.ToString();            
