@@ -91,9 +91,9 @@ namespace Testing2
             //creates some test data to assign to property
             DateTime TestData = DateTime.Now.Date;
             //assigns data to the property
-            AStaff.DateAdded = TestData;
+            AStaff.DateOfEmployment = TestData;
             //test to see that two values are the same
-            Assert.AreEqual(AStaff.DateAdded, TestData);
+            Assert.AreEqual(AStaff.DateOfEmployment, TestData);
         }
 
         [TestMethod]
