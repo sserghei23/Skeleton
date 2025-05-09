@@ -30,6 +30,6 @@ public partial class _1Viewer : System.Web.UI.Page
         //Display
         Response.Write(AnCheckout.DateAdded);
         //Display
-        //Response.Write(AnCheckout.CheckedOut);
+        Response.Write(AnCheckout.CheckedOut);
     }
 }

@@ -110,7 +110,7 @@ namespace ClassLibrary
                 mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mWatchId = Convert.ToInt32(DB.DataTable.Rows[0]["WatchId"]);
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                mCheckedOut = Convert.ToBoolean(DB.DataTable.Rows[0]["CheckedOut"]);
+                mCheckedOut = Convert.ToInt32(DB.DataTable.Rows[0]["CheckedOut"]);
                 mTotalCartValue = Convert.ToString(DB.DataTable.Rows[0]["TotalCartValue"]);
                 //always return true
                 return true;
@@ -120,8 +120,6 @@ namespace ClassLibrary
             {
                 //return false indicting there is a problem
                 return false;
-
-
             }
 
         }
