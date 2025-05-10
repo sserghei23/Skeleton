@@ -16,7 +16,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-        clsOrder AnOrder = new clsOrder();
+      .  clsOrder AnOrder = new clsOrder();
 
         //capture the order status
         AnOrder.Status = txtStatus.Text;
