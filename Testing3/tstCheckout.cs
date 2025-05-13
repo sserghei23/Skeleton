@@ -7,6 +7,14 @@ namespace Testing3
     [TestClass]
     public class tstCheckout
     {
+        //create some test data
+        string CartId = "6";
+        string WatchId = "3";
+        string CustomerId = "4";
+        string DateAdded = DateTime.Now.ToShortDateString();
+        string TotalCartValue = "12b";
+    
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -224,6 +232,532 @@ namespace Testing3
             //test to see that it exists
             Assert.IsTrue(OK);
         }
+
+           // public int Valid(int cartId,
+          //                  int watchId,
+          //                  int customerId,
+           //                 DateTime dateAdded,
+          //                  string totalCartValue);
+                                                     
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalCartValueMinLessOne()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalCartValueMin()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "a";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalCartValuePlusOne()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "aa";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalCartValueMaxLessOne()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "aaaaa";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void TotalCartValueMax()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "aaaaaa";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void TotalCartValueMid()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "aaa";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalCartValueExtremeMax()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string TotalCartValue = "";
+            //
+            TotalCartValue = TotalCartValue.PadRight(500, 'a');// this should fail
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //
+            TestDate = DateTime.Now.Date;
+            //
+            TestDate = TestDate.AddYears(-100);
+            //
+            string DateAdded = TestDate.ToString(); 
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //
+            TestDate = DateTime.Now.Date;
+            //
+            TestDate = TestDate.AddDays(-1);
+            //
+            string DateAdded = TestDate.ToString();
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //
+            TestDate = DateTime.Now.Date;
+            //
+            string DateAdded = TestDate.ToString();
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //
+            TestDate = DateTime.Now.Date;
+            //
+            TestDate = TestDate.AddDays(1);
+            //
+            string DateAdded = TestDate.ToString();
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            DateTime TestDate;
+            //
+            TestDate = DateTime.Now.Date;
+            //
+            TestDate = TestDate.AddYears(100);
+            //
+            string DateAdded = TestDate.ToString();
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedInvalidData()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            //Create test data to assign to the proprty
+            String Error = "";
+            //test data
+            string DateAdded = "this is not a date!";
+            //Assign Data to the proprty
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            //test to see that it exists
+            Assert.AreNotEqual(Error, "");
         }
     }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

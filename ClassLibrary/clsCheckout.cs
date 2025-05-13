@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.SqlServer.Server;
 
 namespace ClassLibrary
 {
@@ -124,6 +125,49 @@ namespace ClassLibrary
 
         }
 
+      
+
+        public string Valid(string cartId, string watchId, string customerId, string dateAdded, string totalCartValue)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (TotalCartValue.Length == 0)
+            {
+                //record the error
+                Error = Error + "The cart may not be empty";
+            }
+            if (TotalCartValue.Length > 6)
+            {
+                Error = Error + "The cart must be less than six characters";
+            }
+
+            DateTime DateComp = DateTime.Now.Date;
+            try
+            {
+                //
+                DateTemp = Convert.ToDateTime(dateAdded);
+                //
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The date cannot be in the past";
+                }
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The date cannot be in the future";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not valid";
+            }
+
+
+
+
+
+
+            return Error;
+        }
     }
 }
 
