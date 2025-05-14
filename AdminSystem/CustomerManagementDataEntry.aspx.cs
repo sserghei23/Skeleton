@@ -14,7 +14,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     }
 
-    protected void bttnOK_Click(object sender, EventArgs e)
+    protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
@@ -24,6 +24,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["AnCustomer"] = AnCustomer;
         //Navigate to the view page
         Response.Redirect("CustomerManagementViewer.aspx");
+
+    }
+
+    protected void TextBox2_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }
