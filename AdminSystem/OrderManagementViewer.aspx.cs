@@ -30,4 +30,13 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("<br />");
         Response.Write("Completed?: "+ AnOrder.Completed);
     }
+
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        clsOrder AnOrder = new clsOrder();
+        //store the order in the session object
+        Session["AnOrder"] = AnOrder;
+        //navigate to the viewer page
+        Response.Redirect("OrderManagementDataEntry.aspx");
+    }
 }
