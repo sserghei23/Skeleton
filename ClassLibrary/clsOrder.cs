@@ -206,7 +206,7 @@ namespace ClassLibrary
                 if (TempTotalAmount < 0)
                 {
                     Error = Error + "The total amount cannot be lower than zero : ";
-                }
+                }                
             }
             catch
             {

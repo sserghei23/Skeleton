@@ -17,32 +17,72 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-
-        //capture the order status
-        AnOrder.Status = txtStatus.Text;
-
-        //capture the order id
-        AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
-
         //capture the customer id
-        AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
-
+        string customerId = txtCustomerId.Text;
         //capture the staff id
-        AnOrder.StaffId = Convert.ToInt32(txtStaffId.Text);
-
+        string staffId = txtStaffId.Text;
+        //capture the order status
+        string status = txtStatus.Text;
         //capture the total amount
-        AnOrder.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
-
+        string totalAmount = txtTotalAmount.Text;
         //capture the order date
-        AnOrder.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
-
+        string orderDate = txtOrderDate.Text;
         //capture the active status
-        AnOrder.Completed = chkCompleted.Checked;
+        string completed = chkCompleted.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data on the web form
+        Error = AnOrder.Valid(customerId, staffId, status, totalAmount, orderDate);
+        if (Error == "")
+        {
+            //capture the order status
+            AnOrder.Status = status;
+            //capture the total amount
+            AnOrder.TotalAmount = Convert.ToDecimal(totalAmount);
+            //capture the order date
+            AnOrder.OrderDate = Convert.ToDateTime(orderDate);
+            //store the order in the session object
+            Session["AnOrder"] = AnOrder;
+            //navigate to the viewer page
+            Response.Redirect("OrderManagementViewer.aspx");
+        }
 
-        //store the status in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the view page
-        Response.Redirect("OrderManagementViewer.aspx");
+        else
+        {
+            //display the error message
+            lblError.Text = "There was a problem: " + Error;
+        }
+
+
+
+        ////create a new instance of clsOrder
+        //clsOrder AnOrder = new clsOrder();
+
+        ////capture the order status
+        //AnOrder.Status = txtStatus.Text;
+
+        ////capture the order id
+        //AnOrder.OrderId = Convert.ToInt32(txtOrderId.Text);
+
+        ////capture the customer id
+        //AnOrder.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+
+        ////capture the staff id
+        //AnOrder.StaffId = Convert.ToInt32(txtStaffId.Text);
+
+        ////capture the total amount
+        //AnOrder.TotalAmount = Convert.ToDecimal(txtTotalAmount.Text);
+
+        ////capture the order date
+        //AnOrder.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
+
+        ////capture the active status
+        //AnOrder.Completed = chkCompleted.Checked;
+
+        ////store the status in the session object
+        //Session["AnOrder"] = AnOrder;
+        ////navigate to the view page
+        //Response.Redirect("OrderManagementViewer.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
@@ -75,6 +115,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //display an error message
             lblError.Text = "Order ID not found!!";
+            //empty the text boxes
+            txtCustomerId.Text = string.Empty;
+            txtCustomerId.Text = string.Empty;
+            txtStaffId.Text = string.Empty;
+            txtStatus.Text = string.Empty;
+            txtTotalAmount.Text = string.Empty;
+            txtOrderDate.Text = string.Empty;
+            chkCompleted.Checked = false;
         }
     }
 }
