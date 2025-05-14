@@ -27,14 +27,14 @@
         <asp:TextBox ID="TextBox4" runat="server" style="z-index: 1; left: 119px; top: 103px; position: absolute"></asp:TextBox>
         <asp:Label ID="lblPassword" runat="server" style="z-index: 1; left: 13px; top: 143px; position: absolute" Text="Password" width="79px"></asp:Label>
         <asp:TextBox ID="TextBox5" runat="server" style="z-index: 1; left: 119px; top: 139px; position: absolute"></asp:TextBox>
-        <asp:TextBox ID="TextBox6" runat="server" OnTextChanged="TextBox6_TextChanged" style="z-index: 1; left: 119px; top: 182px; position: absolute; bottom: 651px"></asp:TextBox>
+        <asp:TextBox ID="txtPostCode" runat="server" OnTextChanged="TextBox6_TextChanged" style="z-index: 1; left: 119px; top: 182px; position: absolute; bottom: 651px"></asp:TextBox>
         <asp:TextBox ID="TextBox7" runat="server" style="z-index: 1; left: 120px; top: 219px; position: absolute; right: 443px"></asp:TextBox>
         <p>
             &nbsp;</p>
         <asp:Label ID="lblDateRegistered" runat="server" style="z-index: 1; left: 12px; top: 257px; position: absolute" Text="Date Registered" width="79px"></asp:Label>
         <asp:Label ID="lblPhoneNumber" runat="server" style="z-index: 1; left: 13px; top: 221px; position: absolute" Text="Phone Number" width="79px"></asp:Label>
         <asp:Label ID="lblPostCode" runat="server" style="z-index: 1; left: 13px; top: 184px; position: absolute" Text="Post Code" width="79px"></asp:Label>
-        <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 120px; top: 297px; position: absolute" Text="Active" />
+        <asp:CheckBox ID="chkIsActive" runat="server" style="z-index: 1; left: 120px; top: 297px; position: absolute" Text="Active" />
         <p>
             <asp:TextBox ID="TextBox9" runat="server" style="z-index: 1; left: 121px; top: 255px; position: absolute"></asp:TextBox>
         </p>

@@ -17,15 +17,21 @@ public partial class _1Viewer : System.Web.UI.Page
         //Capture the Date Added
         AnCustomer.DateRegistered = Convert.ToDateTime(DateTime.Now);
         //Capture Active Check Box
-        AnCustomer.IsActive = chkActive.Checked;
+        AnCustomer.IsActive = chkIsActive.Checked;
 
-        //Displat the Postcode for this Entry
+        //Display the Postcode for this Entry
         Response.Write(AnCustomer.PostCode);
+        //Display the Full Name for this Entry
         Response.Write(AnCustomer.FullName);
+        //Display the Customer ID for this Entry
         Response.Write(AnCustomer.CustomerId);
+        //Display the Date Registered for this Entry
         Response.Write(AnCustomer.DateRegistered);
+        //Display the Phone Number for this Entry   
         Response.Write(AnCustomer.PhoneNumber);
+        //Display the Email for this Entry
         Response.Write(AnCustomer.Email);
+        //Display the Entry for this Entry
         Response.Write(AnCustomer.Password);
 
 
