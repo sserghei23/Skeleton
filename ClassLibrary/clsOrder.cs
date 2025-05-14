@@ -150,5 +150,69 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string customerId, string staffId, string status, string totalAmount, string orderDate)
+        {
+           //create a string variable to store the error
+           String Error = "";
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            
+
+            //if status is blank
+            if (status.Length == 0)
+            {
+                //record the error
+                Error = Error + "The status may not be blank : ";
+            }
+            //if status is greater than 15 characters
+            if (status.Length > 15)
+            {
+                //record the error
+                Error = Error + "The status must be less than 15 characters : ";
+            }
+
+            //create an instance of the DateTime to compare with DateTemp
+            //in the if statement
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //copy the orderDate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(orderDate);
+                //check to see if the date is less than todays date
+                if (DateTemp < DateComp)
+                {
+                    //record the error
+                    Error = Error + "The order date cannot be in the past : ";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The order date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The order date was not a valid date : ";
+            }
+
+
+            try
+            {
+                decimal TempTotalAmount = Convert.ToDecimal(totalAmount);
+                if (TempTotalAmount < 0)
+                {
+                    Error = Error + "The total amount cannot be lower than zero : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The total amount was not a valid number : ";
+            }
+            return Error;
+        }
     }
 }
