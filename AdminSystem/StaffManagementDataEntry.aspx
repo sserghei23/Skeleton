@@ -10,6 +10,8 @@
     <h1>This is the Staff Management Data Entry</h1>
     <form id="form1" runat="server">
         
+
+        
             <!-- This is the Staff Management Data Entry form -->
             <!-- The form is used to add or edit staff information -->
             <!-- The form contains the following fields: -->
@@ -45,13 +47,15 @@
             <!-- Error Label-->
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 335px; position: absolute" Text="[lblError]"></asp:Label>
 
-            <!-- Buttons for OK and Cancel-->
+            <!-- Buttons for OK, Cancel and Find-->
             <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 12px; top: 377px; position: absolute;" Text="OK" OnClick="btnOK_Click" />
             
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 58px; top: 377px; position: absolute" Text="Cancel" />
             
-
+                         
+            <asp:Button ID="btnFind" runat="server" Text="Find" style="z-index: 1; left: 319px; top: 88px; position: absolute; width: 59px; height: 29px;" OnClick="btnFind_Click"/>
             
+   
     </form>
 </body>
 </html>
