@@ -128,23 +128,35 @@ namespace ClassLibrary
 
         public bool Find(int customerId)
         {
-            //set the private data members to the test data value
-            mCustomerId = 1;
-            mPostCode = "LE4 0BA";
-            mDateRegistered = Convert.ToDateTime("01/04/2025");
-            mPhoneNumber = "07727628467";
-            mPassword = "vm123";
-            mEmail = "vaydang02@dhdh.com";
-            mIsActive = true;
-            mFullName = "Vaydang";
-           
-            //Always return True
-            return true;
-        }
+            //Create an Instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //Add the parameter for the address Id to search for
+            DB.AddParameter("@CustomerId", customerId);
+            //Execute the stored procedure
+            DB.Execute("Sproc_tblCustomer_FilterByCustomerId");
+            //If one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
 
-        public bool Find(string customerId)
-        {
-            throw new NotImplementedException();
+                //Copy the data  from the database to the private data members
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mPostCode = Convert.ToString(DB.DataTable.Rows[0]["PostCode"]);
+                mDateRegistered = Convert.ToDateTime(DB.DataTable.Rows[0]["DateRegistered"]);
+                mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
+                mIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mPassword = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mFullName = Convert.ToString(DB.DataTable.Rows[0]["Vaydang"]);
+
+                //Always return True
+                return true;
+            }
+            //if no record was foound
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
         }
     }
 }
