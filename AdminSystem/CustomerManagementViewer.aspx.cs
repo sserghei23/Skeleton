@@ -15,10 +15,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //Get the data from the session Object
         AnCustomer = (clsCustomer)Session["AnCustomer"];
         //Capture the Date Added
-        AnCustomer.DateRegistered = Convert.ToDateTime(DateTime.Now);
-        //Capture Active Check Box
-        AnCustomer.IsActive = chkIsActive.Checked;
-
+       
         //Display the Postcode for this Entry
         Response.Write(AnCustomer.PostCode);
         //Display the Full Name for this Entry

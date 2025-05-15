@@ -20,6 +20,23 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsCustomer AnCustomer = new clsCustomer();
         //Capture the Postcode
         AnCustomer.PostCode = txtPostCode.Text;
+        //Capture the Customer Id
+        AnCustomer.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+        //Capture the Date registered
+        AnCustomer.DateRegistered = Convert.ToDateTime(DateTime.Now);
+        //Capture the PostCode
+        AnCustomer.PostCode = Convert.ToString(txtPostCode.Text);
+        //Capture the Is Active
+        AnCustomer.IsActive = chkIsActive.Checked;
+        //Capture the Phonenumber
+        AnCustomer.PhoneNumber = txtPhoneNumber.Text;
+        //Capture the Email Address
+        AnCustomer.Email = txtEmail.Text;
+        //Capture the Full Name
+        AnCustomer.FullName = txtFullName.Text;
+
+
+
         //store the Post Code in the session object
         Session["AnCustomer"] = AnCustomer;
         //Navigate to the view page
@@ -28,6 +45,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void TextBox2_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //Create an Instance of the Customer Class
+        clsCustomer AnCustomer = new clsCustomer();
+        //Create a Variable to Store the Primary Key
+        Int32 CustomerId;
+        //Create a Variable to store the result of the find operation
+        Boolean Found = false;
+        //Get the primary key entered by the user
+        CustomerId = Convert.ToInt32(txtCustomerId.Text);
+        //Find The Record
+        Found = AnCustomer.Find(CustomerId);
+        //If Foound
+        if (Found == true)
+        {
+            //Display the value of the properties in the form
+            txtFullName.Text = AnCustomer.FullName;
+            txtEmail.Text = AnCustomer.Email;
+            txtPhoneNumber.Text = AnCustomer.PhoneNumber;
+            txtPassword.Text = AnCustomer.Password;
+            chkIsActive.Checked = AnCustomer.IsActive;
+            txtPostCode.Text = AnCustomer.PostCode;
+            txtDateRegistered.Text = AnCustomer.DateRegistered.ToString();
+
+        }
+    }
+
+    protected void txtDateRegistered_TextChanged(object sender, EventArgs e)
     {
 
     }

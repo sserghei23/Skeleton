@@ -40,7 +40,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
-            DateTime TestData = DateTime.Now;
+            DateTime TestData = DateTime.Now.Date;
             //Assign the data to the property
             AnCustomer.DateRegistered = TestData;
             //test to seee that the two values are the same
@@ -122,7 +122,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //create some test data to assign to the property
-            Int16 TestData = 123;
+            string TestData = "123";
             //assign the data to the property
             AnCustomer.Password = TestData;
             //test to see that the two values are the same
@@ -282,7 +282,7 @@ namespace Testing4
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            string CustomerId = "1";
+            Int32 CustomerId = 1;
             Found = AnCustomer.Find(CustomerId);
             if (AnCustomer.Password != "vm123")
             {
