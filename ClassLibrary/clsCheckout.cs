@@ -21,23 +21,25 @@ namespace ClassLibrary
         }
 
 
-        public Boolean mCheckkedOut; //{ get; private set; }
-                                     //dateadded public property
+        
+        private bool mCheckedOut;
+        //dateadded public property
         public bool CheckedOut
         {
             get
             {
-                return mCheckkedOut;
+                return mCheckedOut;
             }
             set
             {
-                mCheckkedOut = value;
+                mCheckedOut = value;
             }
         }
 
+        
+        
+        
         public Int32 mCustomerId; //{ get; private set; }
-
-        public int mCheckedOut { get; private set; }
 
         //dateadded public property
         public Int32 CustomerId
@@ -94,16 +96,16 @@ namespace ClassLibrary
             }
         }
 
+       
 
-
-        public bool Find(int cartId)
+        public bool Find(int CartId)
         {
             //create an instance of the dataconnection
             clsDataConnection DB = new clsDataConnection();
             //add a parameter for thos cart id seerch
             DB.AddParameter("@CartId", CartId);
             //execute the stored procedure
-            DB.Execute("tblCheckoutFilterByCartId");
+            DB.Execute("sproc_tblCheckout_FilterByCartId");
             //if one record is found there should be either one or zero
             if (DB.Count == 1)
             {
@@ -111,7 +113,7 @@ namespace ClassLibrary
                 mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
                 mWatchId = Convert.ToInt32(DB.DataTable.Rows[0]["WatchId"]);
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
-                mCheckedOut = Convert.ToInt32(DB.DataTable.Rows[0]["CheckedOut"]);
+                mCheckedOut = Convert.ToBoolean(DB.DataTable.Rows[0]["CheckedOut"]);
                 mTotalCartValue = Convert.ToString(DB.DataTable.Rows[0]["TotalCartValue"]);
                 //always return true
                 return true;
@@ -119,6 +121,7 @@ namespace ClassLibrary
             //if no record was found
             else
             {
+                
                 //return false indicting there is a problem
                 return false;
             }
@@ -131,12 +134,12 @@ namespace ClassLibrary
         {
             String Error = "";
             DateTime DateTemp;
-            if (TotalCartValue.Length == 0)
+            if (totalCartValue.Length == 0)
             {
                 //record the error
                 Error = Error + "The cart may not be empty";
             }
-            if (TotalCartValue.Length > 6)
+            if (totalCartValue.Length > 4)
             {
                 Error = Error + "The cart must be less than six characters";
             }
@@ -147,6 +150,13 @@ namespace ClassLibrary
                 //
                 DateTemp = Convert.ToDateTime(dateAdded);
                 //
+
+                
+                if (DateTemp == DateComp)
+                {
+                    Error = Error + "The date cannot be blank";
+                }
+
                 if (DateTemp < DateComp)
                 {
                     Error = Error + "The date cannot be in the past";
@@ -160,13 +170,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The date was not valid";
             }
-
-
-
-
-
-
-            return Error;
+            return Error ;
         }
     }
 }
@@ -179,7 +183,6 @@ namespace ClassLibrary
 
 
 
-        
 
-       
-    
+
+

@@ -5,8 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #form1 {
+            height: 16px;
+            width: 53px;
+        }
+    </style>
 </head>
-<body style="height: 355px; width: 496px">
+<body style="height: 2px; width: 54px">
     <form id="form1" runat="server">
         <asp:Label ID="lblCartId" runat="server" style="z-index: 1; left: 10px; top: 34px; position: absolute; bottom: 605px;" Text="CartId" width="93px"></asp:Label>
         <p>
