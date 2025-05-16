@@ -8,11 +8,6 @@ using ClassLibrary;
 
 public partial class _1Viewer : System.Web.UI.Page
 {
-   
-    public object Cartid { get; private set; }
-    public object Customerid { get; private set; }
-    public object TotalCartValue { get; private set; }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         //create an instance of cls Checkout
@@ -20,16 +15,18 @@ public partial class _1Viewer : System.Web.UI.Page
         //Stores in session
         AnCheckout = (clsCheckout)Session["AnCheckout"]; 
         //Display the Total Cart Value 
+
         Response.Write(AnCheckout.TotalCartValue);
-        //Display
+        Response.Write("<br />");
         Response.Write(AnCheckout.CartId);
-        //Display
+        Response.Write("<br />");
         Response.Write(AnCheckout.CustomerId);
-        //Display
+        Response.Write("<br />");
         Response.Write(AnCheckout.WatchId);
-        //Display
+        Response.Write("<br />");
         Response.Write(AnCheckout.DateAdded);
-        //Display
-        Response.Write(AnCheckout.CheckedOut);
+        Response.Write("<br />");
+        Response.Write("CheckedOut?: " + AnCheckout.CheckedOut);
+
     }
 }
