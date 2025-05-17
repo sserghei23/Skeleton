@@ -143,10 +143,10 @@ namespace ClassLibrary
                 mPostCode = Convert.ToString(DB.DataTable.Rows[0]["PostCode"]);
                 mDateRegistered = Convert.ToDateTime(DB.DataTable.Rows[0]["DateRegistered"]);
                 mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
-                mIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["IsActive"]);
                 mPassword = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
                 mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
-                mFullName = Convert.ToString(DB.DataTable.Rows[0]["Vaydang"]);
+                mFullName = Convert.ToString(DB.DataTable.Rows[0]["FullName"]);
 
                 //Always return True
                 return true;
@@ -158,5 +158,100 @@ namespace ClassLibrary
                 return false;
             }
         }
+        
+        public string Valid(string postCode, string fullName, string phoneNumber, string password, string email, string dateRegistered)
+            {
+            //Create a String variable to store the error
+            String Error = "";
+            DateTime DateTemp;
+            if (postCode.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Postcode may not be Blank : ";
+            }
+            //if the PostCode is greater than 6 characters
+            if (postCode.Length > 10)
+            {
+                //Return any Error messages
+                Error = Error + "The Postcode must be less than 8 Charchters ; ";
+            }
+
+            //Copy the DateRegistered Value to the DateTemp Variable
+            DateTemp = Convert.ToDateTime(dateRegistered);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //Record the error
+                Error = Error + " The Date cannot be in the past : ";
+            }
+            //Check to see if the date is Greater than Today's date
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //Record the error
+                Error = Error + "The Date cannot be in the Future: ";
+            }
+
+            if (fullName.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Full Name may not be Blank : ";
+            }
+            //if the PostCode is greater than 20 characters
+            if (fullName.Length > 20)
+            {
+                //Return any Error messages
+                Error = Error + "The The Full Name must be less than 8 Charchters ; ";
+            }
+
+            if (postCode.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Postcode may not be Blank : ";
+            }
+            //if the PostCode is greater than 10 characters
+            if (postCode.Length > 10)
+            {
+                //Return any Error messages
+                Error = Error + "The Postcode must be less than 8 Charchters ; ";
+            }
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Email may not be Blank : ";
+            }
+            //if the PostCode is greater than 500 characters
+            if (email.Length > 50)
+            {
+                //Return any Error messages
+                Error = Error + "The Email must be less than 50 Charchters ; ";
+            }
+            if (phoneNumber.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Phone Number may not be Blank : ";
+            }
+            //if the PostCode is greater than 500 characters
+            if (phoneNumber.Length > 10)
+            {
+                //Return any Error messages
+                Error = Error + "The Phone Number must be less than 10 Charchters ; ";
+            }
+
+            if (password.Length == 0)
+            {
+                //record the error
+                Error = Error + " The Password may not be Blank : ";
+            }
+            //if the PostCode is greater than 500 characters
+            if (password.Length > 20)
+            {
+                //Return any Error messages
+                Error = Error + "The Password must be less than 50 Charchters ; ";
+            }
+            //return any error messages
+            return Error;
+        }
+
+
+        
     }
 }
