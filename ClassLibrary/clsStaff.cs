@@ -128,5 +128,67 @@ namespace ClassLibrary
             }
             
         }
+
+        public string Valid(string orderID, string fullName, string password, string email, string dateOfEmployment)
+        {
+            //create a string variable to store the error
+            string Error = "";
+            //temporary variable to store the date
+            DateTime DateTemp;
+            //if the orderID is blank
+            if (orderID.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Order ID may not be blank : ";
+            }
+
+            //if orderID is greater than 6 characters
+            if (orderID.Length > 6)
+            {
+                //record the error
+                Error = Error + "The Order ID must be less than 6 characters : ";
+            }
+
+            //if password is blank
+            if (password.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Password may not be blank : ";
+            }
+
+            //if password is greater than 20 characters
+            if (password.Length > 20){
+                //record the error
+                Error = Error + "The Password must not exceed 20 characters : ";
+            }
+
+            //Validating the DateOfEmployment
+            DateTime DateComp = DateTime.Now.Date;
+            DateTime DateComp2 = Convert.ToDateTime("02/01/2020");
+
+            try
+            {
+                //will convert the dateOfEmployment argument into the DateTime variable
+                DateTemp = Convert.ToDateTime(dateOfEmployment);
+
+                //if the date is less than 02/01/2020
+                if (DateTemp < DateComp2)
+                {
+                    Error = Error + "The Date of Employment cannot be set before 02/01/2020";
+                }
+                //if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    Error = Error + "The Date Of Employment cannot be set in the future";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date set was not valid";
+            }
+
+            //return invalid data
+            return Error;
+        }
     }
 }
