@@ -8,6 +8,16 @@ namespace Testing2
     [TestClass]
     public class tstStaff
     {
+
+        //public test data
+        string OrderID = "14";
+        string FullName = "Walt Walker";
+        string Password = "password123";
+        string Email = "wwalter@gmail.com";
+        string DateOfEmployment = DateTime.Now.ToShortDateString();
+       
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -284,6 +294,400 @@ namespace Testing2
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        //Validating the properties of the staff class using these test methods below
+
+        //Validation method if there are blank fields (no characters)
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //OrderID Validation test-methods.
+
+        //Test if OrderID has 0 character
+        [TestMethod]
+        public void OrderIDMinLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = ""; //this test is expected to fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if OrderID has at least 1 character
+        [TestMethod]
+        public void OrderIDMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "0"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if OrderID has 2 characters
+
+        [TestMethod]
+        public void OrderIDMinPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "11"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if OrderID has 5 characters
+        [TestMethod]
+        public void OrderIDMaxLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message   
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "99999"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if OrderID has 6 characters
+        [TestMethod]
+        public void OrderIDMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "100000"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if OrderID has 7 characters
+        [TestMethod]
+        public void OrderIDMaxPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "1000000"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if OrderID has 3 characters
+        [TestMethod]
+        public void OrderIDMid()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "500"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if OrderID has 500 characters
+        [TestMethod]
+        public void OrderIDExtremeMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "";
+            OrderID = OrderID.PadRight(500, '9'); //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //FullName Validation test-methods.
+
+        //Password Validation test-methods.
+
+        //Test if Password has 0 characters
+        [TestMethod]
+        public void PasswordMinLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = ""; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if Password has at least 1 character
+        [TestMethod]
+        public void PasswordMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "a"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if Password has 2 characters
+        [TestMethod]
+        public void PasswordMinPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "ab"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if Password has 19 characters
+        [TestMethod]
+        public void PasswordMaxLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "walterwhitebreaking"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if Password has 20 characters
+        [TestMethod]
+        public void PasswordMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "walterwhitebreaking1"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if Password has 21 characters
+        [TestMethod]
+        public void PasswordMaxPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "walterwhitebreaking12"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if Password has 100 characters
+        [TestMethod]
+        public void PasswordExtremeMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "";
+            Password = Password.PadRight(100, 'a'); //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        //Email Validation test-methods.
+
+        //DateOfEmployment Validation test-methods.
+
+        //Test if DateOfEmployment has minus 100 days
+        [TestMethod]
+        public void DateOfEmploymentExtremeMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //variable to store test data
+            DateTime TestDate;
+            //set variable to today's date
+            TestDate = DateTime.Now.Date;
+            //subtract 100 years from the date
+            TestDate = TestDate.AddYears(-100);
+            //convert the date to a string
+            string DateOfEmployment = TestDate.ToString();
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if DateOfEmployment has minus 5 days
+        [TestMethod]
+        public void DateOfEmploymentMinLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //variable to store DateTime test data for DateOfEmployment
+            DateTime TestDate;
+            //set variable to today's date
+            TestDate = DateTime.Now.Date;
+            //subtract 1 day from the date
+            TestDate = TestDate.AddDays(-5);
+            //convert the date to a string by casting
+            string DateOfEmployment = TestDate.ToString();
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if DateOfEmployment is the same as the current date
+        [TestMethod]
+        public void DateOfEmploymentMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //variable to store DateTime test data for DateOfEmployment
+            DateTime TestDate;
+            //set variable to today's date
+            TestDate = DateTime.Now.Date;
+            //convert the date to a string by casting
+            string DateOfEmployment = TestDate.ToString();
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if DateOfEmployment has plus 1 day
+        [TestMethod]
+        public void DateOfEmploymentMinPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //variable to store DateTime test data for DateOfEmployment
+            DateTime TestDate;
+            //set variable to today's date
+            TestDate = DateTime.Now.Date;
+            //add 1 day to the date
+            TestDate = TestDate.AddDays(5);
+            //convert the date to a string by casting
+            string DateOfEmployment = TestDate.ToString();
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if DateOfEmployment has plus 100 years
+        [TestMethod]
+        public void DateOfEmploymentExtremeMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //variable to store test data
+            DateTime TestDate;
+            //set variable to today's date
+            TestDate = DateTime.Now.Date;
+            //add 100 years to the date
+            TestDate = TestDate.AddYears(100);
+            //convert the date to a string by casting
+            string DateOfEmployment = TestDate.ToString();
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if DateOfEmployment has data that is not in a date format
+        [TestMethod]
+        public void DateOfEmploymentInvalidData()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string DateOfEmployment = "This is not a date"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
         }
     }
 }
