@@ -313,8 +313,22 @@ namespace Testing2
         }
 
         //OrderID Validation test-methods.
+        [TestMethod]
+        public void OrderIDExtremeMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "-1"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
 
-        //Test if OrderID has 0 character
+        //Test if OrderID has 0 characters
         [TestMethod]
         public void OrderIDMinLessOne()
         {
@@ -438,6 +452,22 @@ namespace Testing2
             //creates some test data to use with the method
             string OrderID = "";
             OrderID = OrderID.PadRight(500, '9'); //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if OrderID has data that is not in a number format
+        [TestMethod]
+        public void OrderIDInvalidData()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string OrderID = "This is not a number"; //this test should fail
             //invokes the method
             Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
             //assert that the result is correct
