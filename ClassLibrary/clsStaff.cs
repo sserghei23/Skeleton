@@ -134,20 +134,63 @@ namespace ClassLibrary
             //create a string variable to store the error
             string Error = "";
             //temporary variable to store the date
+            int OrderIDTemp;
             DateTime DateTemp;
-            //if the orderID is blank
-            if (orderID.Length == 0)
+
+            //Validating the OrderID
+            try
+            {
+                //will convert the orderID argument into the Int32 variable
+                OrderIDTemp = Convert.ToInt32(orderID);
+                //if the orderID is less than 0
+                if (OrderIDTemp < 0)
+                {
+                    //record the error
+                    Error = Error + "The Order ID must be greater than 0 : ";
+                }
+
+                //if the orderID is blank
+                if (orderID.Length == 0)
+                {
+                    //record the error
+                    Error = Error + "The Order ID may not be blank : ";
+                }
+
+                //if orderID is greater than 6 characters
+                if (OrderIDTemp > 999999)
+                {
+                    //record the error
+                    Error = Error + "The Order ID must be less than 6 characters : ";
+                }
+            }
+            catch
             {
                 //record the error
-                Error = Error + "The Order ID may not be blank : ";
+                Error = Error + "The Order ID only accepts integers : ";
             }
 
+
+
+            //if the orderID is blank
+            //if (orderID.Length == 0)
+            //{
+            //record the error
+            //Error = Error + "The Order ID may not be blank : ";
+            //}
+
             //if orderID is greater than 6 characters
-            if (orderID.Length > 6)
-            {
-                //record the error
-                Error = Error + "The Order ID must be less than 6 characters : ";
-            }
+            //if (orderID.Length > 6)
+            //{
+            //record the error
+            //Error = Error + "The Order ID must be less than 6 characters : ";
+            //}
+
+            //if orderID is less than 0, negative test
+            //if (Convert.ToInt32(orderID) < 0)
+            //{
+            //record the error
+            //Error = Error + "The Order ID must be greater than 0 : ";
+            //}
 
             //if password is blank
             if (password.Length == 0)
