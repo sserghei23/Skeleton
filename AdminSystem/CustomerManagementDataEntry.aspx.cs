@@ -19,31 +19,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
         //Capture the Postcode
-        AnCustomer.PostCode = txtPostCode.Text;
-        //Capture the Customer Id
-        AnCustomer.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+        string PostCode = txtPostCode.Text;
         //Capture the Date registered
-        AnCustomer.DateRegistered = Convert.ToDateTime(DateTime.Now);
-        //Capture the PostCode
-        AnCustomer.PostCode = Convert.ToString(txtPostCode.Text);
+        string DateRegistered = txtDateRegistered.Text;
         //Capture the Is Active
-        AnCustomer.IsActive = chkIsActive.Checked;
+        string IsActive = chkIsActive.Text;
         //Capture the Phonenumber
-        AnCustomer.PhoneNumber = txtPhoneNumber.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
         //Capture the Email Address
-        AnCustomer.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
         //Capture the Full Name
-        AnCustomer.FullName = txtFullName.Text;
+        string FullName = txtFullName.Text;
+        //Variable to store any error messages
+        string Password = txtPassword.Text;
+        string Error = "";
+        Error = AnCustomer.Valid(PostCode, DateRegistered, PostCode, PhoneNumber, Email, FullName);
+        if (Error == "")
+        {
+            //Capture the PostCode
+            AnCustomer.PostCode = PostCode;
+            AnCustomer.DateRegistered = Convert.ToDateTime(DateRegistered);
+            AnCustomer.PhoneNumber = PhoneNumber;
+            AnCustomer.Email = Email;
+            AnCustomer.FullName = FullName;
+            AnCustomer.Password = Password;
+            //store the Post Code in the session object
+            Session["AnCustomer"] = AnCustomer;
+            //Navigate to the view page
+            Response.Redirect("CustomerManagementViewer.aspx");
 
-
-
-        //store the Post Code in the session object
-        Session["AnCustomer"] = AnCustomer;
-        //Navigate to the view page
-        Response.Redirect("CustomerManagementViewer.aspx");
-
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
-
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
 
