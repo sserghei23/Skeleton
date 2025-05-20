@@ -60,4 +60,57 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to edit from the list";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted
+        Int32 OrderId;
+        //if a record has been selected from the list
+        if (lstOrderList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to be deleted
+            OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
+            //store the data in the session object
+            Session["OrderId"] = OrderId;
+            //redirect to the delete page
+            Response.Redirect("OrderManagementConfirmDelete.aspx");
+        }
+        else
+        {
+            //display an error message
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order collection
+        clsOrderCollection AnOrder = new clsOrderCollection();
+        //retreive the value of status from the presentation layer
+        AnOrder.ReportByStatus(txtFilter.Text);
+        //set the data source to the filtered list of orders in the collection
+        lstOrderList.DataSource = AnOrder.OrderList;
+        //set the name of the primary key
+        lstOrderList.DataValueField = "OrderId";
+        //set the data field to display
+        lstOrderList.DataTextField = "Status";
+        //bind the data to the list
+        lstOrderList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order collection
+        clsOrderCollection AnOrder = new clsOrderCollection();
+        //set an empty string
+        txtFilter.Text = "";
+        //set the data source to the filtered list of orders in the collection
+        lstOrderList.DataSource = AnOrder.OrderList;
+        //set the name of the primary key
+        lstOrderList.DataValueField = "OrderId";
+        //set the data field to display
+        lstOrderList.DataTextField = "Status";
+        //bind the data to the list
+        lstOrderList.DataBind();
+    }
 }
