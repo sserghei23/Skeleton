@@ -6,6 +6,8 @@ namespace ClassLibrary
     public class clsOrderCollection
     {
         List<clsOrder> mOrderList = new List<clsOrder>();
+        //private data member for thisOrder
+        clsOrder mThisOrder = new clsOrder();
         public List<clsOrder> OrderList
         {
             get
@@ -31,7 +33,19 @@ namespace ClassLibrary
                 //we are not going to use this so we can leave it blank
             }
         }
-        public clsOrder ThisOrder { get; set; }
+        public clsOrder ThisOrder
+        {
+            get
+            {
+                //return the private data
+                return mThisOrder;
+            }
+            set
+            {
+                //set the private data
+                mThisOrder = value;
+            }
+        }
 
         //contructor for class
         public clsOrderCollection()
@@ -64,6 +78,40 @@ namespace ClassLibrary
                 //increment the index
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            //adds a record to the datbase based on the values of thisOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@Status", mThisOrder.Status);
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@Completed", mThisOrder.Completed);
+
+            //execute the stored procedure
+            return DB.Execute("sproc_tblOrder_Insert");
+        }
+
+        public void Update()
+        {
+            //updates a record in the database based on the values of thisOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@OrderId", mThisOrder.OrderId);
+            DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
+            DB.AddParameter("@StaffId", mThisOrder.StaffId);
+            DB.AddParameter("@Status", mThisOrder.Status);
+            DB.AddParameter("@TotalAmount", mThisOrder.TotalAmount);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@Completed", mThisOrder.Completed);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_Update");
         }
     }
 }

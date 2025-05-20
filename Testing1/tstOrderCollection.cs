@@ -89,6 +89,75 @@ namespace Testing2
             AllOrders.OrderList = TestList;
             // test that the two values are the same
             Assert.AreEqual(AllOrders.Count, TestList.Count);
-        } 
+        }
+
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            // create an instance of the class we want to create
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            // create some test data to assign to the property
+            clsOrder TestItem = new clsOrder();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.StaffId = 1;
+            TestItem.TotalAmount = 100.00m;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.Status = "Pending";
+            TestItem.Completed = true;
+            // set ThisOrder to the test data
+            AllOrders.ThisOrder = TestItem;
+            // add the record
+            PrimaryKey = AllOrders.Add();
+            // set the primary key of the test data
+            TestItem.OrderId = PrimaryKey;
+            // find the record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            // test that the two values are the same
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOk()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            // create some test data to assign to the property
+            clsOrder TestItem = new clsOrder();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            // set its properties
+            TestItem.OrderId = 1;
+            TestItem.CustomerId = 1;
+            TestItem.StaffId = 1;
+            TestItem.TotalAmount = 100.00m;
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.Status = "Pending";
+            TestItem.Completed = true;
+            // set ThisOrder to the test data
+            AllOrders.ThisOrder = TestItem;
+            // add the record
+            PrimaryKey = AllOrders.Add();
+            // set the primary key of the test data
+            TestItem.OrderId = PrimaryKey;
+            // modify the test data
+            TestItem.CustomerId = 2;
+            TestItem.StaffId = 2;
+            TestItem.TotalAmount = 200.00m;
+            TestItem.OrderDate = DateTime.Now;
+            TestItem.Status = "Completed";
+            TestItem.Completed = false;
+            // set ThisOrder to the modified test data
+            AllOrders.ThisOrder = TestItem;
+            // update the record
+            AllOrders.Update();
+            // find the record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            // test that the two values are the same
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
     }
 }
