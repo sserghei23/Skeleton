@@ -11,6 +11,7 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="GoBack" />
     </form>
 </body>
 </html>

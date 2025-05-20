@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,31 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-   
 
+    Int32 CartId;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        CartId = Convert.ToInt32(Session["CartId"]);
+        if (IsPostBack == false)
+        {
+            if (CartId != -1)
+            {
+                DisplayCheckout();
+            }
+        }
+    }
+
+    private void DisplayCheckout()
+    {
+        clsCheckoutCollection CheckoutBook = new clsCheckoutCollection();
+        CheckoutBook.ThisCheckout.Find(CartId);
+        //
+        txtCartId.Text = CheckoutBook.ThisCheckout.CartId.ToString();
+        txtWatchId.Text = CheckoutBook.ThisCheckout.WatchId.ToString();
+        txtCustomerId.Text = CheckoutBook.ThisCheckout.CustomerId.ToString();
+        txtDateAdded.Text = CheckoutBook.ThisCheckout.DateAdded.ToString();
+        txtTotalCartValue.Text = CheckoutBook.ThisCheckout.TotalCartValue;
+        txtCheckedOut.Text = CheckoutBook.ThisCheckout.CheckedOut.ToString();
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
@@ -30,10 +51,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string CartId = (txtCartId.Text);
 
         //Capture DateAdded
-        string DateAdded = txtDateAdded.Text;
+        string DateAdded = (txtDateAdded.Text);
 
         //Capture CheckedOut
-        string CheckedOut = txtCheckedOut.Text;
+        string CheckedOut = (txtCheckedOut.Text);
 
         //Capture Watchid
         string WatchId = (txtWatchId.Text);
@@ -55,13 +76,34 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             AnCheckout.WatchId = Convert.ToInt32(WatchId);
 
-            AnCheckout.CheckedOut = Convert.ToBoolean(CheckedOut);
-
-            //Stores in session
+            //AnCheckout.CheckedOut = Convert.ToBoolean(CheckedOut);
             Session["AnCheckout"] = AnCheckout;
-            //navigate to the viewer page 
+
+
+            clsCheckoutCollection CheckoutList = new clsCheckoutCollection();
+           
+
+            //
+            if (Convert.ToInt32(CartId) == -1)
+            {
+                CheckoutList.ThisCheckout = AnCheckout;
+                CheckoutList.Add();
+                
+            }
+           
+            else
+            {
+                CheckoutList.ThisCheckout.Find(Convert.ToInt32(CartId));
+                CheckoutList.ThisCheckout = AnCheckout;
+                CheckoutList.Update();
+                //navigate to the viewer page 
+            }
             Response.Redirect("CheckoutManagementViewer.aspx");
         }
+            else
+            {
+            lblError.Text = Error;
+            }
 
     }
 
@@ -79,6 +121,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //check the date added property
         if (Found == true)
         {
+            lblError.Text =string.Empty;
             //display#
             txtCheckedOut.Checked = AnCheckout.CheckedOut;
             txtDateAdded.Text = AnCheckout.DateAdded.ToString();
@@ -89,6 +132,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         else
         {
             lblError.Text = "Not Found";
+            txtCartId.Text = string.Empty;
+            txtCustomerId.Text = string.Empty;
+            txtWatchId.Text = string.Empty;
+            txtTotalCartValue.Text = string.Empty;
+            txtDateAdded.Text = string.Empty;
+            txtCheckedOut.Checked = false;
         }
     
     }
