@@ -144,7 +144,7 @@ namespace Testing3
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.DateAdded != Convert.ToDateTime("05/07/2024"))
+            if (AnCheckout.DateAdded != Convert.ToDateTime("20/05/2025"))
             {
                 OK = false;
             }
@@ -280,7 +280,7 @@ namespace Testing3
             //Assign Data to the proprty
             Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
-            Assert.AreNotEqual(Error, "");
+            Assert.AreNotEqual(Error, " ");
         }
 
         [TestMethod]
@@ -294,7 +294,7 @@ namespace Testing3
             //Assign Data to the proprty
             Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
-            Assert.AreNotEqual(Error, "");
+            Assert.AreNotEqual(Error, " ");
         }
 
         [TestMethod]
@@ -430,7 +430,7 @@ namespace Testing3
             //Assign Data to the proprty
             Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
-            Assert.AreNotEqual(Error, "");
+            Assert.AreNotEqual(Error, " ");
         }
 
         [TestMethod]

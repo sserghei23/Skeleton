@@ -29,4 +29,13 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write("CheckedOut?: " + AnCheckout.CheckedOut);
 
     }
+
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        clsOrder AnCheckout = new clsOrder();
+        //store the order in the session object
+        Session["AnCheckout"] = AnCheckout;
+        //navigate to the viewer page
+        Response.Redirect("CheckoutManagementDataEntry.aspx");
+    }
 }

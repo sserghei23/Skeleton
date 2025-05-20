@@ -133,34 +133,35 @@ namespace ClassLibrary
         public string Valid(string cartId, string watchId, string customerId, string dateAdded, string totalCartValue)
         {
             String Error = "";
+            //
             DateTime DateTemp;
+
+
             if (totalCartValue.Length == 0)
             {
                 //record the error
                 Error = Error + "The cart may not be empty";
             }
+            //
             if (totalCartValue.Length > 4)
             {
-                Error = Error + "The cart must be less than six characters";
+                Error = Error + "The cart must be less than four characters";
             }
 
+
             DateTime DateComp = DateTime.Now.Date;
+
             try
             {
                 //
                 DateTemp = Convert.ToDateTime(dateAdded);
                 //
 
-                
-                if (DateTemp == DateComp)
-                {
-                    Error = Error + "The date cannot be blank";
-                }
-
                 if (DateTemp < DateComp)
                 {
                     Error = Error + "The date cannot be in the past";
                 }
+                //
                 if (DateTemp > DateComp)
                 {
                     Error = Error + "The date cannot be in the future";
@@ -170,6 +171,7 @@ namespace ClassLibrary
             {
                 Error = Error + "The date was not valid";
             }
+            //return error
             return Error ;
         }
     }
