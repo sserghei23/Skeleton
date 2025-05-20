@@ -5,14 +5,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            font-size: x-large;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div style="margin-left: 360px">
+            <strong><span class="auto-style1">Statistics Page</span></strong><br />
             <br />
-            Statistics Page<br />
-            <br />
-            CheckoutList- GroupByTotalCartValue<asp:GridView ID="GridViewStGroupByTotalCartValue" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <strong>CheckoutList- GroupByTotalCartValue</strong><asp:GridView ID="GridViewStGroupByTotalCartValue" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Height="161px" OnSelectedIndexChanged="GridViewStGroupByTotalCartValue_SelectedIndexChanged" Width="145px">
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -28,7 +32,7 @@
             <br />
             <br />
             <br />
-            CheckoutList- GroupByDateAdded<asp:GridView ID="GridViewStGroupByDateAdded" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <strong>CheckoutList- GroupByDateAdded</strong><asp:GridView ID="GridViewStGroupByDateAdded" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -41,6 +45,12 @@
                 <SortedDescendingCellStyle BackColor="#E9EBEF" />
                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView>
+            <br />
+            <br />
+            <br />
+            <asp:Button ID="btnBTPP" runat="server" Text="BackToPreviousPage" />
+            <br />
+            <br />
             <br />
         </div>
     </form>
