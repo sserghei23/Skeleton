@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,8 +14,8 @@ namespace Testing3
         string CustomerId = "4";
         string DateAdded = DateTime.Now.ToShortDateString();
         string TotalCartValue = "bbbb";
-        
-    
+
+
 
         [TestMethod]
         public void InstanceOK()
@@ -192,7 +193,7 @@ namespace Testing3
             //test to see that it exists
             Assert.IsTrue(OK);
         }
-        
+
 
         public void TestWatchIdFound()
         {
@@ -234,8 +235,8 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
 
-                
-                                                     
+
+
 
         [TestMethod]
         public void ValidMethodOK()
@@ -388,7 +389,7 @@ namespace Testing3
             //
             TestDate = TestDate.AddYears(-100);
             //
-            string DateAdded = TestDate.ToString(); 
+            string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
             Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
@@ -486,8 +487,26 @@ namespace Testing3
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
-    }
 
+        [TestMethod]
+        public void StatStatisticsGroupedByTotalCartValue()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            DataTable dT = AnCheckout.StatisticsGroupedByTotalCartValue();
+            int noOfRecord = 10;
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
+
+        [TestMethod]
+        public void StatStatisticsGroupedByDateAdded()
+        {
+            clsCheckout AnCheckout = new clsCheckout();
+            DataTable dT = AnCheckout.StatisticsGroupedByDateAdded();
+            int noOfRecord = 9;
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+    }
 }
 
 

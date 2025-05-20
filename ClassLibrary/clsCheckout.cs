@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Microsoft.SqlServer.Server;
 
 namespace ClassLibrary
@@ -96,7 +97,7 @@ namespace ClassLibrary
             }
         }
 
-       
+        
 
         public bool Find(int CartId)
         {
@@ -120,8 +121,7 @@ namespace ClassLibrary
             }
             //if no record was found
             else
-            {
-                
+            {               
                 //return false indicting there is a problem
                 return false;
             }
@@ -140,7 +140,7 @@ namespace ClassLibrary
             if (totalCartValue.Length == 0)
             {
                 //record the error
-                Error = Error + "The cart may not be empty";
+                Error = Error + "The cart may not be empty :";
             }
             //
             if (totalCartValue.Length > 4)
@@ -169,10 +169,24 @@ namespace ClassLibrary
             }
             catch
             {
-                Error = Error + "The date was not valid";
+                Error = Error + "The date was not valid";               
             }
             //return error
             return Error ;
+        }
+
+        public DataTable StatisticsGroupedByTotalCartValue()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByTotalCartValue");
+            return DB.DataTable;
+        }
+
+        public DataTable StatisticsGroupedByDateAdded()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByDateAdded");
+            return DB.DataTable;
         }
     }
 }

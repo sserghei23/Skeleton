@@ -23,7 +23,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         clsCheckoutCollection Checkouts = new clsCheckoutCollection();
         lstCheckoutList.DataSource = Checkouts.CheckoutList;
-        lstCheckoutList.DataValueField = "CustomerId";
+        lstCheckoutList.DataValueField = "CartId";
         lstCheckoutList.DataTextField = "TotalCartValue";
         lstCheckoutList.DataBind();
     }
@@ -37,10 +37,12 @@ public partial class _1_List : System.Web.UI.Page
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         Int32 CartId;
+        //
         if (lstCheckoutList.SelectedIndex != -1)
         {
             CartId = Convert.ToInt32(lstCheckoutList.SelectedValue);
             Session["CartId"] = CartId;
+            //
             Response.Redirect("CheckoutManagementDataEntry.aspx");
         }
         else
