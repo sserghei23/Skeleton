@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace ClassLibrary
 {
@@ -213,6 +214,28 @@ namespace ClassLibrary
                 Error = Error + "The total amount was not a valid number : ";
             }
             return Error;
+        }
+
+        /********** Statistics Grouped By Status Method ************/
+        public DataTable StatisticsGroupedByStatus()
+        {
+            //create an instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_Count_GroupByStatus");
+            //return the data table containing the results
+            return DB.DataTable;
+        }
+
+        /********** Statistics Grouped By OrderDate Method ************/
+        public DataTable StatisticsGroupedByOrderDate()
+        {
+            //create an instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_Count_GroupOrderDate");
+            //return the data table containing the results
+            return DB.DataTable;
         }
     }
 }

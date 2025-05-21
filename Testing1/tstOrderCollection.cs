@@ -230,12 +230,12 @@ namespace Testing2
             if (FilteredOrders.Count == 2)
             {
                 //check that the first record is correct
-                if (FilteredOrders.OrderList[0].OrderId != 1)
+                if (FilteredOrders.OrderList[0].OrderId != 57)
                 {
                     OK = false;
                 }
                 //check that the second record is correct
-                if (FilteredOrders.OrderList[1].OrderId != 2)
+                if (FilteredOrders.OrderList[1].OrderId != 58)
                 {
                     OK = false;
                 }
