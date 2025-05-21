@@ -142,7 +142,7 @@ namespace Testing3
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.DateAdded != Convert.ToDateTime("20/05/2025"))
+            if (AnCheckout.DateAdded != Convert.ToDateTime("21/05/2025"))
             {
                 OK = false;
             }

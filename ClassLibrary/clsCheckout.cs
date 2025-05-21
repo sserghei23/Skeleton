@@ -133,7 +133,7 @@ namespace ClassLibrary
 
         public string Valid(string dateAdded, string totalCartValue)
         {
-            String Error = "";
+            String Error = " ";
             //
             DateTime DateTemp;
 
