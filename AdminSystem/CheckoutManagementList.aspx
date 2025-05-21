@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #form1 {
+            width: 567px;
+        }
+    </style>
 </head>
 <body style="height: 21px; width: 479px">
     <form id="form1" runat="server">
@@ -24,10 +29,13 @@
         </p>
         <p>
             <asp:Button ID="btnApplyFilter" runat="server" Text="ApplyFilter" OnClick="btnApplyFilter_Click" />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnClearFilter" runat="server" Text="ClearFilter" OnClick="btnClearFilter_Click" />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnStatistics" runat="server" OnClick="btnStatistics_Click" Text="Statistics Page" />
+        &nbsp;&nbsp;
+            <asp:Button ID="btnReturnToMM" runat="server" OnClick="btnReturnToMM_Click" Text="ReturnToMainMenu" />
+&nbsp;&nbsp;
         </p>
         <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>
     </form>
