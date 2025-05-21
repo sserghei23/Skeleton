@@ -48,7 +48,7 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="btnBTPP" runat="server" Text="BackToPreviousPage" />
+            <asp:Button ID="btnBTPP" runat="server" Text="BackToPreviousPage" OnClick="btnBTPP_Click" />
             <br />
             <br />
             <br />

@@ -19,12 +19,30 @@ public partial class _Default : System.Web.UI.Page
 
         GridViewStGroupByTotalCartValue.HeaderRow.Cells[0].Text = " Total ";
 
+
+        dT = clsCheckout.StatisticsGroupedByDateAdded();
+
         GridViewStGroupByDateAdded.DataSource = dT;
         GridViewStGroupByDateAdded.DataBind();
 
         GridViewStGroupByDateAdded.HeaderRow.Cells[0].Text = " Total ";
+    }
+
+
+    protected void btnBTPP_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CheckoutManagementList.aspx");
+    }
+
+
+
+    protected void GridViewStGroupByTotalCartValue_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
     }
 
-    
+    protected void GridViewStGroupByDateAdded_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

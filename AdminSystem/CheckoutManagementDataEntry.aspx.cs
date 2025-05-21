@@ -45,7 +45,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture Customerid
         string CustomerId = txtCustomerId.Text;
         //Capture Cartid
-        string CartId = txtCartId.Text;
+       // string CartId = txtCartId.Text;
         //Capture DateAdded
         string DateAdded = txtDateAdded.Text;
         //Capture CheckedOut
@@ -55,16 +55,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //
         string Error = "";
         //validate data
-        Error = AnCheckout.Valid(CartId, TotalCartValue, DateAdded, CustomerId, WatchId);
+        Error = AnCheckout.Valid(TotalCartValue, DateAdded);
         if (Error == "")
-        {          
-            AnCheckout.CartId = Convert.ToInt32(CartId);
+        {                    
             AnCheckout.TotalCartValue = TotalCartValue;
-            AnCheckout.DateAdded = Convert.ToDateTime(DateAdded);
-            AnCheckout.CustomerId = Convert.ToInt32(CustomerId);
-            AnCheckout.WatchId = Convert.ToInt32(WatchId);
-            AnCheckout.CheckedOut = Convert.ToBoolean(CheckedOut);
-            //Session["AnCheckout"] = AnCheckout;
+            AnCheckout.DateAdded = Convert.ToDateTime(DateAdded);           
+            Session["AnCheckout"] = AnCheckout;
             clsCheckoutCollection CheckoutList = new clsCheckoutCollection();           
             //
             if (Convert.ToInt32(CartId) == -1)
