@@ -32,7 +32,7 @@
             <br />
             <br />
             <br />
-            <strong>CheckoutList- GroupByDateAdded</strong><asp:GridView ID="GridViewStGroupByDateAdded" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <strong>CheckoutList- GroupByDateAdded</strong><asp:GridView ID="GridViewStGroupByDateAdded" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridViewStGroupByDateAdded_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
