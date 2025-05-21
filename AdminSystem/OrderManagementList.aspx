@@ -17,8 +17,10 @@
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 204px; top: 345px; position: absolute; height: 32px; width: 58px" Text="Delete" />
         <asp:Label ID="lblStatusBox" runat="server" style="z-index: 1; left: 26px; top: 399px; position: absolute" Text="Enter a Status"></asp:Label>
         <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; left: 124px; top: 399px; position: absolute"></asp:TextBox>
-        <asp:Button ID="btnApplyFilter" runat="server" height="26px" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 33px; top: 445px; position: absolute" Text="Apply Filter" width="95px" />
-        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 178px; top: 445px; position: absolute" Text="Clear Filter" />
+        <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 33px; top: 449px; position: absolute; height: 29px; width: 107px; right: 540px;" Text="Apply Filter" />
+        <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 178px; top: 449px; position: absolute; height: 29px; width: 107px;" Text="Clear Filter" />
+        <asp:Button ID="btnStat" runat="server" OnClick="btnStat_Click" style="z-index: 1; left: 328px; top: 449px; position: absolute; height: 29px; width: 107px" Text="Go to Statistics" />
+
     </form>
 </body>
 </html>

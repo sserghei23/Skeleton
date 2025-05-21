@@ -113,4 +113,10 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstOrderList.DataBind();
     }
+
+
+    protected void btnStat_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderManagementStatistics.aspx");
+    }
 }
