@@ -10,9 +10,10 @@ namespace Testing3
     {
         //create some test data      
         string DateAdded = DateTime.Now.ToShortDateString();
-        string TotalCartValue = "bbbb";
-
-
+        string TotalCartValue = "";
+        string WatchId;
+        string CustomerId;
+        string CartId;
 
         [TestMethod]
         public void InstanceOK()
@@ -142,7 +143,7 @@ namespace Testing3
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.DateAdded != Convert.ToDateTime("21/05/2025"))
+            if (AnCheckout.DateAdded != Convert.ToDateTime("22/05/2025"))
             {
                 OK = false;
             }
@@ -238,16 +239,14 @@ namespace Testing3
         [TestMethod]
         public void ValidMethodOK()
         {
+            //create an instance of the object
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
-
-            string DateAdded = "";          
-            string TotalCartValue = "500";
-            //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            string Error = "";                                
+            //invoke the method
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
-            Assert.AreEqual(Error, "The date was not valid");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -259,7 +258,7 @@ namespace Testing3
             //test data
             string TotalCartValue = "";
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -273,7 +272,7 @@ namespace Testing3
             //test data
             string TotalCartValue = "b";
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, " ");
         }
@@ -287,7 +286,7 @@ namespace Testing3
             //test data
             string TotalCartValue = "bb";
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, " ");
         }
@@ -302,7 +301,7 @@ namespace Testing3
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(49, 'b');
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -317,7 +316,7 @@ namespace Testing3
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(51, 'b');
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -333,7 +332,7 @@ namespace Testing3
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(50, 'b');
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -349,7 +348,7 @@ namespace Testing3
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(25, 'b');
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -365,7 +364,7 @@ namespace Testing3
             //
             TotalCartValue = TotalCartValue.PadRight(500, 'a');// this should fail
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -385,7 +384,7 @@ namespace Testing3
             //
             string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -405,7 +404,7 @@ namespace Testing3
             //
             string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -423,7 +422,7 @@ namespace Testing3
             //
             string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, " ");
         }
@@ -443,7 +442,7 @@ namespace Testing3
             //
             string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -463,7 +462,7 @@ namespace Testing3
             //
             string DateAdded = TestDate.ToString();
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -477,7 +476,7 @@ namespace Testing3
             //test data
             string DateAdded = "this is not a date!";
             //Assign Data to the proprty
-            Error = AnCheckout.Valid(DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
             //test to see that it exists
             Assert.AreNotEqual(Error, "");
         }
@@ -497,7 +496,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             DataTable dT = AnCheckout.StatisticsGroupedByDateAdded();
-            int noOfRecord = 9;
+            int noOfRecord = 10;
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
     }

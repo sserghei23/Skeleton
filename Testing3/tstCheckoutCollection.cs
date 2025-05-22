@@ -96,7 +96,7 @@ namespace Testing3
             //
             AllCheckouts.ThisCheckout = TestItem;
             //
-            PrimaryKey = (int)AllCheckouts.Add();
+            PrimaryKey = AllCheckouts.Add();
             //
             TestItem.CartId = PrimaryKey;
             //
@@ -122,7 +122,7 @@ namespace Testing3
             //
             AllCheckouts.ThisCheckout = TestItem;
             //
-            PrimaryKey = (int)AllCheckouts.Add();
+            PrimaryKey = AllCheckouts.Add();
             //
             TestItem.CartId = PrimaryKey;
             //

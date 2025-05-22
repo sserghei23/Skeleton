@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +22,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    private void DisplayCheckout()
+     void DisplayCheckout()
     {
         clsCheckoutCollection CheckoutBook = new clsCheckoutCollection();
         CheckoutBook.ThisCheckout.Find(CartId);
@@ -39,49 +38,55 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create an instance of cls Checkout
-        clsCheckout AnCheckout = new clsCheckout();        
-        //capture the TotalCartValue
-        string TotalCartValue = txtTotalCartValue.Text;
-        //capture Customerid
-        string CustomerId = txtCustomerId.Text;
+        clsCheckout AnCheckout = new clsCheckout();
         //Capture Cartid
-       // string CartId = txtCartId.Text;
-        //Capture DateAdded
-        string DateAdded = txtDateAdded.Text;
-        //Capture CheckedOut
-        string CheckedOut = txtCheckedOut.Text;
+         string cartId = txtCartId.Text;
         //Capture Watchid
-        string WatchId = txtWatchId.Text;
-        //
+        string watchId = txtWatchId.Text;      
+        //capture Customerid
+        string customerId = txtCustomerId.Text;        
+        //Capture DateAdded
+        string dateAdded = txtDateAdded.Text;
+        //Capture CheckedOut
+        string checkedOut = txtCheckedOut.Text;
+        //capture the TotalCartValue
+        string totalCartValue = txtTotalCartValue.Text;
+        // to store any error message
         string Error = "";
         //validate data
-        Error = AnCheckout.Valid(TotalCartValue, DateAdded);
+        Error = AnCheckout.Valid(cartId, watchId, customerId, totalCartValue, dateAdded);
         if (Error == "")
-        {                    
-            AnCheckout.TotalCartValue = TotalCartValue;
-            AnCheckout.DateAdded = Convert.ToDateTime(DateAdded);           
-            Session["AnCheckout"] = AnCheckout;
+        {   
+            AnCheckout.CartId = CartId;
+            AnCheckout.CheckedOut = txtCheckedOut.Checked;
+            AnCheckout.TotalCartValue = totalCartValue;
+            AnCheckout.WatchId = Convert.ToInt32(watchId);
+            AnCheckout.CustomerId = Convert.ToInt32(customerId);
+            AnCheckout.DateAdded = Convert.ToDateTime(dateAdded);  
+            //create an instance
             clsCheckoutCollection CheckoutList = new clsCheckoutCollection();           
-            //
-            if (Convert.ToInt32(CartId) == -1)
+         
+            if (CartId == -1)
             {
                 CheckoutList.ThisCheckout = AnCheckout;
                 CheckoutList.Add();               
-            }           
+            }      
+            
             else
             {
-                CheckoutList.ThisCheckout.Find(Convert.ToInt32(CartId));
+                CheckoutList.ThisCheckout.Find(CartId);
                 CheckoutList.ThisCheckout = AnCheckout;
-                CheckoutList.Update();
-                //navigate to the viewer page 
+                CheckoutList.Update();               
             }
 
-            Response.Redirect("CheckoutManagementViewer.aspx");
+            // navigate to the viewer page
+            Response.Redirect("CheckoutManagementList.aspx");
         }
+
             else
             {
-            lblError.Text = "There was a problem:" + Error;
-            //Response.Redirect("CheckoutManagementList.aspx");
+            //write errorS
+            lblError.Text = "There was a problem:" + Error;           
             }
 
     }
@@ -128,5 +133,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("TeamMainMenu.aspx");
     }
 
-   
+
+
+    protected void btnCancel0_Click(object sender, EventArgs e)
+    {
+
+    }
 }
