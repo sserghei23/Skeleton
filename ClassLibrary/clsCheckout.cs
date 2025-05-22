@@ -22,8 +22,8 @@ namespace ClassLibrary
         }
 
 
-        
-        private bool mCheckedOut;
+
+        private Boolean mCheckedOut;
         //dateadded public property
         public bool CheckedOut
         {
@@ -37,9 +37,9 @@ namespace ClassLibrary
             }
         }
 
-        
-        
-        
+
+
+
         public Int32 mCustomerId; //{ get; private set; }
 
         //dateadded public property
@@ -97,7 +97,7 @@ namespace ClassLibrary
             }
         }
 
-        
+
 
         public bool Find(int CartId)
         {
@@ -121,21 +121,40 @@ namespace ClassLibrary
             }
             //if no record was found
             else
-            {               
+            {
                 //return false indicting there is a problem
                 return false;
             }
 
         }
 
-        
+
+
+
         
 
-        public string Valid(string dateAdded, string totalCartValue)
+
+
+        public DataTable StatisticsGroupedByTotalCartValue()
         {
-            String Error = " ";
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByTotalCartValue");
+            return DB.DataTable;
+        }
+
+        public DataTable StatisticsGroupedByDateAdded()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByDateAdded");
+            return DB.DataTable;
+        }
+
+        public string Valid(string cartId, string watchId, string customerId, string totalCartValue, string dateAdded)
+        {
+            String Error = "";
             //
             DateTime DateTemp;
+            
 
 
             if (totalCartValue.Length == 0)
@@ -157,7 +176,6 @@ namespace ClassLibrary
                 //
                 DateTemp = Convert.ToDateTime(dateAdded);
                 //
-
                 if (DateTemp < DateComp)
                 {
                     Error = Error + "The date cannot be in the past";
@@ -170,24 +188,10 @@ namespace ClassLibrary
             }
             catch
             {
-                Error = Error + "The date was not valid";               
+                //the date needs to be recorded
+                Error = Error + "The date was not valid";
             }
-            //return error
-            return Error ;
-        }
-
-        public DataTable StatisticsGroupedByTotalCartValue()
-        {
-            clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblCheckout_Count_GroupByTotalCartValue");
-            return DB.DataTable;
-        }
-
-        public DataTable StatisticsGroupedByDateAdded()
-        {
-            clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblCheckout_Count_GroupByDateAdded");
-            return DB.DataTable;
+            return Error;
         }
     }
 }

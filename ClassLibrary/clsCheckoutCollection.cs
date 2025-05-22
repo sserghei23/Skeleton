@@ -31,12 +31,13 @@ namespace ClassLibrary
             TestItem.TotalCartValue = "bbbb";
             //add
             mCheckoutList.Add(TestItem);
-
-           
+        
+        //public clsCheckoutCollection()
+        
             Int32 Index = 0;
-            Int32 RecordCount = 0;          
+            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblCheckout_SelectAll");           
+            DB.Execute("sproc_tblCheckout_SelectAll");
             RecordCount = DB.Count;
             while (Index < RecordCount)
             {
@@ -52,8 +53,9 @@ namespace ClassLibrary
                 mCheckoutList.Add(AnCheckout);
                 Index++;
             }
-                           
+
         }
+    
 
 
         
@@ -92,9 +94,7 @@ namespace ClassLibrary
             DB.AddParameter("@DateAdded", mThisCheckout.DateAdded);
             DB.AddParameter("@TotalCartValue", mThisCheckout.TotalCartValue);
             DB.AddParameter("@CheckedOut", mThisCheckout.CheckedOut);
-
-            return DB.Execute("sproc_tblCheckout_Insert");
-           
+            return DB.Execute("sproc_tblCheckout_Insert");          
         }
 
         public void Update()
@@ -108,7 +108,6 @@ namespace ClassLibrary
             DB.AddParameter("@DateAdded", mThisCheckout.DateAdded);
             DB.AddParameter("@TotalCartValue", mThisCheckout.TotalCartValue);
             DB.AddParameter("@CheckedOut", mThisCheckout.CheckedOut);
-
             DB.Execute("sproc_tblCheckout_Update");
 
         }
