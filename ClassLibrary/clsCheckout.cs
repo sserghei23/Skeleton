@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using Microsoft.SqlServer.Server;
 
 namespace ClassLibrary
@@ -96,7 +97,7 @@ namespace ClassLibrary
             }
         }
 
-       
+        
 
         public bool Find(int CartId)
         {
@@ -120,47 +121,48 @@ namespace ClassLibrary
             }
             //if no record was found
             else
-            {
-                
+            {               
                 //return false indicting there is a problem
                 return false;
             }
 
         }
 
-      
+        
+        
 
-        public string Valid(string cartId, string watchId, string customerId, string dateAdded, string totalCartValue)
+        public string Valid(string dateAdded, string totalCartValue)
         {
-            String Error = "";
+            String Error = " ";
+            //
             DateTime DateTemp;
+
+
             if (totalCartValue.Length == 0)
             {
                 //record the error
-                Error = Error + "The cart may not be empty";
+                Error = Error + "The cart may not be empty :";
             }
+            //
             if (totalCartValue.Length > 4)
             {
-                Error = Error + "The cart must be less than six characters";
+                Error = Error + "The cart must be less than four characters";
             }
 
+
             DateTime DateComp = DateTime.Now.Date;
+
             try
             {
                 //
                 DateTemp = Convert.ToDateTime(dateAdded);
                 //
 
-                
-                if (DateTemp == DateComp)
-                {
-                    Error = Error + "The date cannot be blank";
-                }
-
                 if (DateTemp < DateComp)
                 {
                     Error = Error + "The date cannot be in the past";
                 }
+                //
                 if (DateTemp > DateComp)
                 {
                     Error = Error + "The date cannot be in the future";
@@ -168,9 +170,24 @@ namespace ClassLibrary
             }
             catch
             {
-                Error = Error + "The date was not valid";
+                Error = Error + "The date was not valid";               
             }
+            //return error
             return Error ;
+        }
+
+        public DataTable StatisticsGroupedByTotalCartValue()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByTotalCartValue");
+            return DB.DataTable;
+        }
+
+        public DataTable StatisticsGroupedByDateAdded()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblCheckout_Count_GroupByDateAdded");
+            return DB.DataTable;
         }
     }
 }

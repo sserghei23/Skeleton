@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #form1 {
+            width: 567px;
+        }
+    </style>
 </head>
 <body style="height: 21px; width: 479px">
     <form id="form1" runat="server">
@@ -13,7 +18,6 @@
         <asp:ListBox ID="lstCheckoutList" runat="server" Height="301px" Width="422px"></asp:ListBox>
         <p>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
-        </p>
     </form>
 </body>
 </html>

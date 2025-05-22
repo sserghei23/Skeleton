@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -597,6 +598,33 @@ namespace Testing1
             string totalAmount = "seven";
             error = anOrder.Valid(CustomerId, StaffId, Status, totalAmount, OrderDate);
             Assert.AreNotEqual(error, "");
+        }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByStatus()
+        {
+            //create an instance of the class we want to create
+            clsOrder anOrder = new clsOrder();
+            //invoke the method
+            DataTable dT = anOrder.StatisticsGroupedByStatus();
+            //according to the test data, we should have 16 rows
+            int noOfRecord = 16;
+
+            //test to see that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByOrderDate()
+        {
+            //create an instance of the class we want to create
+            clsOrder anOrder = new clsOrder();
+            //invoke the method
+            DataTable dT = anOrder.StatisticsGroupedByOrderDate();
+            //according to the test data, we should have 7 rows
+            int noOfRecord = 7;
+            //test to see that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
     }
 }
