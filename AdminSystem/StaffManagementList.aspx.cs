@@ -30,4 +30,32 @@ public partial class _1_List : System.Web.UI.Page
         lstStaffList.DataTextField = "FullName";
         lstStaffList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs eventArgs)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["StaffID"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("StaffManagementDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    { 
+        //variable to store primary key
+        Int32 StaffID;
+        //if a record has been selected from the list
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            //get the primary key of the record to edit
+            StaffID = Convert.ToInt32(lstStaffList.SelectedValue);
+            Session["StaffId"] = StaffID;
+            Response.Redirect("StaffManagementDataEntry.aspx");
+        }
+        //if no record has been selected.
+        else
+        {
+            //display an error message
+            lblError.Text = "Please select a record to edit from the list";
+        }
+    }
 }

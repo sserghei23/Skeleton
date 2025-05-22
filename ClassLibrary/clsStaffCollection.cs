@@ -7,6 +7,8 @@ namespace ClassLibrary
     {
         //private variables for the staff collection
         List<clsStaff> mStaffList = new List<clsStaff>();
+        clsStaff mThisStaff = new clsStaff();
+
         public List<clsStaff> StaffList
         {
             get
@@ -30,7 +32,16 @@ namespace ClassLibrary
                 //do nothing
             }
         }
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff {
+            get
+            {
+                return mThisStaff;
+            }
+            set
+            {
+                mThisStaff = value;
+            }
+        }
 
         public clsStaffCollection()
         {
@@ -64,5 +75,41 @@ namespace ClassLibrary
             }
 
         }
+
+        public int Add()
+        {
+            //this method will add a record to the database containing
+            //the properties of the staff member.
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@OrderID", mThisStaff.OrderID);
+            DB.AddParameter("@FullName", mThisStaff.FullName);
+            DB.AddParameter("@Password", mThisStaff.Password);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@DateOfEmployment", mThisStaff.DateOfEmployment);
+            DB.AddParameter("@IsWorking", mThisStaff.IsWorking);
+            //execute the stored procedure
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            //this method will update an existing record in the database
+            //establishes a connection to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@StaffId", mThisStaff.StaffID);
+            DB.AddParameter("@OrderId", mThisStaff.OrderID);
+            DB.AddParameter("@FullName", mThisStaff.FullName);
+            DB.AddParameter("@Password", mThisStaff.Password);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@DateOfEmployment", mThisStaff.DateOfEmployment);
+            DB.AddParameter("@IsWorking", mThisStaff.IsWorking);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Update");
+        }
+
+        //Unlike the ADD method above, it is essential for the Update record to fetch the primary key
+        //so that the correct record is updated.
     }
 }

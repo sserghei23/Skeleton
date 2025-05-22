@@ -39,7 +39,7 @@
         
             <!-- Date of Employment field-->
             <asp:Label ID="lblDateOfEmployment" runat="server" style="z-index: 1; left: 10px; top: 260px; position: absolute; right: 557px;" Text="DateOfEmployment"></asp:Label>
-            <asp:TextBox ID="txtDateOfEmployment" runat="server" style="z-index: 1; left: 153px; top: 259px; position: absolute" width="128px"></asp:TextBox>
+            <asp:TextBox ID="txtDateOfEmployment" runat="server" style="z-index: 1; left: 153px; top: 259px; position: absolute; width: 136px;"></asp:TextBox>
         
             <!-- IsWorking field-->
             <asp:CheckBox ID="chkIsWorking" runat="server" style="z-index: 1; top: 299px; position: absolute; left: 8px" Text="IsWorking" />
@@ -50,10 +50,13 @@
             <!-- Buttons for OK, Cancel and Find-->
             <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 12px; top: 377px; position: absolute;" Text="OK" OnClick="btnOK_Click" />
             
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 58px; top: 377px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 58px; top: 377px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
             
                          
             <asp:Button ID="btnFind" runat="server" Text="Find" style="z-index: 1; left: 319px; top: 88px; position: absolute; width: 59px; height: 29px;" OnClick="btnFind_Click"/>
+            
+   
+            <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" style="z-index: 1; left: 131px; top: 377px; position: absolute" Text="Clear" />
             
    
     </form>
