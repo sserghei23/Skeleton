@@ -177,7 +177,7 @@ namespace ClassLibrary
             }
 
             //Copy the DateRegistered Value to the DateTemp Variable
-            DateTemp = Convert.ToDateTime(dateRegistered);
+            DateTemp = Convert.ToDateTime(DateRegistered);
             if (DateTemp < DateTime.Now.Date)
             {
                 //Record the error
