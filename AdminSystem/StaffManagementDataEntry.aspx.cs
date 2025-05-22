@@ -9,9 +9,37 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 StaffID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        StaffID = Convert.ToInt32(Session["StaffID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffID != -1)
+            {
+                //display the current data for the record
+                DisplayStaff();
+            }
+        }
+    }
 
+    //To enable the user to edit existing records, this function below 
+    //will display the current data for the record in the text boxes.
+    void DisplayStaff()
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staffs = new clsStaffCollection();
+        //find the record to update
+        Staffs.ThisStaff.Find(StaffID);
+        //display the current data for the record
+        txtStaffID.Text = Staffs.ThisStaff.StaffID.ToString();
+        txtOrderID.Text = Staffs.ThisStaff.OrderID.ToString();
+        txtFullName.Text = Staffs.ThisStaff.FullName.ToString();
+        txtPassword.Text = Staffs.ThisStaff.Password.ToString();
+        txtEmail.Text = Staffs.ThisStaff.Email.ToString();
+        txtDateOfEmployment.Text = Staffs.ThisStaff.DateOfEmployment.ToString();
+        chkIsWorking.Checked = Staffs.ThisStaff.IsWorking;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -19,8 +47,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create an instance of clsStaff
         clsStaff AStaff = new clsStaff();
 
-        AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
-        AStaff.IsWorking = chkIsWorking.Checked;
+        //AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
+        //AStaff.IsWorking = chkIsWorking.Checked;
 
 
         //capture the five attributes inserted into the fields: OrderID, FullName, Password, Email, DateOfEmployment for validation
@@ -34,16 +62,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
         if (Error == "")
         {
+            //IMPORTANT: necessary to capture StaffID for the update procedure
+            AStaff.StaffID = Convert.ToInt32(StaffID);
+
             //capture attributes that you have inserted into the text boxes.
             AStaff.OrderID = Convert.ToInt32(OrderID);
-            AStaff.FullName = txtFullName.Text;
-            AStaff.Password = txtPassword.Text;
-            AStaff.Email = txtEmail.Text;
+            AStaff.FullName = FullName;
+            AStaff.Password = Password;
+            AStaff.Email = Email;
             AStaff.DateOfEmployment = Convert.ToDateTime(DateOfEmployment);
-            //store staff in the session object
-            Session["AStaff"] = AStaff;
-            //navigate to the viewer page
-            Response.Redirect("StaffManagementViewer.aspx");
+            AStaff.IsWorking = chkIsWorking.Checked;
+            //create an instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+
+            if (StaffID == -1)
+            {
+                //set ThisStaff to the test data
+                StaffList.ThisStaff = AStaff;
+                //add the record
+                StaffList.Add();
+            }
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(StaffID);
+                //set ThisStaff to the test data
+                StaffList.ThisStaff = AStaff;
+                //update the record
+                StaffList.Update();
+            }
+
+            //create an instance of the staff collection
+            //clsStaffCollection StaffList = new clsStaffCollection();
+            //StaffList.ThisStaff = AStaff;
+            //StaffList.Add();
+            Response.Redirect("StaffManagementList.aspx");
+
+
         }
         else
         {
@@ -51,27 +106,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
 
-            //capture attributes that you have inserted into the text boxes.
-            //AStaff.StaffID = Convert.ToInt32(txtStaffID.Text);
 
-            //AStaff.OrderID = Convert.ToInt32(txtOrderID.Text);
+    }
 
-            //AStaff.FullName = txtFullName.Text;
-
-            //AStaff.Password = txtPassword.Text;
-
-            //AStaff.Email = txtEmail.Text;
-
-            //AStaff.DateOfEmployment = Convert.ToDateTime(txtDateOfEmployment.Text);
-
-            //AStaff.IsWorking = chkIsWorking.Checked;
-
-            //store staff in the session object
-            //Session["AStaff"] = AStaff;
-
-            //navigate to the viewer page
-            //Response.Redirect("StaffManagementViewer.aspx");
-        }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the list page
+        Response.Redirect("StaffManagementList.aspx");
+    }
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -101,5 +143,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //display an error message
             lblError.Text = "Staff ID not found";
         }
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //clear the text boxes
+        txtStaffID.Text = "";
+        txtOrderID.Text = "";
+        txtFullName.Text = "";
+        txtPassword.Text = "";
+        txtEmail.Text = "";
+        txtDateOfEmployment.Text = "";
+        chkIsWorking.Checked = false;
     }
 }

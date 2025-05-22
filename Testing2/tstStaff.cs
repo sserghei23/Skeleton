@@ -361,7 +361,6 @@ namespace Testing2
         }
 
         //Test if OrderID has 2 characters
-
         [TestMethod]
         public void OrderIDMinPlusOne()
         {
@@ -475,6 +474,7 @@ namespace Testing2
         }
 
         //FullName Validation test-methods.
+
 
         //Password Validation test-methods.
 
@@ -593,6 +593,7 @@ namespace Testing2
 
 
         //Email Validation test-methods.
+
 
         //DateOfEmployment Validation test-methods.
 
