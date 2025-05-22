@@ -26,4 +26,12 @@ public partial class _1_List : System.Web.UI.Page
         lstCheckoutList.DataTextField = "TotalCartValue";
         lstCheckoutList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["CustomerId"] = -1;
+        //Redirect to the data entry Page
+        Response.Redirect("CustomerManagementDataEntry.aspx");
+    }
 }

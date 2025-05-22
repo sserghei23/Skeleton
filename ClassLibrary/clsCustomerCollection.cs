@@ -6,6 +6,8 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        //Private member data for thisCustomer
+        clsCustomer mThisCustomer = new clsCustomer();
         public List<clsCustomer> CustomerList
         {
             get
@@ -32,40 +34,52 @@ namespace ClassLibrary
 
             }
         }
-            public clsCustomer ThisCustomer { get; set; }
+            public clsCustomer ThisCustomer
+        {
+            get
+            {
+                //Return the private data
+                return mThisCustomer;
+            }
+            set
+            {
+                //set the Pribvate data
+                mThisCustomer = value;
+            }
+        }
 
 
 
 
-        //constructor for the class
-        //public clsCustomerCollection()
-        //{
-            //create the items of test data
-            //clsCustomer TestItem = new clsCustomer();
-            //set its properties
-            //TestItem.IsActive = true;
-            //TestItem.CustomerId = 1;
-            //TestItem.DateRegistered = DateTime.Now;
-            //TestItem.PostCode = "LE4 0BA";
-            //TestItem.FullName = "Vaydang";
-            //TestItem.Email = "vaydang02@dhdh.com";
-            //TestItem.PhoneNumber = "7727628467";
-            ////Add the test item to the test list
-            //mCustomerList.Add(TestItem);
-            ////Re Initialise the Object for some new data
-            //TestItem = new clsCustomer();
-            ////set its properties
-            //TestItem.IsActive = true;
-            //TestItem.CustomerId = 2;
-            //TestItem.DateRegistered = DateTime.Now;
-            //TestItem.PostCode = "LE0 2BB";
-            //TestItem.FullName = "David";
-            //TestItem.Email = "david12@hotmail.com";
-            //TestItem.PhoneNumber = "7368000112";
-            ////add the items to the test list
-            //mCustomerList.Add(TestItem);
+       //// constructor for the class
+       // public clsCustomerCollection()
+       // {
+       //     //create the items of test data
+       //     clsCustomer TestItem = new clsCustomer();
+       //     //set its properties
+       //     TestItem.IsActive = true;
+       //     TestItem.CustomerId = 1;
+       //     TestItem.DateRegistered = DateTime.Now;
+       //     TestItem.PostCode = "LE4 0BA";
+       //     TestItem.FullName = "Vaydang";
+       //     TestItem.Email = "vaydang02@dhdh.com";
+       //     TestItem.PhoneNumber = "7727628467";
+       //     //Add the test item to the test list
+       //     mCustomerList.Add(TestItem);
+       //     //Re Initialise the Object for some new data
+       //     TestItem = new clsCustomer();
+       //     //set its properties
+       //     TestItem.IsActive = true;
+       //     TestItem.CustomerId = 2;
+       //     TestItem.DateRegistered = DateTime.Now;
+       //     TestItem.PostCode = "LE0 2BB";
+       //     TestItem.FullName = "David";
+       //     TestItem.Email = "david12@hotmail.com";
+       //     TestItem.PhoneNumber = "7368000112";
+       //     //add the items to the test list
+       //     mCustomerList.Add(TestItem);
 
-        //}
+       // }
 
         public clsCustomerCollection()
         {
@@ -99,7 +113,29 @@ namespace ClassLibrary
                 Index++;
             }
 
+         
+
+
+        }
+
+        public int Add()
+        {
+            //adds a record to the database based on the values of mThisAddress
+            //conncet tp the database
+            clsDataConnection DB = new clsDataConnection();
+            //Set the parameters for the stored procedure
+            DB.AddParameter("@FullName", mThisCustomer.FullName);
+            DB.AddParameter("@PostCode", mThisCustomer.PostCode);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@PhoneNumber", mThisCustomer.PhoneNumber);
+            DB.AddParameter("Password", mThisCustomer.Password);
+            DB.AddParameter("@DateRegistered", mThisCustomer.DateRegistered);
+            DB.AddParameter("@IsAvtive", mThisCustomer.IsActive);
+
+            //Execute the query returning the primary key value
+            return DB.Execute("sproc_tblCustomer_Insert");
 
         }
     }
 }
+

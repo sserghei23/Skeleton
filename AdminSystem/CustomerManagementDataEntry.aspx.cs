@@ -43,10 +43,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.Email = Email;
             AnCustomer.FullName = FullName;
             AnCustomer.Password = Password;
-            //store the Post Code in the session object
-            Session["AnCustomer"] = AnCustomer;
-            //Navigate to the view page
-            Response.Redirect("CustomerManagementViewer.aspx");
+           //Capture Active
+           AnCustomer.IsActive = chkIsActive.Checked;
+           //Create a new instance of the address collection
+           clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //Set the ThisCustomer Property
+            CustomerList.ThisCustomer = AnCustomer;
+            //Add the new record
+            CustomerList.Add();
+            //Redirect back to the list page
+            Response.Redirect("CustomerManagementList.aspx");
 
         }
         else

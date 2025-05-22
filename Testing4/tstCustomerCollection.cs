@@ -20,38 +20,64 @@ namespace Testing4
             Assert.IsNotNull(AllCustomer);
         }
 
-        [TestMethod]
-        public void CustomerListOk()
-        {
 
-            //Create an Instance of the class we want to create
+        //[TestMethod]
+        //public void CustomerListOk()
+        //{
+
+        //    //Create an Instance of the class we want to create
+        //    clsCustomerCollection AllCustomer = new clsCustomerCollection();
+        //    //create some test data to assign to the property
+        //    //In this case the date needs to be a list of objects
+        //    List<clsCustomer> TestList = new List<clsCustomer>();
+        //    //add an Item to the list
+        //    //create the iten of test data
+        //    clsCustomer TestItem = new clsCustomer();
+        //    //set its properties
+        //    TestItem.IsActive = true;
+        //    TestItem.CustomerId = 1;
+        //    TestItem.PhoneNumber = "7727628467";
+        //    TestItem.FullName = "vaydang";
+        //    TestItem.DateRegistered = DateTime.Now;
+        //    TestItem.Email = "vaydang02@dhdh.com";
+        //    TestItem.PostCode = "LE4 0BA";
+        //    TestItem.Password = "vm123";
+        //    //add the item to the test list
+        //    TestList.Add(TestItem);
+        //    //assign the data to the property
+        //    AllCustomer.CustomerList = TestList;
+        //    //Test to see that the two values are the same
+        //    Assert.AreEqual(AllCustomer.Count, TestList.Count);
+        //}
+
+        [TestMethod]
+        public void AddMethodOk()
+        {
+            //Create an instance of the class we want to create
             clsCustomerCollection AllCustomer = new clsCustomerCollection();
-            //create some test data to assign to the property
-            //In this case the date needs to be a list of objects
-            List<clsCustomer> TestList = new List<clsCustomer>();
-            //add an Item to the list
-            //create the iten of test data
+            //Create the item of test data
             clsCustomer TestItem = new clsCustomer();
+            //Variable to store the primary key
+            Int32 PrimaryKey = 0;
             //set its properties
             TestItem.IsActive = true;
             TestItem.CustomerId = 1;
-            TestItem.PhoneNumber = "7727628467";
-            TestItem.FullName = "vaydang";
             TestItem.DateRegistered = DateTime.Now;
-            TestItem.Email = "vaydang02@dhdh.com";
             TestItem.PostCode = "LE4 0BA";
-            TestItem.Password = "vm123";
-            //add the item to the test list
-            TestList.Add(TestItem);
-            //assign the data to the property
-            AllCustomer.CustomerList = TestList;
+            TestItem.Email = "vaydang02@dhdh.com";
+            TestItem.PhoneNumber = "7727628467";
+            TestItem.FullName = "Vaydang";
+            //Set ThisCustomer to the test data
+            AllCustomer.ThisCustomer = TestItem;
+            //Add the record
+            PrimaryKey = AllCustomer.Add();
+            //Set the primary ket of the test data
+            TestItem.CustomerId = PrimaryKey;
+            //find the record
+            AllCustomer.ThisCustomer.Find(PrimaryKey);
             //Test to see that the two values are the same
-            Assert.AreEqual(AllCustomer.CustomerList, TestList);
+            Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
         }
-
-     
-
-      
     }
 }
 

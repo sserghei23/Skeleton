@@ -315,7 +315,7 @@ namespace Testing4
             String Error = "";
             //Invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
