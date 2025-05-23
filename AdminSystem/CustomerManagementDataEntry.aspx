@@ -15,7 +15,6 @@
     <form id="form1" runat="server">
         <div>
         </div>
-        <asp:Label ID="lblCustomerId" runat="server" ClientIDMode="Predictable" style="z-index: 1; left: 12px; top: 33px; position: absolute; bottom: 579px; width: 108px;" Text="Customer ID"></asp:Label>
         <div>
         <asp:TextBox ID="txtCustomerId" runat="server" OnTextChanged="TextBox2_TextChanged" style="margin-bottom: 0px; margin-left: 109px;" Height="22px" width="129px"></asp:TextBox>
         </div>
@@ -42,6 +41,9 @@
        <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 46px; top: 356px; position: absolute; height: 26px;" Text="OK" OnClick="btnOK_Click" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 125px; top: 357px; position: absolute; width: 62px;" Text="Cancel" height="26px" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 13px; top: 325px; position: absolute"></asp:Label>
+        <p>
+        <asp:Label ID="lblCustomerId" runat="server" ClientIDMode="Predictable" style="z-index: 1; left: 12px; top: 33px; position: absolute; bottom: 572px; width: 108px;" Text="Customer ID"></asp:Label>
+        </p>
     </form>
 </body>
 </html>

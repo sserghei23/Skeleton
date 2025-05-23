@@ -33,7 +33,7 @@ namespace Testing4
         /******************PROPERTY OK TESTS******************/
 
         [TestMethod]
-        public void CustomerIdPropertyOk()
+        public void CustomerIdPropertyOK()
         {
             //creates an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
@@ -160,7 +160,7 @@ namespace Testing4
 
         /******************PROPERTY DATA TESTS******************/
         [TestMethod]
-        public void TestCustomerIdFound()
+        public void TestCustomerIDFound()
         {
             //create an instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
@@ -169,9 +169,9 @@ namespace Testing4
             //create some test data to use with the method
             Boolean OK = true;
             //invoke the method
-            Int32 CustomerId = 1;
+            Int32 customerId = 1;
             //check the address id property
-            Found = AnCustomer.Find(CustomerId);
+            Found = AnCustomer.Find(customerId);
             if (AnCustomer.CustomerId != 1)
             {
                 OK = false;
@@ -330,7 +330,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -434,7 +434,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -540,7 +540,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -646,7 +646,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -691,7 +691,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -750,7 +750,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -905,7 +905,7 @@ namespace Testing4
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
