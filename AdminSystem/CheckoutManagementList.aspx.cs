@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Activities.Expressions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,6 +29,93 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        //store -1 in the session object to indicate this is a new record
+        Session["CartId"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("CheckoutManagementDataEntry.aspx");
+    }
 
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be edited
+        Int32 CartId;
+        //if a record has been selected from the list
+        if (lstCheckoutList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to be edited
+            CartId = Convert.ToInt32(lstCheckoutList.SelectedValue);
+            //store the data in the session object
+            Session["CartId"] = CartId;
+            //redirect to the data entry page
+            Response.Redirect("CheckoutManagementDataEntry.aspx");
+        }
+        else
+        {
+            //display an error message
+            lblError.Text = "Please select a record to edit from the list";
+        }
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted
+        Int32 CartId;
+        //if a record has been selected from the list
+        if (lstCheckoutList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to be deleted
+            CartId = Convert.ToInt32(lstCheckoutList.SelectedValue);
+            //store the data in the session object
+            Session["CartId"] = CartId;
+            //redirect to the delete page
+            Response.Redirect("CheckoutManagementConfirmDelete.aspx");
+        }
+        else
+        {
+            //display an error message
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order collection
+        clsCheckoutCollection AnCheckout = new clsCheckoutCollection();
+        //retreive the value of status from the presentation layer
+        AnCheckout.ReportByTotalCartValue(txtFilter.Text);
+        //set the data source to the filtered list of orders in the collection
+        lstCheckoutList.DataSource = AnCheckout.CheckoutList;
+        //set the name of the primary key
+        lstCheckoutList.DataValueField = "CartId";
+        //set the data field to display
+        lstCheckoutList.DataTextField = "TotalCartValue";
+        //bind the data to the list
+        lstCheckoutList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order collection
+        clsCheckoutCollection AnCheckout = new clsCheckoutCollection();
+        //set an empty string
+        txtFilter.Text = "";
+        //set the data source to the filtered list of orders in the collection
+        lstCheckoutList.DataSource = AnCheckout.CheckoutList;
+        //set the name of the primary key
+        lstCheckoutList.DataValueField = "CartId";
+        //set the data field to display
+        lstCheckoutList.DataTextField = "TotalCartValue";
+        //bind the data to the list
+        lstCheckoutList.DataBind();
+    }
+
+    protected void btnStat_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CheckoutManagementStatistics.aspx");
+    }
+
+    protected void ReturnToMM_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
