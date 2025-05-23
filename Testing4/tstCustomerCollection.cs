@@ -12,7 +12,7 @@ namespace Testing4
     public class tstCustomerCollection
     {
         [TestMethod]
-        public void InstanceOk()
+        public void InstanceOK() 
         {
             //Create an Instance of the class we want to create
             clsCustomerCollection AllCustomer = new clsCustomerCollection();
@@ -51,7 +51,7 @@ namespace Testing4
         //}
 
         [TestMethod]
-        public void AddMethodOk()
+        public void AddMethodOK()
         {
             //Create an instance of the class we want to create
             clsCustomerCollection AllCustomer = new clsCustomerCollection();
@@ -61,12 +61,14 @@ namespace Testing4
             Int32 PrimaryKey = 0;
             //set its properties
             TestItem.IsActive = true;
-            TestItem.CustomerId = 1;
+            TestItem.CustomerId = 9;
             TestItem.DateRegistered = DateTime.Now;
-            TestItem.PostCode = "LE4 0BA";
-            TestItem.Email = "vaydang02@dhdh.com";
-            TestItem.PhoneNumber = "7727628467";
-            TestItem.FullName = "Vaydang";
+            TestItem.PostCode = "LE1 0BA";
+            TestItem.Email = "veyd2000@gmail.com";
+            TestItem.PhoneNumber = "7727628111";
+            TestItem.FullName = "Veyd";
+            TestItem.Password = "veyd123";
+           
             //Set ThisCustomer to the test data
             AllCustomer.ThisCustomer = TestItem;
             //Add the record
@@ -76,6 +78,41 @@ namespace Testing4
             //find the record
             AllCustomer.ThisCustomer.Find(PrimaryKey);
             //Test to see that the two values are the same
+            Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
+        }
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            //Create the item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //varaible to store the primary Key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.IsActive = true;
+            TestItem.DateRegistered = DateTime.Now;
+            TestItem.FullName = "Abhimanyu";
+            TestItem.PostCode = "BH1 0AD";
+            TestItem.PhoneNumber = "7499909172";
+            TestItem.Email = "Abhimany_2002@hotmail.com";
+            //set ThisCustomer to the test data
+            AllCustomer.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomer.Add();
+            //Set the primary ket of the test data
+            TestItem.CustomerId = PrimaryKey;
+            //Modify the test record
+            TestItem.IsActive = false;
+            TestItem.DateRegistered = DateTime.Now;
+            TestItem.PostCode = "NZ1 34BA";
+            TestItem.Email = "Abhimanyu@2002hotmail.com";
+            //update the record based on the new test data
+            AllCustomer.ThisCustomer = TestItem;
+            //Update the record
+            AllCustomer.Update();
+            //find the record
+            AllCustomer.ThisCustomer.Find(PrimaryKey);
+            //Test to see of This Customer matches the test data
             Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
         }
     }

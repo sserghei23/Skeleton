@@ -9,8 +9,39 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 CustomerId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the numeber of the address to be processed
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        if (IsPostBack == false)
+        {
+
+            //if this is not a new record
+            if (CustomerId != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
+    }
+
+     void DisplayCustomer()
+    {
+       //create an instance of the address book
+       clsCustomerCollection CustomerBook = new clsCustomerCollection();
+       //find the record to update
+       CustomerBook.ThisCustomer.Find(CustomerId);
+        //Display the data for the record
+        txtCustomerId.Text = CustomerBook.ThisCustomer.CustomerId.ToString();
+        txtFullName.Text = CustomerBook.ThisCustomer.FullName.ToString();
+        txtEmail.Text = CustomerBook.ThisCustomer.Email.ToString();
+        txtPassword.Text = CustomerBook.ThisCustomer.Password.ToString();
+        txtPhoneNumber.Text = CustomerBook.ThisCustomer.PhoneNumber.ToString();
+        txtPostCode.Text = CustomerBook.ThisCustomer.PostCode.ToString();
+        txtDateRegistered.Text = CustomerBook.ThisCustomer.DateRegistered.ToString();
+        chkIsActive.Checked = CustomerBook.ThisCustomer.IsActive;
 
     }
 
@@ -36,27 +67,50 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnCustomer.Valid(PostCode, DateRegistered, PostCode, PhoneNumber, Email, FullName);
         if (Error == "")
         {
+            //Capture the Customer ID
+            AnCustomer.CustomerId = CustomerId;
             //Capture the PostCode
             AnCustomer.PostCode = PostCode;
+            //Capture the DateRegistered
             AnCustomer.DateRegistered = Convert.ToDateTime(DateRegistered);
+            //Capture the Phone Number
             AnCustomer.PhoneNumber = PhoneNumber;
+            //Capture the Email
             AnCustomer.Email = Email;
+            //Capture the Full Name
             AnCustomer.FullName = FullName;
+            //Capture the Password
             AnCustomer.Password = Password;
-           //Capture Active
-           AnCustomer.IsActive = chkIsActive.Checked;
-           //Create a new instance of the address collection
-           clsCustomerCollection CustomerList = new clsCustomerCollection();
-            //Set the ThisCustomer Property
-            CustomerList.ThisCustomer = AnCustomer;
-            //Add the new record
-            CustomerList.Add();
-            //Redirect back to the list page
-            Response.Redirect("CustomerManagementList.aspx");
+            //Capture Active
+            AnCustomer.IsActive = chkIsActive.Checked;
+            //Create a new instance of the address collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
 
+            //If this is a new record i.e Customer ID = -1 then add the data
+            if (CustomerId == -1)
+            {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //Add the new record
+                CustomerList.Add();
+
+            }
+            //Otherwise it must be an update
+
+            else
+            {
+                //Find the record to Update
+                CustomerList.ThisCustomer.Find(CustomerId);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = AnCustomer;
+                //Update the record
+                CustomerList.Update();
+            }
+            //redirect back to the List Page
+            Response.Redirect("CustomerManagementList.aspx");
         }
-        else
-        {
+        else 
+        { 
             //display the error message
             lblError.Text = Error;
         }
