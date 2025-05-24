@@ -36,13 +36,15 @@
         <asp:Label ID="lblPostCode" runat="server" style="z-index: 1; left: 13px; top: 184px; position: absolute; right: 622px;" Text="Post Code" width="108px"></asp:Label>
         <asp:CheckBox ID="chkIsActive" runat="server" style="z-index: 1; left: 120px; top: 297px; position: absolute" Text="Active" />
         <p>
-            <asp:TextBox ID="txtDateRegistered" runat="server" style="z-index: 1; left: 121px; top: 255px; position: absolute" height="22px" width="128px"></asp:TextBox>
+            <asp:TextBox ID="txtDateRegistered" runat="server" style="z-index: 1; left: 121px; top: 255px; position: absolute" height="22px" width="128px" OnTextChanged="txtDateRegistered_TextChanged"></asp:TextBox>
         </p>
-       <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 46px; top: 356px; position: absolute; height: 26px;" Text="OK" OnClick="btnOK_Click" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 125px; top: 357px; position: absolute; width: 62px;" Text="Cancel" height="26px" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 111px; top: 355px; position: absolute; width: 50px;" Text="Cancel" height="26px" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 13px; top: 325px; position: absolute"></asp:Label>
         <p>
         <asp:Label ID="lblCustomerId" runat="server" ClientIDMode="Predictable" style="z-index: 1; left: 12px; top: 33px; position: absolute; bottom: 572px; width: 108px;" Text="Customer ID"></asp:Label>
+        </p>
+        <p>
+       <asp:Button ID="btnOK" runat="server" style="z-index: 1; top: 355px; position: absolute; width: 50px;" Text="OK" OnClick="btnOK_Click" height="26px" />
         </p>
     </form>
 </body>

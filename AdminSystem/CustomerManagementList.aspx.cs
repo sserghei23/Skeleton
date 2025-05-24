@@ -23,9 +23,9 @@ public partial class _1_List : System.Web.UI.Page
         //set the data source to list of customer in the collection
         lstCustomerList.DataSource = Customer.CustomerList;
         //set the name of the primary key
-        lstCustomerList.DataValueField = "CustomerNo";
+        lstCustomerList.DataValueField = "CustomerId";
         //set the data field to display
-        lstCustomerList.DataTextField = "PostCode";
+        lstCustomerList.DataTextField = "FullName";
         //blind the data to the list
         lstCustomerList.DataBind();
 
@@ -61,4 +61,25 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted
+        Int32 CustomerId;
+        if (lstCustomerList.SelectedIndex != -1)
+        {
+            //Get the Primary Key value of the record Delete
+            CustomerId = Convert.ToInt32(lstCustomerList.SelectedValue);
+            //Store the Data in the session object
+            Session["CustomerId"] = CustomerId;
+            //Redirect to the delete page
+            Response.Redirect("CustomerManagementConfirmDelete.aspx");
+        }
+        else //if no record has been selected
+        {
+            //Display an error message
+            lblError.Text = "Please select a record from the list to delete";
+
+        }
+    }
 }

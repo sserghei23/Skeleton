@@ -10,7 +10,7 @@ namespace ClassLibrary
         public Int32 CustomerId
         {
 
-        get
+            get
             {
                 //this line of code sends data out of the property
                 return mCustomerId;
@@ -53,12 +53,12 @@ namespace ClassLibrary
         }
         private string mEmail;
         public string Email
-        { 
+        {
             get
             {
                 //this line of code sends data out of the property
                 return mEmail;
-            }    
+            }
             set
             {
                 //this line of code sends data out of the property
@@ -66,28 +66,28 @@ namespace ClassLibrary
             }
         }
         private string mPhoneNumber;
-        public string PhoneNumber 
+        public string PhoneNumber
         {
             get
             {
                 //this line of code sends data out of the property
                 return mPhoneNumber;
-            }                
+            }
 
             set
             {
                 //this line of code sends data out of the property
-                mPhoneNumber = value; 
+                mPhoneNumber = value;
             }
 
         }
         private Boolean mIsActive;
-        public bool IsActive 
-        { 
+        public bool IsActive
+        {
             get
             {
                 //this line of code sends data out of the property
-                return mIsActive; 
+                return mIsActive;
             }
             set
             {
@@ -112,7 +112,7 @@ namespace ClassLibrary
         }
 
         private string mPostCode;
-           public string PostCode
+        public string PostCode
         {
             get
             {
@@ -158,9 +158,9 @@ namespace ClassLibrary
                 return false;
             }
         }
-        
-        public string Valid(string postCode, string fullName, string phoneNumber, string password, string email, string dateRegistered)
-            {
+
+        public string Valid(string dateRegistered, string postCode, string phoneNumber, string email, string fullName, string password)
+        {
             //Create a String variable to store the error
             String Error = "";
             DateTime DateTemp;
@@ -250,8 +250,6 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
-
-
-        
     }
+
 }
