@@ -27,19 +27,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-     void DisplayCustomer()
+    void DisplayCustomer()
     {
-       //create an instance of the address book
-       clsCustomerCollection CustomerBook = new clsCustomerCollection();
-       //find the record to update
-       CustomerBook.ThisCustomer.Find(CustomerId);
+        //create an instance of the address book
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        //find the record to update
+        CustomerBook.ThisCustomer.Find(CustomerId);
         //Display the data for the record
         txtCustomerId.Text = CustomerBook.ThisCustomer.CustomerId.ToString();
-        txtFullName.Text = CustomerBook.ThisCustomer.FullName.ToString();
-        txtEmail.Text = CustomerBook.ThisCustomer.Email.ToString();
-        txtPassword.Text = CustomerBook.ThisCustomer.Password.ToString();
-        txtPhoneNumber.Text = CustomerBook.ThisCustomer.PhoneNumber.ToString();
-        txtPostCode.Text = CustomerBook.ThisCustomer.PostCode.ToString();
+        txtFullName.Text = CustomerBook.ThisCustomer.FullName;
+        txtEmail.Text = CustomerBook.ThisCustomer.Email;
+        txtPassword.Text = CustomerBook.ThisCustomer.Password;
+        txtPhoneNumber.Text = CustomerBook.ThisCustomer.PhoneNumber;
+        txtPostCode.Text = CustomerBook.ThisCustomer.PostCode;
         txtDateRegistered.Text = CustomerBook.ThisCustomer.DateRegistered.ToString();
         chkIsActive.Checked = CustomerBook.ThisCustomer.IsActive;
 
@@ -64,7 +64,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Variable to store any error messages
         string Password = txtPassword.Text;
         string Error = "";
-        Error = AnCustomer.Valid(PostCode, DateRegistered, PostCode, PhoneNumber, Email, FullName);
+        Error = AnCustomer.Valid(DateRegistered, PostCode, PhoneNumber, Email, FullName, Password);
         if (Error == "")
         {
             //Capture the Customer ID
@@ -109,12 +109,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //redirect back to the List Page
             Response.Redirect("CustomerManagementList.aspx");
         }
-        else 
-        { 
+        else
+        {
             //display the error message
             lblError.Text = Error;
         }
     }
+
+    
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
 
@@ -148,6 +150,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
     protected void btnOK_Click1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtDateRegistered_TextChanged(object sender, EventArgs e)
     {
 
     }
