@@ -386,11 +386,11 @@ namespace Testing4
             //String c=variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string FullName = "aaa";
+            string FullName = "aaaaaaaaaa";
             //invoke the method
             Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]

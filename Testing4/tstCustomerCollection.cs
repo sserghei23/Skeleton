@@ -12,7 +12,7 @@ namespace Testing4
     public class tstCustomerCollection
     {
         [TestMethod]
-        public void InstanceOK() 
+        public void InstanceOK()
         {
             //Create an Instance of the class we want to create
             clsCustomerCollection AllCustomer = new clsCustomerCollection();
@@ -68,7 +68,7 @@ namespace Testing4
             TestItem.PhoneNumber = "7727628111";
             TestItem.FullName = "Veyd";
             TestItem.Password = "veyd123";
-           
+
             //Set ThisCustomer to the test data
             AllCustomer.ThisCustomer = TestItem;
             //Add the record
@@ -135,11 +135,11 @@ namespace Testing4
             TestItem.PhoneNumber = "7466686822";
             TestItem.Password = "delete";
             //Set ThisCustomer to the test Data
-            AllCustomer.ThisCustomer= TestItem;
+            AllCustomer.ThisCustomer = TestItem;
             //Add the record
-            PrimaryKey=AllCustomer.Add();
+            PrimaryKey = AllCustomer.Add();
             //Set the Primary key of the test data
-            TestItem.CustomerId= PrimaryKey;
+            TestItem.CustomerId = PrimaryKey;
             //Find the record
             AllCustomer.ThisCustomer.Find(PrimaryKey);
             //Delte the record
@@ -147,7 +147,64 @@ namespace Testing4
             //Now find the record
             Boolean Found = AllCustomer.ThisCustomer.Find(PrimaryKey);
             //Test to see that the record eas not found
-            Assert.IsFalse( Found );
+            Assert.IsFalse(Found);
+
+        }
+
+        [TestMethod]
+        public void ReportByPostCodeMethodOK()
+        {
+            //Create an Instance of the class comntaining unfiltered results
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            //Create an Instance of the filtered Data
+            clsCustomerCollection FilteredCustomer = new clsCustomerCollection();
+            //Apply a blank string (should return all record);
+            FilteredCustomer.ReportByPostCode("");
+            //Test to see that the two values are the same
+            Assert.AreEqual(AllCustomer.Count, FilteredCustomer.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByPostCodeNoneFound()
+        {
+            //Create an instance of the class we want to create
+            clsCustomerCollection FilteredCustomer = new clsCustomerCollection();
+            //Apply a PostCode that doesnt exist
+            FilteredCustomer.ReportByPostCode("xxx xxx");
+            //Test to see that there are no records
+            Assert.AreEqual(0, FilteredCustomer.Count);  // Change to Equal and error shows
+        }
+
+        [TestMethod]
+        public void ReportByPostCodeTestDataFound()
+        {
+            //Create an instance of the Filtered Data
+            clsCustomerCollection FilteredCustomer = new clsCustomerCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a PostCode that doesn't exist
+            FilteredCustomer.ReportByPostCode("yyy yyy");
+            //check that the correct number of records are found
+            if (FilteredCustomer.Count == 2)
+            {
+                //check to see that the first record is 25
+                if (FilteredCustomer.CustomerList[0].CustomerId != 25)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 26
+                if (FilteredCustomer.CustomerList[1].CustomerId != 26)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //Test to see that there are no records
+            Assert.IsTrue(OK);   //Change and it becomes false
 
         }
     }
