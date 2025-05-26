@@ -34,7 +34,7 @@ namespace ClassLibrary
 
             }
         }
-            public clsCustomer ThisCustomer
+        public clsCustomer ThisCustomer
         {
             get
             {
@@ -51,35 +51,35 @@ namespace ClassLibrary
 
 
 
-       //// constructor for the class
-       // public clsCustomerCollection()
-       // {
-       //     //create the items of test data
-       //     clsCustomer TestItem = new clsCustomer();
-       //     //set its properties
-       //     TestItem.IsActive = true;
-       //     TestItem.CustomerId = 1;
-       //     TestItem.DateRegistered = DateTime.Now;
-       //     TestItem.PostCode = "LE4 0BA";
-       //     TestItem.FullName = "Vaydang";
-       //     TestItem.Email = "vaydang02@dhdh.com";
-       //     TestItem.PhoneNumber = "7727628467";
-       //     //Add the test item to the test list
-       //     mCustomerList.Add(TestItem);
-       //     //Re Initialise the Object for some new data
-       //     TestItem = new clsCustomer();
-       //     //set its properties
-       //     TestItem.IsActive = true;
-       //     TestItem.CustomerId = 2;
-       //     TestItem.DateRegistered = DateTime.Now;
-       //     TestItem.PostCode = "LE0 2BB";
-       //     TestItem.FullName = "David";
-       //     TestItem.Email = "david12@hotmail.com";
-       //     TestItem.PhoneNumber = "7368000112";
-       //     //add the items to the test list
-       //     mCustomerList.Add(TestItem);
+        //// constructor for the class
+        // public clsCustomerCollection()
+        // {
+        //     //create the items of test data
+        //     clsCustomer TestItem = new clsCustomer();
+        //     //set its properties
+        //     TestItem.IsActive = true;
+        //     TestItem.CustomerId = 1;
+        //     TestItem.DateRegistered = DateTime.Now;
+        //     TestItem.PostCode = "LE4 0BA";
+        //     TestItem.FullName = "Vaydang";
+        //     TestItem.Email = "vaydang02@dhdh.com";
+        //     TestItem.PhoneNumber = "7727628467";
+        //     //Add the test item to the test list
+        //     mCustomerList.Add(TestItem);
+        //     //Re Initialise the Object for some new data
+        //     TestItem = new clsCustomer();
+        //     //set its properties
+        //     TestItem.IsActive = true;
+        //     TestItem.CustomerId = 2;
+        //     TestItem.DateRegistered = DateTime.Now;
+        //     TestItem.PostCode = "LE0 2BB";
+        //     TestItem.FullName = "David";
+        //     TestItem.Email = "david12@hotmail.com";
+        //     TestItem.PhoneNumber = "7368000112";
+        //     //add the items to the test list
+        //     mCustomerList.Add(TestItem);
 
-       // }
+        // }
 
         public clsCustomerCollection()
         {
@@ -91,29 +91,33 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-            //create a black address
-            clsCustomer AnCustomer = new clsCustomer();
-                //Read in the fields for the current record
-                AnCustomer.IsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
-                AnCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
-                AnCustomer.DateRegistered = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRegistered"]);
-                AnCustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
-                AnCustomer.FullName = Convert.ToString(DB.DataTable.Rows[Index]["FullName"]);
-                AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
-                AnCustomer.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
-                AnCustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
-                //Add the record to the private data number
-                mCustomerList.Add(AnCustomer);
-                //Point at the next record
-                Index++;
-            }
+            //Populate the array list with the data table
+            PopulateArray(DB);
 
-         
+
+            //get the count of records
+            //RecordCount = DB.Count;
+            ////while there are records to process
+            //while (Index < RecordCount)
+            //{
+            //    //create a black address
+            //    clsCustomer AnCustomer = new clsCustomer();
+            //    //Read in the fields for the current record
+            //    AnCustomer.IsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
+            //    AnCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
+            //    AnCustomer.DateRegistered = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRegistered"]);
+            //    AnCustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
+            //    AnCustomer.FullName = Convert.ToString(DB.DataTable.Rows[Index]["FullName"]);
+            //    AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+            //    AnCustomer.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
+            //    AnCustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
+            //    //Add the record to the private data number
+            //    mCustomerList.Add(AnCustomer);
+            //    //Point at the next record
+            //    Index++;
+            //}
+
+
 
 
         }
@@ -165,6 +169,56 @@ namespace ClassLibrary
             //Execute the stored procedure
             DB.Execute("Sproc_tblCustomer_Delete");
         }
+
+        public void ReportByPostCode(string PostCode)
+        {
+            //Filters the records based on a full or partial post code
+            //Connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //Send the Post Code parameter to the database
+            DB.AddParameter("@PostCode", PostCode);
+            //Execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByPostCode");
+            //Populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //Populates the array list based on the data table in the parameter DB
+            //Variable for the index
+            Int32 Index = 0;
+            //Variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //Clear the private array list
+            mCustomerList = new List<clsCustomer>();
+            //While there are record to process
+            while (Index < RecordCount)
+            {
+
+                //create a blank Customer Object
+                clsCustomer AnCustomer = new clsCustomer();
+                //Read in the fields from the current record
+                AnCustomer.IsActive = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
+                AnCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
+                AnCustomer.DateRegistered = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRegistered"]);
+                AnCustomer.FullName = Convert.ToString(DB.DataTable.Rows[Index]["FullName"]);
+                AnCustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
+                AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                AnCustomer.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
+                AnCustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
+                //Add the record to the private data memnber
+                mCustomerList.Add(AnCustomer);
+                //point at the next record
+                Index++;
+            }
+
+
+
+
+
+        }
     }
 }
-
