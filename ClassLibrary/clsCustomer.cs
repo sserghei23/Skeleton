@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Data;
 
 namespace ClassLibrary
 {
     public class clsCustomer
     {
+       
         //Private Data memeber for the address id property
         private Int32 mCustomerId;
 
@@ -159,11 +161,13 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string dateRegistered, string postCode, string phoneNumber, string email, string fullName, string password)
+        public string Valid(string dateRegistered, string postCode, string phoneNumber, string email, string fullName)
         {
             //Create a String variable to store the error
             String Error = "";
+            //
             DateTime DateTemp;
+
             if (postCode.Length == 0)
             {
                 //record the error
@@ -177,11 +181,11 @@ namespace ClassLibrary
             }
 
             //Copy the DateRegistered Value to the DateTemp Variable
-            DateTemp = Convert.ToDateTime(DateRegistered);
+            DateTemp = Convert.ToDateTime(dateRegistered);
             if (DateTemp < DateTime.Now.Date)
             {
                 //Record the error
-                Error = Error + " The Date cannot be in the past : ";
+                Error = Error + " The Date cannot be in the  : ";
             }
             //Check to see if the date is Greater than Today's date
             if (DateTemp > DateTime.Now.Date)
@@ -236,20 +240,51 @@ namespace ClassLibrary
                 Error = Error + "The Phone Number must be less than 10 Charchters ; ";
             }
 
-            if (password.Length == 0)
-            {
-                //record the error
-                Error = Error + " The Password may not be Blank : ";
-            }
-            //if the PostCode is greater than 500 characters
-            if (password.Length > 20)
-            {
-                //Return any Error messages
-                Error = Error + "The Password must be less than 50 Charchters ; ";
-            }
+            //if (password.Length == 0)
+            //{
+            //    //record the error
+            //    Error = Error + " The Password may not be Blank : ";
+            //}
+            ////if the PostCode is greater than 500 characters
+            //if (password.Length > 20)
+            //{
+            //    //Return any Error messages
+            //    Error = Error + "The Password must be less than 50 Charchters ; ";
+            //}
             //return any error messages
             return Error;
         }
+
+        /********** STATISTICS GROUPED BY POSTCODE METHOD ************/
+        public DataTable StatisticsGroupedByFullName()
+        {
+            //Create an Instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+
+            //Execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Count_GroupByFullName");
+            //There should be either sero, one or more records
+            return DB.DataTable;
+
+        }
+
+        /********** STATISTICS GROUPED BY Added Date Resgistered METHOD************/
+
+        public DataTable StatisticsGroupedDateRegistered()
+        {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Count_GroupDateRegistered");
+            //There should be either zero, one or more records
+            return DB.DataTable;
+        }
+
     }
+
+
+    
+
 
 }
