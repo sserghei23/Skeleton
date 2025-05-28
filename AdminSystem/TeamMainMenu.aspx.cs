@@ -16,4 +16,9 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
         Response.Redirect("CheckoutManagementList.aspx");
     }
+
+    protected void btnOrders_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrderManagementList.aspx");
+    }
 }
