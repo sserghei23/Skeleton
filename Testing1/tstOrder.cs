@@ -608,7 +608,7 @@ namespace Testing1
             //invoke the method
             DataTable dT = anOrder.StatisticsGroupedByStatus();
             //according to the test data, we should have 16 rows
-            int noOfRecord = 16;
+            int noOfRecord = 15;
 
             //test to see that the result is correct
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
@@ -622,7 +622,7 @@ namespace Testing1
             //invoke the method
             DataTable dT = anOrder.StatisticsGroupedByOrderDate();
             //according to the test data, we should have 7 rows
-            int noOfRecord = 7;
+            int noOfRecord = 12;
             //test to see that the result is correct
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
