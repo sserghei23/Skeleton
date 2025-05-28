@@ -1,77 +1,57 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="OrderManagementStatistics.aspx.cs" Inherits="OrderManagementStatistics" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-    }
+    <title>Order Management - Statistics</title>
 
-    #form1 > div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
 
-    h1, h3 {
-        text-align: center;
-    }
-</style>
-    <title></title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h1, h3 {
+            text-align: center;
+        }
+        .table thead {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <div> <h1>Order Management Statistics</h1> </div>
+    <form id="form1" runat="server" class="container py-5">
+        <h1 class="mb-5 text-primary"><i class="bi bi-bar-chart-line-fill me-2"></i>Order Management Statistics</h1>
 
-             <div>
-                <h3>Order List - Grouped by Status</h3>
-
-
-                 <div style="display: flex; justify-content: center; margin-bottom: 40px;">
-                <asp:GridView ID="GridViewStGroupByStatus" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" style="position: relative">
-                    <AlternatingRowStyle BackColor="White" />
-                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                    <SortedDescendingHeaderStyle BackColor="#820000" />
-                 </asp:GridView>
-                     </div>
-             </div>
-
-
-             <div>
-                <h3>Order List - Grouped by Order Date</h3>
-                     <div style="display: flex; justify-content: center; margin-bottom: 40px;">
-                        <asp:GridView ID="GridViewStGroupByOrderDate" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-                            <AlternatingRowStyle BackColor="White" />
-                            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                            <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                            <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                            <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                            <SortedDescendingHeaderStyle BackColor="#820000" />
-                         </asp:GridView>
-                     </div>
-             </div> 
-
-
-        </div>    
-        <div style="display: flex; justify-content: center; margin-bottom: 40px;">
-        <asp:Button ID="btnGoBack" runat="server" Text="Back To Prvious Page" Height="36px" OnClick="btnGoBack_Click" Width="160px" />
+        <div class="mb-5">
+            <h3 class="mb-3">Order List - Grouped by Status</h3>
+            <div class="table-responsive">
+                <asp:GridView ID="GridViewStGroupByStatus" runat="server"
+                    CssClass="table table-bordered table-striped text-center"
+                    AutoGenerateColumns="true">
+                </asp:GridView>
             </div>
+        </div>
+
+        <div class="mb-5">
+            <h3 class="mb-3">Order List - Grouped by Order Date</h3>
+            <div class="table-responsive">
+                <asp:GridView ID="GridViewStGroupByOrderDate" runat="server"
+                    CssClass="table table-bordered table-striped text-center"
+                    AutoGenerateColumns="true">
+                </asp:GridView>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button id="btnGoBack" runat="server" class="btn btn-outline-primary px-4 py-2" onserverclick="btnGoBack_Click">
+                <i class="bi bi-arrow-left me-2"></i>Back to Previous Page
+            </button>
+        </div>
     </form>
 </body>
 </html>
