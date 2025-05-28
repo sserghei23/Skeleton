@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
-{ 
-        protected void Page_Load(object sender, EventArgs e)
+{
+    protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack == false)
         {
@@ -82,4 +82,42 @@ public partial class _1_List : System.Web.UI.Page
 
         }
     }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //Create an Instance of the address object
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+        //Retrieve the value of PostCode from the presenattion layer
+        AnCustomer.ReportByPostCode(TxtPostCode.Text);
+        //set the Data source to the list of Customer in the collection
+        lstCustomerList.DataSource = AnCustomer.CustomerList;
+        //Set the name of the primary key
+        lstCustomerList.DataValueField = "CustomerId";
+        //Set the name of the field to display
+        lstCustomerList.DataTextField = "PostCode";
+        //Bind the data to the list
+        lstCustomerList.DataBind();
+    }
+
+
+    protected void btnClearFilter_Click(Object sender, EventArgs e)
+    {
+        //Create an instance of the customer object
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+        //Set an empty string
+        //Clear any existing filter to tidy up the interface
+        TxtPostCode.Text = "";
+        //Set the data source to the list of Customer in the collection
+        lstCustomerList.DataSource = AnCustomer.CustomerList;
+        //Set the name of the primary Key
+        lstCustomerList.DataValueField = "CustomerId";
+        //Set the name of the field to display
+        lstCustomerList.DataTextField = "PostCode";
+        //Bind the data to the list
+        lstCustomerList.DataBind();
+    }
+
+
+
+ 
 }

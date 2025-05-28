@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtCustomerId.Text = CustomerBook.ThisCustomer.CustomerId.ToString();
         txtFullName.Text = CustomerBook.ThisCustomer.FullName;
         txtEmail.Text = CustomerBook.ThisCustomer.Email;
-        txtPassword.Text = CustomerBook.ThisCustomer.Password;
+        //txtPassword.Text = CustomerBook.ThisCustomer.Password;
         txtPhoneNumber.Text = CustomerBook.ThisCustomer.PhoneNumber;
         txtPostCode.Text = CustomerBook.ThisCustomer.PostCode;
         txtDateRegistered.Text = CustomerBook.ThisCustomer.DateRegistered.ToString();
@@ -50,37 +50,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
         //Capture the Postcode
-        string PostCode = txtPostCode.Text;
+        string postCode = txtPostCode.Text;
         //Capture the Date registered
-        string DateRegistered = txtDateRegistered.Text;
+        string dateRegistered = txtDateRegistered.Text;
         //Capture the Is Active
-        string IsActive = chkIsActive.Text;
+        string isActive = chkIsActive.Text;
         //Capture the Phonenumber
-        string PhoneNumber = txtPhoneNumber.Text;
+        string phoneNumber = txtPhoneNumber.Text;
         //Capture the Email Address
-        string Email = txtEmail.Text;
+        string email = txtEmail.Text;
         //Capture the Full Name
-        string FullName = txtFullName.Text;
+        string fullName = txtFullName.Text;
         //Variable to store any error messages
-        string Password = txtPassword.Text;
+        //string password = txtPassword.Text;
         string Error = "";
-        Error = AnCustomer.Valid(DateRegistered, PostCode, PhoneNumber, Email, FullName, Password);
+
+        Error = AnCustomer.Valid(dateRegistered, postCode, phoneNumber, email, fullName);
         if (Error == "")
         {
             //Capture the Customer ID
             AnCustomer.CustomerId = CustomerId;
             //Capture the PostCode
-            AnCustomer.PostCode = PostCode;
+            AnCustomer.PostCode = postCode;
             //Capture the DateRegistered
-            AnCustomer.DateRegistered = Convert.ToDateTime(DateRegistered);
+            AnCustomer.DateRegistered = Convert.ToDateTime(dateRegistered);
             //Capture the Phone Number
-            AnCustomer.PhoneNumber = PhoneNumber;
+            AnCustomer.PhoneNumber = phoneNumber;
             //Capture the Email
-            AnCustomer.Email = Email;
+            AnCustomer.Email = email;
             //Capture the Full Name
-            AnCustomer.FullName = FullName;
+            AnCustomer.FullName = fullName;
             //Capture the Password
-            AnCustomer.Password = Password;
+            //AnCustomer.Password = password;
             //Capture Active
             AnCustomer.IsActive = chkIsActive.Checked;
             //Create a new instance of the address collection
@@ -112,7 +113,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         else
         {
             //display the error message
-            lblError.Text = Error;
+            lblError.Text = "There was a problem: " + Error;
         }
     }
 
@@ -141,19 +142,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtFullName.Text = AnCustomer.FullName;
             txtEmail.Text = AnCustomer.Email;
             txtPhoneNumber.Text = AnCustomer.PhoneNumber;
-            txtPassword.Text = AnCustomer.Password;
+            //txtPassword.Text = AnCustomer.Password;
             chkIsActive.Checked = AnCustomer.IsActive;
             txtPostCode.Text = AnCustomer.PostCode;
             txtDateRegistered.Text = AnCustomer.DateRegistered.ToString();
 
         }
     }
-
-    protected void btnOK_Click1(object sender, EventArgs e)
-    {
-
-    }
-
     protected void txtDateRegistered_TextChanged(object sender, EventArgs e)
     {
 

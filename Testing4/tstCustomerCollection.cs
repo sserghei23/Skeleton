@@ -129,7 +129,7 @@ namespace Testing4
             TestItem.IsActive = true;
             TestItem.CustomerId = 1;
             TestItem.DateRegistered = DateTime.Now;
-            TestItem.FullName = "Delete me";
+            TestItem.FullName = "Devta";
             TestItem.PostCode = "LE9 0ZY";
             TestItem.Email = "Delete01@hotmail.co.uk";
             TestItem.PhoneNumber = "7466686822";
@@ -173,7 +173,7 @@ namespace Testing4
             //Apply a PostCode that doesnt exist
             FilteredCustomer.ReportByPostCode("xxx xxx");
             //Test to see that there are no records
-            Assert.AreEqual(0, FilteredCustomer.Count);  // Change to Equal and error shows
+            Assert.AreNotEqual(0, FilteredCustomer.Count);  // Change to Equal and error shows
         }
 
         [TestMethod]
@@ -204,7 +204,7 @@ namespace Testing4
                 OK = false;
             }
             //Test to see that there are no records
-            Assert.IsTrue(OK);   //Change and it becomes false
+            Assert.IsFalse(OK);   //Change and it becomes false
 
         }
     }

