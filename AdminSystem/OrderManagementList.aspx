@@ -5,6 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -19,9 +21,9 @@
         <asp:TextBox ID="txtFilter" runat="server" style="z-index: 1; left: 124px; top: 399px; position: absolute"></asp:TextBox>
         <asp:Button ID="btnApplyFilter" runat="server" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 33px; top: 448px; position: absolute; height: 34px; width: 104px; right: 1497px;" Text="Apply Filter" />
         <asp:Button ID="btnClearFilter" runat="server" OnClick="btnClearFilter_Click" style="z-index: 1; left: 161px; top: 448px; position: absolute; height: 34px; width: 104px; right: 1366px;" Text="Clear Filter" />
-        <asp:Button ID="btnStat" runat="server" OnClick="btnStat_Click" style="z-index: 1; left: 286px; top: 448px; position: absolute; height: 34px; width: 104px" Text="Go to Statistics" />
+        <asp:Button ID="btnStat" runat="server" OnClick="btnStat_Click" style="z-index: 1; left: 352px; top: 365px; position: absolute; height: 34px; width: 128px" Text="Go to Statistics" />
 
-        <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" style="z-index: 1; left: 412px; top: 448px; position: absolute; height: 34px; width: 104px" Text="Main Menu" />
+        <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn_Click" style="z-index: 1; left: 352px; top: 414px; position: absolute; height: 34px; width: 128px" Text="Main Menu" />
 
     </form>
 </body>

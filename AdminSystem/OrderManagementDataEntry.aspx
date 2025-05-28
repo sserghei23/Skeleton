@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -20,13 +23,13 @@
         <asp:TextBox ID="txtStatus" runat="server" style="z-index: 1; left: 178px; top: 184px; position: absolute" height="20px" width="128px"></asp:TextBox>
         <asp:TextBox ID="txtTotalAmount" runat="server" style="z-index: 1; left: 178px; top: 229px; position: absolute" width="128px" height="20px"></asp:TextBox>
         <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 178px; top: 275px; position: absolute" height="20px" width="128px"></asp:TextBox>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 162px; top: 342px; position: absolute; height: 37px; width: 87px;" Text="Cancel" OnClick="btnCancel_Click"  />
-        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 41px; top: 342px; position: absolute; height: 37px; width: 87px;" Text="OK" OnClick="btnOk_Click" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 162px; top: 344px; position: absolute; height: 37px; width: 111px;" Text="Cancel" OnClick="btnCancel_Click"  />
+        <asp:Button ID="btnOk" runat="server" style="z-index: 1; left: 41px; top: 344px; position: absolute; height: 37px; width: 87px;" Text="OK" OnClick="btnOk_Click" />
         <asp:CheckBox ID="chkCompleted" runat="server" style="z-index: 1; left: 180px; top: 310px; position: absolute" Text="Completed" />
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 386px; position: absolute"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 395px; position: absolute"></asp:Label>
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 343px; top: 45px; position: absolute; width: 76px" Text="Find" />
 
-        <asp:Button ID="btnReturn" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 281px; top: 342px; position: absolute; height: 37px; width: 87px" Text="Main Menu" />
+        <asp:Button ID="btnReturn" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 356px; top: 344px; position: absolute; height: 37px; width: 122px" Text="Main Menu" />
 
     </form>
 </body>
