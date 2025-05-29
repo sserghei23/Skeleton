@@ -132,7 +132,7 @@ namespace ClassLibrary
             DB.AddParameter("@PostCode", mThisCustomer.PostCode);
             DB.AddParameter("@Email", mThisCustomer.Email);
             DB.AddParameter("@PhoneNumber", mThisCustomer.PhoneNumber);
-            DB.AddParameter("@Password", mThisCustomer.Password);
+            //DB.AddParameter("@Password", mThisCustomer.Password);
             DB.AddParameter("@DateRegistered", mThisCustomer.DateRegistered);
             DB.AddParameter("@IsActive", mThisCustomer.IsActive);
 
@@ -205,7 +205,7 @@ namespace ClassLibrary
                 AnCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
                 AnCustomer.DateRegistered = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRegistered"]);
                 AnCustomer.FullName = Convert.ToString(DB.DataTable.Rows[Index]["FullName"]);
-                AnCustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
+                //AnCustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
                 AnCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
                 AnCustomer.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
                 AnCustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
