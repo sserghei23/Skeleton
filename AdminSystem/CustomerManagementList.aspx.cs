@@ -100,7 +100,7 @@ public partial class _1_List : System.Web.UI.Page
     }
 
 
-    protected void btnClearFilter_Click(Object sender, EventArgs e)
+    protected void btnClearFilter_Click(object sender, EventArgs e)
     {
         //Create an instance of the customer object
         clsCustomerCollection AnCustomer = new clsCustomerCollection();
@@ -119,5 +119,12 @@ public partial class _1_List : System.Web.UI.Page
 
 
 
- 
+
+
+
+
+    protected void btnStatisticsPage_Click(object sender, EventArgs e)
+    {
+
+    }
 }

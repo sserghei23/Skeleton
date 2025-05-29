@@ -23,19 +23,24 @@
         </p>
         <p>
             <asp:TextBox ID="TxtPostCode" runat="server" style="z-index: 1; left: 141px; top: 444px; position: absolute; width: 205px; height: 27px;"></asp:TextBox>
-            <asp:Button ID="btnApplyFilter" runat="server" height="26px" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 14px; top: 481px; position: absolute; " Text="Apply Filter" width="95px" />
+            <asp:Button ID="btnApplyFilter" runat="server" height="26px" OnClick="btnApplyFilter_Click" style="z-index: 1; left: 14px; top: 487px; position: absolute; " Text="Apply Filter" width="133px" />
             <asp:Label ID="lblPostCode" runat="server" style="z-index: 1; left: 9px; top: 450px; position: absolute; right: 524px; height: 19px" Text="Enter a Post Code"></asp:Label>
+        </p>
+        <p style="margin-left: 280px">
+            <asp:Button ID="btnStatisticsPage" runat="server" OnClick="btnStatisticsPage_Click" Text="Statistics Page" />
         </p>
         <p>
             &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <asp:Button ID="btnClearFilter" runat="server" style="z-index: 1; left: 145px; top: 481px; position: absolute" Text="Clear Filter" />
+        <asp:Button ID="btnClearFilter" runat="server" style="z-index: 1; left: 146px; top: 486px; position: absolute" Text="Clear Filter" height="26px" width="133px" />
         <p>
             &nbsp;</p>
         <p>
         <asp:Label ID="lblError" runat="server" Text="lblError"></asp:Label>
         </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

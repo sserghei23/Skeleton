@@ -90,7 +90,7 @@ namespace Testing4
             Int32 PrimaryKey = 0;
             //set its properties
             TestItem.IsActive = true;
-            TestItem.DateRegistered = DateTime.Now;
+            TestItem.DateRegistered = DateTime.Now.Date;
             TestItem.FullName = "Abhimanyu";
             TestItem.PostCode = "BH1 0AD";
             TestItem.PhoneNumber = "7499909172";
@@ -128,7 +128,7 @@ namespace Testing4
             //Set its Properties
             TestItem.IsActive = true;
             TestItem.CustomerId = 1;
-            TestItem.DateRegistered = DateTime.Now;
+            TestItem.DateRegistered = DateTime.Now.Date;
             TestItem.FullName = "Devta";
             TestItem.PostCode = "LE9 0ZY";
             TestItem.Email = "Delete01@hotmail.co.uk";
