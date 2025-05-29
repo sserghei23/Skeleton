@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Data;
 
 
 namespace Testing2
@@ -720,6 +721,36 @@ namespace Testing2
             //assert that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByFullName()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //invoke the method to get the statistics
+            DataTable dT = AStaff.StatisticsGroupedByFullName();
+            //According to your last executed stored procedure, there should be 15 rows of data
+            int noOfRecord = 22;
+            //check that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+
+        }
+
+        [TestMethod]
+        public void StatStatisticsGroupedByDateOfEmployment()
+        {
+            //create an instance of the class we want to create
+            clsStaff AStaff = new clsStaff();
+            //invoke the method to get the statistics
+            DataTable dT = AStaff.StatisticsGroupedByDateOfEmployment();
+            //According to your last executed stored procedure, there should be 15 rows of data
+            int noOfRecord = 15;
+            //check that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
+
+
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace ClassLibrary
 {
@@ -126,7 +127,7 @@ namespace ClassLibrary
                 //will return false to indicate that the record was not found
                 return false;
             }
-            
+
         }
 
         public string Valid(string orderID, string fullName, string password, string email, string dateOfEmployment)
@@ -200,7 +201,8 @@ namespace ClassLibrary
             }
 
             //if password is greater than 20 characters
-            if (password.Length > 20){
+            if (password.Length > 20)
+            {
                 //record the error
                 Error = Error + "The Password must not exceed 20 characters : ";
             }
@@ -233,5 +235,32 @@ namespace ClassLibrary
             //return invalid data
             return Error;
         }
+
+        // Statistics grouped by FullName method
+        public DataTable StatisticsGroupedByFullName()
+        {
+            //creates a data connection to the SQL database
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Count_GroupByFullName");
+            //return the data table containing the statistics
+            return DB.DataTable;
+        }
+
+        // Statistics grouped by DateOfEmployment method
+        public DataTable StatisticsGroupedByDateOfEmployment()
+        {
+            //creates a data connection to the SQL database
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Count_GroupDateOfEmployment");
+            //return the data table containing the statistics
+            return DB.DataTable;
+        }
+
+
+
+
+
     }
 }
