@@ -155,7 +155,89 @@ namespace Testing2
             //test to see if the two values are the same
             Assert.AreEqual(AllStaff.ThisStaff, TestStaff);
 
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the staff collection
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create some test data to assign to the collection
+            clsStaff TestStaff = new clsStaff();
+            Int32 PrimaryKey = 0;
+            TestStaff.StaffID = 40;
+            TestStaff.OrderID = 15;
+            TestStaff.FullName = "Will Smith";
+            TestStaff.Password = "password123";
+            TestStaff.Email = "wsmith@outlook.com";
+            TestStaff.DateOfEmployment = Convert.ToDateTime("2022-06-05");
+            TestStaff.IsWorking = false;
+            //set ThisStaff to the test data
+            AllStaff.ThisStaff = TestStaff;
+            PrimaryKey = AllStaff.Add();
+            TestStaff.StaffID = PrimaryKey;
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            AllStaff.Delete();
+            Boolean Found = AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see if the record was found
+            Assert.IsFalse(Found);
 
         }
+
+        [TestMethod]
+        public void ReportByFullNameMethodOK()
+        {
+            //create an instance of staff collections
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a blank string to the method which should return all records.
+            FilteredStaff.ReportByFullName("");
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFullNameNoneFound()
+        { 
+            //test method is needed to validate where no records are found according to the fullName filter
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a full name that does not exist in the database
+            FilteredStaff.ReportByFullName("Non-Existent Name");
+            //test to see if the count of records is zero
+            Assert.AreEqual(0, FilteredStaff.Count);
+
+        }
+
+        //[TestMethod]
+        //public void ReportByFullNameTestDataFound()
+        //{
+        //    //create an instance of the filtered staff collection
+        //    clsStaffCollection FilteredStaff = new clsStaffCollection();
+        //    //boolean variable to store the result of the search
+        //    Boolean OK = true;
+        //    //apply a full name that does not exists in the database
+        //    FilteredStaff.ReportByFullName("Bill Stark");
+        //    //check to see if it is correct amount of records
+        //    if (FilteredStaff.Count == 2)
+        //    {
+        //        //check if the first record is StaffID number 70
+        //        if (FilteredStaff.StaffList[0].StaffID != 70)
+        //        {
+        //            OK = false;
+        //        }
+        //        //check if the second record is StaffID number 71
+        //        if (FilteredStaff.StaffList[1].StaffID != 71)
+        //        {
+        //            OK = false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        OK = false;
+        //    }
+        //    //test to see if there are no records
+        //    Assert.IsTrue(OK);
+        //}
+
+
     }
 }

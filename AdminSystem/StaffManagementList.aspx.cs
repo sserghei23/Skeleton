@@ -57,5 +57,62 @@ public partial class _1_List : System.Web.UI.Page
             //display an error message
             lblError.Text = "Please select a record to edit from the list";
         }
+
+    }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 StaffID;
+        if (lstStaffList.SelectedIndex != -1)
+        {
+            //get the primary key of the record to delete
+            StaffID = Convert.ToInt32(lstStaffList.SelectedValue);
+            //store the primary key in the session object
+            Session["StaffID"] = StaffID;
+            //redirect to the delete page
+            Response.Redirect("StaffManagementConfirmDelete.aspx");
+        }
+        else
+        {
+            //display an error message
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staffs = new clsStaffCollection();
+        //apply the filter based on the text entered in the filter text box
+        Staffs.ReportByFullName(txtFilter.Text);
+        //set the data source to the filtered list of staff in the collection
+        lstStaffList.DataSource = Staffs.StaffList;
+        //set the name of the primary key
+        lstStaffList.DataValueField = "StaffID";
+        //set the data field to display and bind the data to the list
+        lstStaffList.DataTextField = "FullName";
+        lstStaffList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the staff collection
+        clsStaffCollection Staffs = new clsStaffCollection();
+        //set an empty string as the filter
+        Staffs.ReportByFullName("");
+        //set the data source to the unfiltered list of staff in the collection
+        lstStaffList.DataSource = Staffs.StaffList;
+        //set the name of the primary key
+        lstStaffList.DataValueField = "StaffID";
+        //set the data field to display and bind the data to the list
+        lstStaffList.DataTextField = "FullName";
+        lstStaffList.DataBind();
+        //clear the filter text box
+        txtFilter.Text = "";
+    }
+
+    protected void btnStatistics_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StaffManagementStatistics.aspx");
     }
 }
