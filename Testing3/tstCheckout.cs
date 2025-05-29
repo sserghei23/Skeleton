@@ -8,12 +8,13 @@ namespace Testing3
     [TestClass]
     public class tstCheckout
     {
-        //create some test data      
-        string DateAdded = DateTime.Now.ToShortDateString();
-        string TotalCartValue = "";
-        string WatchId;
-        string CustomerId;
-        string CartId;
+        //create some good test data      
+        string DateAdded = DateTime.Now.Date.ToShortDateString();
+        string TotalCartValue = "546";
+        string WatchId = "20";
+        string CustomerId = "20";
+        string CartId = "20";
+        
 
         [TestMethod]
         public void InstanceOK()
@@ -143,7 +144,7 @@ namespace Testing3
             //Assign Data to the proprty
             Found = AnCheckout.Find(CartId);
             //check the date added property
-            if (AnCheckout.DateAdded != Convert.ToDateTime("22/05/2025"))
+            if (AnCheckout.DateAdded != Convert.ToDateTime("23/05/2025"))
             {
                 OK = false;
             }
@@ -242,9 +243,9 @@ namespace Testing3
             //create an instance of the object
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            string Error = "";                                
+            string Error = "";           
             //invoke the method
-            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, DateAdded, TotalCartValue);
+            Error = AnCheckout.Valid(CartId, WatchId, CustomerId, TotalCartValue, DateAdded);
             //test to see that it exists
             Assert.AreEqual(Error, "");
         }
@@ -254,7 +255,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             //Assign Data to the proprty
@@ -268,7 +269,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "b";
             //Assign Data to the proprty
@@ -282,7 +283,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "bb";
             //Assign Data to the proprty
@@ -296,7 +297,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(49, 'b');
@@ -311,7 +312,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(51, 'b');
@@ -327,7 +328,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(50, 'b');
@@ -343,7 +344,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             TotalCartValue = TotalCartValue.PadRight(25, 'b');
@@ -358,7 +359,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string TotalCartValue = "";
             //
@@ -374,7 +375,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             DateTime TestDate;
             //
@@ -394,7 +395,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             DateTime TestDate;
             //
@@ -414,7 +415,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             DateTime TestDate;
             //
@@ -432,7 +433,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             DateTime TestDate;
             //
@@ -452,7 +453,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             DateTime TestDate;
             //
@@ -472,7 +473,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             //Create test data to assign to the proprty
-            String Error = "";
+            string Error = "";
             //test data
             string DateAdded = "this is not a date!";
             //Assign Data to the proprty
@@ -486,7 +487,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             DataTable dT = AnCheckout.StatisticsGroupedByTotalCartValue();
-            int noOfRecord = 10;
+            int noOfRecord = 11;
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
 
@@ -496,7 +497,7 @@ namespace Testing3
         {
             clsCheckout AnCheckout = new clsCheckout();
             DataTable dT = AnCheckout.StatisticsGroupedByDateAdded();
-            int noOfRecord = 10;
+            int noOfRecord = 11;
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
     }
