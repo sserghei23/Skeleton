@@ -11,20 +11,24 @@
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container py-5">
+
+
+        <div class="container p-3">
             <h2 class="mb-4 text-primary"><i class="bi bi-list-ul me-2"></i>Order List</h2>
 
             <div class="mb-4">
-                <asp:ListBox ID="lstOrderList" runat="server" CssClass="form-select" Height="261px" Width="100%" />
+                <asp:ListBox ID="lstOrderList" runat="server" CssClass="form-select" Height="350" />
             </div>
 
-            <div class="row mb-3 g-2">
+
+
+            <div class="row mb-3 g-3">
                 <div class="col-auto">
                     <button id="btnAdd" runat="server" class="btn btn-primary" onserverclick="btnAdd_Click">
                         <i class="bi bi-plus-circle me-2"></i>Add
@@ -42,7 +46,9 @@
                 </div>
             </div>
 
-            <div class="row mb-4 align-items-end">
+
+
+            <div class="row mb-4 align-items-center">
                 <div class="col-auto">
                     <asp:Label ID="lblStatusBox" runat="server" Text="Enter a Status:" CssClass="form-label fw-medium" />
                 </div>
@@ -61,6 +67,10 @@
                 </div>
             </div>
 
+
+
+
+
             <div class="row mb-3">
                 <div class="col-auto">
                     <button id="btnStat" runat="server" class="btn btn-primary" onserverclick="btnStat_Click">
@@ -73,6 +83,8 @@
                     </button>
                 </div>
             </div>
+
+
 
             <div class="mt-3">
                 <asp:Label ID="lblError" runat="server" CssClass="text-danger fw-bold" />
