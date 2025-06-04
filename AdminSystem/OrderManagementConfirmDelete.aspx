@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -20,16 +20,16 @@
         <h2 class="mb-4 text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Deletion</h2>
 
         <div class="mb-4">
-            <asp:Label ID="lblConfirmation" runat="server" Text="Are you sure you want to delete this record?" CssClass="h5 text-center text-dark fw-semibold" />
+            <asp:Label ID="lblConfirmation" runat="server" Text="Are you sure you want to delete this record?" CssClass="h4 text-center" />
         </div>
 
         <div class="row w-100 justify-content-center">
-            <div class="col-4 col-md-2">
+            <div class="col-3">
                 <button id="btnYes" runat="server" class="btn btn-danger w-100" onserverclick="btnYes_Click">
                     <i class="bi bi-check-circle me-2"></i>Yes
                 </button>
             </div>
-            <div class="col-4 col-md-2">
+            <div class="col-3">
                 <button id="btnNo" runat="server" class="btn btn-secondary w-100" onserverclick="btnNo_Click">
                     <i class="bi bi-x-circle me-2"></i>No
                 </button>

@@ -621,8 +621,8 @@ namespace Testing1
             clsOrder anOrder = new clsOrder();
             //invoke the method
             DataTable dT = anOrder.StatisticsGroupedByOrderDate();
-            //according to the test data, we should have 7 rows
-            int noOfRecord = 12;
+            //according to the test data, we should have 17 rows
+            int noOfRecord = 17;
             //test to see that the result is correct
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }

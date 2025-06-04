@@ -12,7 +12,7 @@
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
         h1, h3 {
             text-align: center;
