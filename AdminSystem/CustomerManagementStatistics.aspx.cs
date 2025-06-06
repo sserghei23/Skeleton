@@ -33,4 +33,9 @@ public partial class CustomerManagementStatistics : System.Web.UI.Page
         //change the header of the first column
         GridViewStGroupByDateRegistered.HeaderRow.Cells[0].Text = "Total";
     }
+
+    protected void btnBTPP_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerManagementList.aspx");
+    }
 }

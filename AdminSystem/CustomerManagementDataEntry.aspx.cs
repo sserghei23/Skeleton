@@ -40,84 +40,93 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //txtPassword.Text = CustomerBook.ThisCustomer.Password;
         txtPhoneNumber.Text = CustomerBook.ThisCustomer.PhoneNumber;
         txtPostCode.Text = CustomerBook.ThisCustomer.PostCode;
-        txtDateRegistered.Text = CustomerBook.ThisCustomer.DateRegistered.ToString();
+        txtDateRegistered.Text = CustomerBook.ThisCustomer.DateRegistered.ToString("yyyy-MM-dd");
         chkIsActive.Checked = CustomerBook.ThisCustomer.IsActive;
 
     }
 
+    
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsCustomer
+        // Create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
-        //Capture the Postcode
+        // Capture the Postcode
         string postCode = txtPostCode.Text;
-        //Capture the Date registered
+        // Capture the DateRegistered
         string dateRegistered = txtDateRegistered.Text;
-        //Capture the Is Active
-        string isActive = chkIsActive.Text;
-        //Capture the Phonenumber
+        // Capture the Is Active
+        bool isActive = chkIsActive.Checked;
+        // Capture the PhoneNumber
         string phoneNumber = txtPhoneNumber.Text;
-        //Capture the Email Address
+        // Capture the Email Address
         string email = txtEmail.Text;
-        //Capture the Full Name
+        // Capture the Full Name
         string fullName = txtFullName.Text;
-        //Variable to store any error messages
-        //string password = txtPassword.Text;
-        string Error = "";
 
-        Error = AnCustomer.Valid(dateRegistered, postCode, phoneNumber, email, fullName);
-        if (Error == "")
+        // Variable to store any error messages
+        string error = "";
+
+        // Validate the input fields, including DateRegistered
+        if (string.IsNullOrEmpty(dateRegistered))
         {
-            //Capture the Customer ID
-            AnCustomer.CustomerId = CustomerId;
-            //Capture the PostCode
-            AnCustomer.PostCode = postCode;
-            //Capture the DateRegistered
-            AnCustomer.DateRegistered = Convert.ToDateTime(dateRegistered);
-            //Capture the Phone Number
-            AnCustomer.PhoneNumber = phoneNumber;
-            //Capture the Email
-            AnCustomer.Email = email;
-            //Capture the Full Name
-            AnCustomer.FullName = fullName;
-            //Capture the Password
-            //AnCustomer.Password = password;
-            //Capture Active
-            AnCustomer.IsActive = chkIsActive.Checked;
-            //Create a new instance of the address collection
-            clsCustomerCollection CustomerList = new clsCustomerCollection();
-
-            //If this is a new record i.e Customer ID = -1 then add the data
-            if (CustomerId == -1)
+            error = "Date Registered cannot be empty.";
+        }
+        else
+        {
+            // Check if DateRegistered can be parsed into a valid DateTime
+            DateTime parsedDate;
+            if (!DateTime.TryParse(dateRegistered, out parsedDate))
             {
-                //set the ThisCustomer property
-                CustomerList.ThisCustomer = AnCustomer;
-                //Add the new record
-                CustomerList.Add();
-
+                error = "Invalid date format for Date Registered.";
             }
-            //Otherwise it must be an update
-
             else
             {
-                //Find the record to Update
-                CustomerList.ThisCustomer.Find(CustomerId);
-                //set the ThisCustomer property
+                // If no errors, continue with the process
+                AnCustomer.DateRegistered = parsedDate;
+            }
+        }
+
+        // Check if any validation errors occurred
+        if (string.IsNullOrEmpty(error))
+        {
+            // Capture the Customer ID
+            AnCustomer.CustomerId = CustomerId;
+            // Capture other properties
+            AnCustomer.PostCode = postCode;
+            AnCustomer.PhoneNumber = phoneNumber;
+            AnCustomer.Email = email;
+            AnCustomer.FullName = fullName;
+            AnCustomer.IsActive = isActive;
+
+            // Proceed with adding or updating the customer
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            // If this is a new record (CustomerId == -1), add the data
+            if (CustomerId == -1)
+            {
                 CustomerList.ThisCustomer = AnCustomer;
-                //Update the record
+                CustomerList.Add();
+            }
+            else
+            {
+                // Otherwise, update the existing record
+                CustomerList.ThisCustomer.Find(CustomerId);
+                CustomerList.ThisCustomer = AnCustomer;
                 CustomerList.Update();
             }
-            //redirect back to the List Page
+
+            // Redirect back to the List Page
             Response.Redirect("CustomerManagementList.aspx");
         }
         else
         {
-            //display the error message
-            lblError.Text = "There was a problem: " + Error;
+            // Display the error message
+            lblError.Text = error;
         }
     }
 
-    
+
+
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
 
@@ -152,5 +161,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void txtDateRegistered_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnReturntoMM_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerManagementList.aspx");
     }
 }

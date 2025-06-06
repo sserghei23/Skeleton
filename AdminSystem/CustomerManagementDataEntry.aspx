@@ -1,49 +1,101 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomerManagementDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        #form1 {
-            height: 303px;
+    <title>Customer Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            position: relative;
+            padding: 20px;
+        }
+        .form-control, .form-check {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
+    <form id="form1" runat="server" class="container mt-5">
+        <!-- Header Section -->
+        <div class="container-fluid p-4 bg-primary text-white text-center">
+            <h1><i class="bi bi-person-fill"></i> Customer Management</h1>
         </div>
-        <div>
-        <asp:TextBox ID="txtCustomerId" runat="server" OnTextChanged="TextBox2_TextChanged" style="margin-bottom: 0px; margin-left: 109px;" Height="19px" width="108px"></asp:TextBox>
+
+        <div class="form-container">
+            <!-- Customer ID -->
+            <div class="mb-3">
+                <label for="txtCustomerId" class="form-label">Customer ID</label>
+                <asp:TextBox ID="txtCustomerId" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Full Name -->
+            <div class="mb-3">
+                <label for="txtFullName" class="form-label">Full Name</label>
+                <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="txtEmail" class="form-label">Email</label>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+                <label for="txtPhoneNumber" class="form-label">Phone Number</label>
+                <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Post Code -->
+            <div class="mb-3">
+                <label for="txtPostCode" class="form-label">Post Code</label>
+                <asp:TextBox ID="txtPostCode" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Date Registered -->
+            <div class="mb-3">
+                <label for="txtDateRegistered" class="form-label">Date Registered</label>
+                <asp:TextBox ID="txtDateRegistered" runat="server" CssClass="form-control" />
+            </div>
+
+            <!-- Active Checkbox -->
+            <div class="mb-3 form-check">
+                <asp:CheckBox ID="chkIsActive" runat="server" Text="Active" class="form-check-input" />
+            </div>
+
+            <!-- Find Button -->
+            <div class="mb-3">
+                <asp:Button ID="btnFind" runat="server" CssClass="btn btn-primary w-100" OnClick="btnFind_Click" Text="Find" />
+            </div>
+
+            <!-- Error Message -->
+            <div class="mb-3">
+                <asp:Label ID="lblError" runat="server" CssClass="text-danger" />
+            </div>
+
+            <!-- OK Button -->
+            <div class="mb-3">
+                <asp:Button ID="btnOK" runat="server" CssClass="btn btn-secondary w-100" OnClick="btnOK_Click" Text="OK" />
+            </div>
+
+            <!-- Cancel Button -->
+            <div class="mb-3">
+                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-secondary w-100" OnClick="btnCancel_Click" Text="Cancel" />
+            </div>
+
+           <!-- Back to Main Menu Button -->
+<div class="mb-3">
+    <asp:Button ID="btnReturntoMM" runat="server" CssClass="btn btn-link w-100" OnClick="btnReturntoMM_Click" Text="Back to Main Menu" />
+</div>
+
         </div>
-        <p>
-            <asp:Label ID="lblFullName" runat="server" style="z-index: 1; left: 12px; top: 70px; position: absolute; width: 108px" Text="Full Name" height="19px"></asp:Label>
-        </p>
-       <asp:TextBox ID="txtFullName" runat="server" style="z-index: 1; left: 119px; top: 70px; position: absolute" height="19px" width="108px"></asp:TextBox>
-        <asp:Label ID="lblEmail" runat="server" style="z-index: 1; left: 13px; top: 105px; position: absolute" Text="Email" width="108px" height="19px"></asp:Label>
-        <asp:TextBox ID="txtEmail" runat="server" style="z-index: 1; left: 119px; top: 103px; position: absolute" height="19px" width="108px"></asp:TextBox>
-        <asp:TextBox ID="txtPostCode" runat="server" style="z-index: 1; left: 119px; top: 145px; position: absolute; bottom: 484px" height="19px" width="108px"></asp:TextBox>
-        <asp:TextBox ID="txtPhoneNumber" runat="server" style="z-index: 1; left: 121px; top: 193px; position: absolute; right: 315px" height="19px" width="108px"></asp:TextBox>
-        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 295px; top: 31px; position: absolute; width: 57px; height: 26px;" Text="Find" />
-        <p>
-            &nbsp;</p>
-        <asp:Label ID="lblDateRegistered" runat="server" style="z-index: 1; left: 12px; top: 242px; position: absolute; width: 108px;" Text="Date Registered"></asp:Label>
-        <asp:Label ID="lblPhoneNumber" runat="server" style="z-index: 1; left: 10px; top: 201px; position: absolute" Text="Phone Number" width="108px" height="19px"></asp:Label>
-        <asp:Label ID="lblPostCode" runat="server" style="z-index: 1; left: 11px; top: 149px; position: absolute; right: 453px;" Text="Post Code" width="108px" height="19px"></asp:Label>
-        <asp:CheckBox ID="chkIsActive" runat="server" style="z-index: 1; left: 120px; top: 297px; position: absolute" Text="Active" />
-        <p>
-            <asp:TextBox ID="txtDateRegistered" runat="server" style="z-index: 1; left: 121px; top: 242px; position: absolute" height="19px" width="108px" OnTextChanged="txtDateRegistered_TextChanged"></asp:TextBox>
-        </p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 111px; top: 355px; position: absolute; width: 50px;" Text="Cancel" height="26px" />
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 13px; top: 325px; position: absolute"></asp:Label>
-        <p>
-        <asp:Label ID="lblCustomerId" runat="server" ClientIDMode="Predictable" style="z-index: 1; left: 12px; top: 33px; position: absolute; bottom: 572px; width: 108px;" Text="Customer ID" height="19px"></asp:Label>
-        </p>
-        <p>
-       <asp:Button ID="btnOK" runat="server" style="z-index: 1; top: 355px; position: absolute; width: 50px;" Text="OK" OnClick="btnOK_Click" height="26px" />
-        </p>
     </form>
 </body>
 </html>

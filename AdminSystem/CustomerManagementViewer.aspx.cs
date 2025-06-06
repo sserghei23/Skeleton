@@ -29,10 +29,19 @@ public partial class _1Viewer : System.Web.UI.Page
         //Display the Email for this Entry
         Response.Write(AnCustomer.Email);
         //Display the Entry for this Entry
-        Response.Write(AnCustomer.Password);
+        //Response.Write(AnCustomer.Password);
 
 
 
     }
-    
+
+
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        clsCustomer AnCustomer = new clsCustomer();
+        //store the order in the session object
+        Session["Anustomer"] = AnCustomer;
+        //navigate to the viewer page
+        Response.Redirect("CustomerManagementDataEntry.aspx");
+    }
 }
