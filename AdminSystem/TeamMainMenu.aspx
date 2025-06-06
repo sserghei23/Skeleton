@@ -37,17 +37,15 @@
                     </button>
                 </div>
                 <div class="col p-2">
-                    <button id="Button4" runat="server" class="btn btn-primary btn-lg w-100">
-                        <i class="bi bi-person-fill me-2"></i>Customers
-                    </button>
-                </div>
-                <div class="col p-2">
                     <button id="Button5" runat="server" class="btn btn-primary btn-lg w-100" onserverclick="Button5_Click">
                         <i class="bi bi-cart-fill me-2"></i>Checkout
                     </button>
                 </div>
             </div>
         </div>
+        <div class="col p-2">
+            <button id="btnCustomer" runat="server" class="btn btn-primary btn-lg w-100" onserverclick="btnCustomer_Click">
+                <i class="bi bi-person-fill me-2"></i>Customer</button>
     </form>
 </body>
 </html>

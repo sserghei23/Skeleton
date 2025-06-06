@@ -21,34 +21,81 @@ namespace Testing4
         }
 
 
-        //[TestMethod]
-        //public void CustomerListOk()
-        //{
+        [TestMethod]
+        public void CustomerListOk()
+        {
 
-        //    //Create an Instance of the class we want to create
-        //    clsCustomerCollection AllCustomer = new clsCustomerCollection();
-        //    //create some test data to assign to the property
-        //    //In this case the date needs to be a list of objects
-        //    List<clsCustomer> TestList = new List<clsCustomer>();
-        //    //add an Item to the list
-        //    //create the iten of test data
-        //    clsCustomer TestItem = new clsCustomer();
-        //    //set its properties
-        //    TestItem.IsActive = true;
-        //    TestItem.CustomerId = 1;
-        //    TestItem.PhoneNumber = "7727628467";
-        //    TestItem.FullName = "vaydang";
-        //    TestItem.DateRegistered = DateTime.Now;
-        //    TestItem.Email = "vaydang02@dhdh.com";
-        //    TestItem.PostCode = "LE4 0BA";
-        //    TestItem.Password = "vm123";
-        //    //add the item to the test list
-        //    TestList.Add(TestItem);
-        //    //assign the data to the property
-        //    AllCustomer.CustomerList = TestList;
-        //    //Test to see that the two values are the same
-        //    Assert.AreEqual(AllCustomer.Count, TestList.Count);
-        //}
+            //Create an Instance of the class we want to create
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            //create some test data to assign to the property
+            //In this case the date needs to be a list of objects
+            List<clsCustomer> TestList = new List<clsCustomer>();
+            //add an Item to the list
+            //create the iten of test data
+            clsCustomer TestItem = new clsCustomer();
+            //set its properties
+            TestItem.IsActive = true;
+            TestItem.CustomerId = 1;
+            TestItem.PhoneNumber = "7727628467";
+            TestItem.FullName = "vaydang";
+            TestItem.DateRegistered = DateTime.Now;
+            TestItem.Email = "vaydang02@dhdh.com";
+            TestItem.PostCode = "LE4 0BA";
+            //TestItem.Password = "vm123";
+            //add the item to the test list
+            TestList.Add(TestItem);
+            //assign the data to the property
+            AllCustomer.CustomerList = TestList;
+            //Test to see that the two values are the same
+            Assert.AreEqual(AllCustomer.CustomerList, TestList);
+        }
+
+        [TestMethod]
+        public void ThisCustomerPropertyOk()
+        {
+            //create an instance of the class we want to create
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            // create some test data to assign to the property
+            clsCustomer TestCustomer = new clsCustomer();
+            // set its properties
+            TestCustomer.CustomerId = 1;
+            TestCustomer.FullName = "";
+            TestCustomer.Email = "";
+            TestCustomer.DateRegistered = DateTime.Now.Date;
+            TestCustomer.PhoneNumber = "";
+            TestCustomer.PostCode = "";
+            TestCustomer.IsActive = true;
+            // assign the data to the property
+            AllCustomer.ThisCustomer = TestCustomer;
+            // test that the two values are the same
+            Assert.AreEqual(AllCustomer.ThisCustomer, TestCustomer);
+        }
+
+        [TestMethod]
+        public void ListAndCountOk()
+        {
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+
+            List<clsCustomer> TestList = new List<clsCustomer>();
+            //add and item to the list
+
+            clsCustomer TestItem = new clsCustomer();
+            //set the properties
+            TestItem.CustomerId = 1;
+            TestItem.FullName = "";
+            TestItem.Email = "";
+            TestItem.DateRegistered = DateTime.Now.Date;
+            TestItem.PhoneNumber = "";
+            TestItem.PostCode = "";
+            TestItem.IsActive = true;
+
+            // add the item to the test list
+            TestList.Add(TestItem);
+            // assign the data to the property
+            AllCustomer.CustomerList = TestList;
+            // test that the two values are the same
+            Assert.AreEqual(AllCustomer.Count, TestList.Count);
+        }
 
         [TestMethod]
         public void AddMethodOK()
@@ -67,7 +114,7 @@ namespace Testing4
             TestItem.Email = "veyd2000@gmail.com";
             TestItem.PhoneNumber = "7727628111";
             TestItem.FullName = "Veyd";
-            TestItem.Password = "veyd123";
+            //TestItem.Password = "veyd123";
 
             //Set ThisCustomer to the test data
             AllCustomer.ThisCustomer = TestItem;
@@ -89,6 +136,7 @@ namespace Testing4
             //varaible to store the primary Key
             Int32 PrimaryKey = 0;
             //set its properties
+            TestItem.CustomerId = 1; //Assuming we are updating an existing record with ID 1
             TestItem.IsActive = true;
             TestItem.DateRegistered = DateTime.Now.Date;
             TestItem.FullName = "Abhimanyu";
@@ -102,6 +150,7 @@ namespace Testing4
             //Set the primary ket of the test data
             TestItem.CustomerId = PrimaryKey;
             //Modify the test record
+            TestItem.CustomerId = 2;
             TestItem.IsActive = false;
             TestItem.DateRegistered = DateTime.Now;
             TestItem.PostCode = "NZ1 34BA";
@@ -133,7 +182,7 @@ namespace Testing4
             TestItem.PostCode = "LE9 0ZY";
             TestItem.Email = "Delete01@hotmail.co.uk";
             TestItem.PhoneNumber = "7466686822";
-            TestItem.Password = "delete";
+            //TestItem.Password = "delete";
             //Set ThisCustomer to the test Data
             AllCustomer.ThisCustomer = TestItem;
             //Add the record
@@ -173,7 +222,7 @@ namespace Testing4
             //Apply a PostCode that doesnt exist
             FilteredCustomer.ReportByPostCode("xxx xxx");
             //Test to see that there are no records
-            Assert.AreNotEqual(0, FilteredCustomer.Count);  // Change to Equal and error shows
+            Assert.AreEqual(0, FilteredCustomer.Count);  // Change to Equal and error shows
         }
 
         [TestMethod]
