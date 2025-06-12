@@ -83,15 +83,27 @@ public partial class _1_List : System.Web.UI.Page
     {
         //create an instance of the staff collection
         clsStaffCollection Staffs = new clsStaffCollection();
-        //apply the filter based on the text entered in the filter text box
-        Staffs.ReportByFullName(txtFilter.Text);
-        //set the data source to the filtered list of staff in the collection
-        lstStaffList.DataSource = Staffs.StaffList;
-        //set the name of the primary key
-        lstStaffList.DataValueField = "StaffID";
-        //set the data field to display and bind the data to the list
-        lstStaffList.DataTextField = "FullName";
-        lstStaffList.DataBind();
+        //if the filter text box is not empty
+        if (txtFilter.Text != "")
+        {
+            //apply the filter based on the text entered in the filter text box
+            Staffs.ReportByFullName(txtFilter.Text);
+            //set the data source to the filtered list of staff in the collection
+            lstStaffList.DataSource = Staffs.StaffList;
+            //set the name of the primary key
+            lstStaffList.DataValueField = "StaffID";
+            //set the data field to display and bind the data to the list
+            lstStaffList.DataTextField = "FullName";
+            lstStaffList.DataBind();
+            lblError.Text = "";
+        }
+        else
+        {
+            //if the filter text box is empty, display all records
+            DisplayStaff();
+            //display an error message
+            lblError.Text = "You have not applied a string to the filter.";
+        }
     }
 
     protected void btnClearFilter_Click(object sender, EventArgs e)
@@ -109,10 +121,16 @@ public partial class _1_List : System.Web.UI.Page
         lstStaffList.DataBind();
         //clear the filter text box
         txtFilter.Text = "";
+        lblError.Text = "";
     }
 
     protected void btnStatistics_Click(object sender, EventArgs e)
     {
         Response.Redirect("StaffManagementStatistics.aspx");
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }

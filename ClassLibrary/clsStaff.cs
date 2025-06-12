@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace ClassLibrary
 {
@@ -138,7 +139,7 @@ namespace ClassLibrary
             int OrderIDTemp;
             DateTime DateTemp;
 
-            //Validating the OrderID
+            //Validating the OrderID field
             try
             {
                 //will convert the orderID argument into the Int32 variable
@@ -170,28 +171,38 @@ namespace ClassLibrary
                 Error = Error + "The Order ID only accepts integers : ";
             }
 
+            //Validating the FullName field
 
+            //if fullName is blank
+            if (fullName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Full Name may not be blank : ";
+            }
 
-            //if the orderID is blank
-            //if (orderID.Length == 0)
-            //{
-            //record the error
-            //Error = Error + "The Order ID may not be blank : ";
-            //}
+            //if fullName is less than 3 characters
+            if (fullName.Length < 3)
+            {
+                //record the error
+                Error = Error + "The Full Name must be at least 3 characters : ";
+            }
 
-            //if orderID is greater than 6 characters
-            //if (orderID.Length > 6)
-            //{
-            //record the error
-            //Error = Error + "The Order ID must be less than 6 characters : ";
-            //}
+            //if fullName is greater than 50 characters
+            if (fullName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Full Name must not exceed 50 characters : ";
+            }
 
-            //if orderID is less than 0, negative test
-            //if (Convert.ToInt32(orderID) < 0)
-            //{
-            //record the error
-            //Error = Error + "The Order ID must be greater than 0 : ";
-            //}
+            //statement checks whether fullName contains only letters (lowercase or uppercase) and blankspaces.
+            //Regex will accept anything specified within the square brackets.
+            if (!Regex.IsMatch(fullName, @"^[a-zA-Z ]+$"))
+            {
+                //record the error
+                Error = Error + "The Full Name can only contain letters and blankspaces : ";
+            }
+
+            //Validating the Password field
 
             //if password is blank
             if (password.Length == 0)
@@ -207,7 +218,31 @@ namespace ClassLibrary
                 Error = Error + "The Password must not exceed 20 characters : ";
             }
 
-            //Validating the DateOfEmployment
+            //Validating the Email field
+
+            //if email is blank
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email may not be blank : ";
+            }
+
+            if (email.Length > 50)
+            {
+
+                //record the error
+                Error = Error + "The email must not exceed 50 characters : ";
+            }
+
+            //Regex validates whether the data inputted into the string contains an email address with correct syntax
+            //RegexOptions.IgnoreCase is necessary as email are not case sensitive.
+            if (!Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase))
+            {
+                //record the error
+                Error = Error + "The email must contain the @ symbol, domain name, dot and top-level domain (eg: com) : ";
+            }
+
+            //Validating the DateOfEmployment field
             DateTime DateComp = DateTime.Now.Date;
             DateTime DateComp2 = Convert.ToDateTime("02/01/2020");
 

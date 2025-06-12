@@ -22,7 +22,7 @@
         <div class="container mt-5">
             <div class="row justify-content-center g-3">
                 <div class="col-auto">
-                    <button id="Button1" runat="server" class="btn btn-secondary px-4 py-2">
+                    <button id="btnStaff" runat="server" class="btn btn-secondary px-4 py-2" onserverclick = "btnStaff_Click">
                         <i class="bi bi-people-fill me-2"></i>Staff
                     </button>
                 </div>

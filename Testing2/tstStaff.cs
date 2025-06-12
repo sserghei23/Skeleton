@@ -10,7 +10,7 @@ namespace Testing2
     public class tstStaff
     {
 
-        //public test data
+        //public test data for our various test methods
         string OrderID = "14";
         string FullName = "Walt Walker";
         string Password = "password123";
@@ -18,7 +18,7 @@ namespace Testing2
         string DateOfEmployment = DateTime.Now.ToShortDateString();
        
 
-
+        //TestMethod to see if there is an instance of staff in the database
         [TestMethod]
         public void InstanceOK()
         {
@@ -29,6 +29,7 @@ namespace Testing2
             Assert.IsNotNull(AStaff);
         }
 
+        //TestMethods to see if the attributes of our instance of staff exist.
         [TestMethod]
         public void StaffIDPropertyOK()
         {
@@ -149,7 +150,7 @@ namespace Testing2
             Assert.IsTrue(Found);
         }
 
-        //find test methods for the attributes of the staff class
+        //Find test methods for the attributes of the staff class
 
         [TestMethod]
         public void TestStaffIDFound()
@@ -441,7 +442,7 @@ namespace Testing2
             Assert.AreEqual(Error, "");
         }
 
-        //Test if OrderID has 500 characters
+        //Test if OrderID has 100 characters
         [TestMethod]
         public void OrderIDExtremeMax()
         {
@@ -451,7 +452,7 @@ namespace Testing2
             String Error = "";
             //creates some test data to use with the method
             string OrderID = "";
-            OrderID = OrderID.PadRight(500, '9'); //this test should fail
+            OrderID = OrderID.PadRight(100, '9'); //this test should fail
             //invokes the method
             Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
             //assert that the result is correct
@@ -476,6 +477,170 @@ namespace Testing2
 
         //FullName Validation test-methods.
 
+        //Test if FullName has 0 characters
+        [TestMethod]
+        public void FullNameExtremeMin()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = ""; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is not correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if FullName has 1 characters
+        [TestMethod]
+        public void FullNameMinLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "a"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that is not correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if FullName has at least 3 characters
+        [TestMethod]
+        public void FullNameMin() 
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "abc"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+
+        //Test if FullName has 5 characters
+        [TestMethod]
+        public void FullNameMinPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "abcde"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if FullName has 49 characters
+        [TestMethod]
+        public void FullNameMaxLessOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "";
+            FullName = FullName.PadRight(49, 'W'); //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if FullName has 50 characters
+        [TestMethod]
+        public void FullNameMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "";
+            FullName = FullName.PadRight(50, 'W'); //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if FullName has 51 characters
+        [TestMethod]
+        public void FullNameMaxPlusOne()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "";
+            FullName = FullName.PadRight(51, 'W'); //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is not correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if FullName has mid 25 characters
+        [TestMethod]
+        public void FullNameMid()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "Walter White Breaking"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if FullName has 500 characters
+        [TestMethod]
+        public void FullNameExtremeMax()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string FullName = "";
+            FullName = FullName.PadRight(500, 'W'); //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is not correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if FullName has data that contains anything other than letters
+        [TestMethod]
+        public void FullNameInvalidData()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            string Error = "";
+            //creates some test data to use with the method
+            string FullName = "47240@~! is not a full name"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is not correct
+            Assert.AreNotEqual(Error, "");
+        }
 
         //Password Validation test-methods.
 
@@ -575,6 +740,22 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
+        //Test if Password has mid 10 characters
+        [TestMethod]
+        public void PasswordMid()
+        {
+            //creates instance of staff
+            clsStaff AStaff = new clsStaff();
+            //create a string variable to store the error message
+            String Error = "";
+            //creates some test data to use with the method
+            string Password = "password12"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
         //Test if Password has 100 characters
         [TestMethod]
         public void PasswordExtremeMax()
@@ -592,9 +773,111 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
-
         //Email Validation test-methods.
 
+        //Test if Email has 49 characters
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable needed to store the error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "";
+            Email = Email.PadRight(39, 'a') + "@gmail.com"; //this value should be okay
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        //Test if Email contains 50 characters
+        [TestMethod]
+        public void EmailMax()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable needed to store the error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "";
+            Email = Email.PadRight(40, 'a') + "@gmail.com";
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+
+
+        }
+
+        //Test if Email has 51 characters
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable needed to store the error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "";
+            Email = Email.PadRight(41, 'a') + "@gmail.com"; //this test should fail
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Test if Email has 25 characters
+        [TestMethod]
+        public void EmailMid()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable needed to store the error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "";
+            Email = Email.PadRight(25, 'a') + "@gmail.com";
+            //invokes the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable needed to store the error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "";
+            Email = Email.PadRight(490, 'a') + "@gmail.com";
+            //invoke the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        //Test if Email contains invalid data.
+        [TestMethod]
+        public void EmailInvalidData()
+        {
+            //create an instance of staff
+            clsStaff AStaff = new clsStaff();
+            //variable to store error message
+            String Error = "";
+            //test data to use with the method
+            string Email = "this is not an email";
+            //invoke the method
+            Error = AStaff.Valid(OrderID, FullName, Password, Email, DateOfEmployment);
+            //assert that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
 
         //DateOfEmployment Validation test-methods.
 
@@ -662,7 +945,7 @@ namespace Testing2
             Assert.AreEqual(Error, "");
         }
 
-        //Test if DateOfEmployment has plus 1 day
+        //Test if DateOfEmployment has plus 5 days
         [TestMethod]
         public void DateOfEmploymentMinPlusOne()
         {
@@ -722,6 +1005,8 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
+        //Statistics test methods
+
         [TestMethod]
         public void StatStatisticsGroupedByFullName()
         {
@@ -730,7 +1015,7 @@ namespace Testing2
             //invoke the method to get the statistics
             DataTable dT = AStaff.StatisticsGroupedByFullName();
             //According to your last executed stored procedure, there should be 15 rows of data
-            int noOfRecord = 22;
+            int noOfRecord = 26;
             //check that the result is correct
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
 
@@ -744,7 +1029,7 @@ namespace Testing2
             //invoke the method to get the statistics
             DataTable dT = AStaff.StatisticsGroupedByDateOfEmployment();
             //According to your last executed stored procedure, there should be 15 rows of data
-            int noOfRecord = 15;
+            int noOfRecord = 21;
             //check that the result is correct
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
         }
