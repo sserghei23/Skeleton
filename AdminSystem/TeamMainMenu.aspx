@@ -19,10 +19,10 @@
         <div class="container-fluid p-4 bg-primary text-white text-center">
             <h1><i class="bi bi-watch"></i> Web Watch Main Menu</h1>
         </div>
-        <div class="container p-5">
-            <div class="row flex-column p-3">
-                <div class="col p-2">
-                    <button id="Button1" runat="server" class="btn btn-primary btn-lg w-100">
+        <div class="container mt-5">
+            <div class="row justify-content-center g-3">
+                <div class="col-auto">
+                    <button id="btnStaff" runat="server" class="btn btn-secondary px-4 py-2" onserverclick = "btnStaff_Click">
                         <i class="bi bi-people-fill me-2"></i>Staff
                     </button>
                 </div>
