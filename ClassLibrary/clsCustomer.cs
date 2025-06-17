@@ -97,21 +97,6 @@ namespace ClassLibrary
                 mIsActive = value;
             }
         }
-        private string mPassword;
-        public string Password
-        {
-            get
-            {
-                //this line of code sends data out of the property
-                return mPassword;
-            }
-            set
-            {
-                //this line of code sends data out of the property
-                mPassword = value;
-
-            }
-        }
 
         private string mPostCode;
         public string PostCode
@@ -135,7 +120,7 @@ namespace ClassLibrary
             //Add the parameter for the address Id to search for
             DB.AddParameter("@CustomerId", customerId);
             //Execute the stored procedure
-            DB.Execute("Sproc_tblCustomer_FilterByCustomerId");
+            DB.Execute("sproc_tblCustomer_FilterByCustomerId");
             //If one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
@@ -146,7 +131,6 @@ namespace ClassLibrary
                 mDateRegistered = Convert.ToDateTime(DB.DataTable.Rows[0]["DateRegistered"]);
                 mPhoneNumber = Convert.ToString(DB.DataTable.Rows[0]["PhoneNumber"]);
                 mIsActive = Convert.ToBoolean(DB.DataTable.Rows[0]["IsActive"]);
-                mPassword = Convert.ToString(DB.DataTable.Rows[0]["Password"]);
                 mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 mFullName = Convert.ToString(DB.DataTable.Rows[0]["FullName"]);
 
@@ -161,99 +145,178 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string dateRegistered, string postCode, string phoneNumber, string email, string fullName)
+        //public string Valid(string dateRegistered, string postCode, string phoneNumber, string email, string fullName)
+        //{
+        //    //Create a String variable to store the error
+        //    String Error = "";
+
+        //    DateTime DateTemp;
+
+        //    if (postCode.Length == 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Postcode may not be Blank : ";
+        //    }
+        //    //if the PostCode is greater than 6 characters
+        //    if (postCode.Length > 10)
+        //    {
+        //        //Return any Error messages
+        //        Error = Error + "The Postcode must be less than 10 Charchters ; ";
+        //    }
+
+        //    //Copy the DateRegistered Value to the DateTemp Variable
+        //    DateTemp = Convert.ToDateTime(dateRegistered);
+        //    if (DateTemp < DateTime.Now.Date)
+        //    {
+        //        //Record the error
+        //        Error = Error + " The Date cannot be in the  : ";
+        //    }
+        //    //Check to see if the date is Greater than Today's date
+        //    if (DateTemp > DateTime.Now.Date)
+        //    {
+        //        //Record the error
+        //        Error = Error + "The Date cannot be in the Future: ";
+        //    }
+
+        //    if (fullName.Length == 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Full Name may not be Blank : ";
+        //    }
+        //    if (fullName.Length < 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Full Name must be at least 2 Charchters : ";
+        //    }
+        //    //if the PostCode is greater than 20 characters
+        //    if (fullName.Length > 20)
+        //    {
+        //        //Return any Error messages
+        //        Error = Error + "The The Full Name must be less than 8 Charchters ; ";
+        //    }
+
+        //    if (postCode.Length == 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Postcode may not be Blank : ";
+        //    }
+        //    //if the PostCode is greater than 10 characters
+        //    if (postCode.Length > 10)
+        //    {
+        //        //Return any Error messages
+        //        Error = Error + "The Postcode must be less than 8 Charchters ; ";
+        //    }
+        //    if (email.Length == 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Email may not be Blank : ";
+        //    }
+        //    //if the PostCode is greater than 500 characters
+        //    if (email.Length > 50)
+        //    {
+        //        //Return any Error messages
+        //        Error = Error + "The Email must be less than 50 Charchters ; ";
+        //    }
+        //    if (phoneNumber.Length == 0)
+        //    {
+        //        //record the error
+        //        Error = Error + " The Phone Number may not be Blank : ";
+        //    }
+        //    //if the PostCode is greater than 500 characters
+        //    if (phoneNumber.Length > 10)
+        //    {
+        //        //Return any Error messages
+        //        Error = Error + "The Phone Number must be less than 10 Charchters ; ";
+        //    }
+
+        //    //if (password.Length == 0)
+        //    //{
+        //    //    //record the error
+        //    //    Error = Error + " The Password may not be Blank : ";
+        //    //}
+        //    ////if the PostCode is greater than 500 characters
+        //    //if (password.Length > 20)
+        //    //{
+        //    //    //Return any Error messages
+        //    //    Error = Error + "The Password must be less than 50 Charchters ; ";
+        //    //}
+        //    //return any error messages
+        //    return Error;
+        //}
+        public string Valid(string postCode, string fullName, string phoneNumber, string email, string dateRegistered)
         {
-            //Create a String variable to store the error
-            String Error = "";
-            //
+            string Error = "";
             DateTime DateTemp;
 
+            // Validate PostCode
             if (postCode.Length == 0)
             {
-                //record the error
-                Error = Error + " The Postcode may not be Blank : ";
+                Error += "The Postcode may not be blank : ";
             }
-            //if the PostCode is greater than 6 characters
-            if (postCode.Length > 10)
+            else if (postCode.Length > 10)
             {
-                //Return any Error messages
-                Error = Error + "The Postcode must be less than 8 Charchters ; ";
+                Error += "The Postcode must be less than 10 characters ; ";
             }
 
-            //Copy the DateRegistered Value to the DateTemp Variable
-            DateTemp = Convert.ToDateTime(dateRegistered);
-            if (DateTemp < DateTime.Now.Date)
+            // Validate DateRegistered
+            try
             {
-                //Record the error
-                Error = Error + " The Date cannot be in the  : ";
+                DateTemp = Convert.ToDateTime(dateRegistered);
+                if (DateTemp.Date < DateTime.Now.Date)
+                {
+                    Error += "The Date Registered cannot be in the past : ";
+                }
+                if (DateTemp.Date > DateTime.Now.Date)
+                {
+                    Error += "The Date Registered cannot be in the future : ";
+                }
             }
-            //Check to see if the date is Greater than Today's date
-            if (DateTemp > DateTime.Now.Date)
+            catch
             {
-                //Record the error
-                Error = Error + "The Date cannot be in the Future: ";
+                Error += "The Date Registered is not a valid date : ";
             }
 
+            // Validate FullName
             if (fullName.Length == 0)
             {
-                //record the error
-                Error = Error + " The Full Name may not be Blank : ";
+                Error += "The Full Name may not be blank : ";
             }
-            //if the PostCode is greater than 20 characters
-            if (fullName.Length > 20)
+            else
             {
-                //Return any Error messages
-                Error = Error + "The The Full Name must be less than 8 Charchters ; ";
+                if (fullName.Length < 2)
+                {
+                    Error += "The Full Name must be at least 2 characters : ";
+                }
+                if (fullName.Length > 20)
+                {
+                    Error += "The Full Name must be less than 20 characters ; ";
+                }
             }
 
-            if (postCode.Length == 0)
-            {
-                //record the error
-                Error = Error + " The Postcode may not be Blank : ";
-            }
-            //if the PostCode is greater than 10 characters
-            if (postCode.Length > 10)
-            {
-                //Return any Error messages
-                Error = Error + "The Postcode must be less than 8 Charchters ; ";
-            }
+            // Validate Email
             if (email.Length == 0)
             {
-                //record the error
-                Error = Error + " The Email may not be Blank : ";
+                Error += "The Email may not be blank : ";
             }
-            //if the PostCode is greater than 500 characters
-            if (email.Length > 50)
+            else if (email.Length > 50)
             {
-                //Return any Error messages
-                Error = Error + "The Email must be less than 50 Charchters ; ";
-            }
-            if (phoneNumber.Length == 0)
-            {
-                //record the error
-                Error = Error + " The Phone Number may not be Blank : ";
-            }
-            //if the PostCode is greater than 500 characters
-            if (phoneNumber.Length > 10)
-            {
-                //Return any Error messages
-                Error = Error + "The Phone Number must be less than 10 Charchters ; ";
+                Error += "The Email must be less than 50 characters ; ";
             }
 
-            //if (password.Length == 0)
-            //{
-            //    //record the error
-            //    Error = Error + " The Password may not be Blank : ";
-            //}
-            ////if the PostCode is greater than 500 characters
-            //if (password.Length > 20)
-            //{
-            //    //Return any Error messages
-            //    Error = Error + "The Password must be less than 50 Charchters ; ";
-            //}
-            //return any error messages
+            // Validate PhoneNumber
+            if (phoneNumber.Length == 0)
+            {
+                Error += "The Phone Number may not be blank : ";
+            }
+            else if (phoneNumber.Length > 10)
+            {
+                Error += "The Phone Number must be less than 10 characters ; ";
+            }
+
             return Error;
         }
+
+
 
         /********** STATISTICS GROUPED BY POSTCODE METHOD ************/
         public DataTable StatisticsGroupedByFullName()

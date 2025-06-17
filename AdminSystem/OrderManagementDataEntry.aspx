@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #ffffff; 
         }
         .form-label {
             font-weight: 500;
@@ -22,23 +22,31 @@
     <form id="form1" runat="server" class="container py-5">
         <h2 class="mb-4 text-primary"><i class="bi bi-pencil-square"></i> Order Management</h2>
 
+        
         <div class="row mb-3">
-            <div class="col-md-6">
+            <div class="col mb-6">
                 <label for="txtOrderId" class="form-label">Order ID</label>
                 <asp:TextBox ID="txtOrderId" runat="server" CssClass="form-control" />
             </div>
             <div class="col-md-6 d-flex align-items-end">
-                <button id="btnFind" runat="server" class="btn btn-outline-success w-100" onserverclick="btnFind_Click">
+                <button id="btnFind" runat="server" class="btn btn-outline-success" onserverclick="btnFind_Click">
                     <i class="bi bi-search me-2"></i>Find
                 </button>
             </div>
         </div>
+
+
+
 
         <div class="row mb-3">
             <div class="col-md-6">
                 <label for="txtCustomerId" class="form-label">Customer ID</label>
                 <asp:TextBox ID="txtCustomerId" runat="server" CssClass="form-control" />
             </div>
+        </div>
+
+
+        <div class="row mb-3">          
             <div class="col-md-6">
                 <label for="txtStaffId" class="form-label">Staff ID</label>
                 <asp:TextBox ID="txtStaffId" runat="server" CssClass="form-control" />
@@ -50,6 +58,9 @@
                 <label for="txtStatus" class="form-label">Status</label>
                 <asp:TextBox ID="txtStatus" runat="server" CssClass="form-control" />
             </div>
+        </div>    
+
+        <div class="row mb-3">           
             <div class="col-md-6">
                 <label for="txtTotalAmount" class="form-label">Total Amount</label>
                 <asp:TextBox ID="txtTotalAmount" runat="server" CssClass="form-control" />
@@ -60,14 +71,18 @@
             <div class="col-md-6">
                 <label for="txtOrderDate" class="form-label">Order Date</label>
                 <asp:TextBox ID="txtOrderDate" runat="server" CssClass="form-control" />
-            </div>
-            <div class="col-md-6 d-flex align-items-end">
-                <div class="form-check">
-                    <asp:CheckBox ID="chkCompleted" runat="server" CssClass="form-check-input" />
-                    <label class="form-check-label" for="chkCompleted">Completed</label>
-                </div>
+            </div>     
+        </div>
+
+        <div class="row mb-3">
+            <div class="form-check">
+                <asp:CheckBox ID="chkCompleted" runat="server" CssClass="form-check-input" />
+                <label class="form-check-label" for="chkCompleted">Completed</label>
             </div>
         </div>
+
+
+
 
         <div class="row mt-4">
             <div class="col-md-4">
@@ -86,6 +101,9 @@
                 </button>
             </div>
         </div>
+
+
+
 
         <div class="mt-4">
             <asp:Label ID="lblError" runat="server" CssClass="text-danger" />

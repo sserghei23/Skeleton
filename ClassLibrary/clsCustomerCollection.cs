@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClassLibrary
 {
@@ -167,20 +168,24 @@ namespace ClassLibrary
             //Set the parameters for the stored procedure
             DB.AddParameter("@CustomerId", mThisCustomer.CustomerId);
             //Execute the stored procedure
-            DB.Execute("Sproc_tblCustomer_Delete");
+            DB.Execute("sproc_tblCustomer_Delete");
         }
 
-        public void ReportByPostCode(string PostCode)
+        public void ReportByPostCode(string postCode)
         {
-            //Filters the records based on a full or partial post code
-            //Connect to the database
-            clsDataConnection DB = new clsDataConnection();
-            //Send the Post Code parameter to the database
-            DB.AddParameter("@PostCode", PostCode);
-            //Execute the stored procedure
-            DB.Execute("sproc_tblCustomer_FilterByPostCode");
-            //Populate the array list with the data table
-            PopulateArray(DB);
+            // Check if the input is not empty or null
+            if (string.IsNullOrEmpty(postCode))
+            {
+                return; // If no input, return all customers
+            }
+
+            // Perform a case-insensitive search for PostCodes containing the input
+            var filteredList = CustomerList
+                .Where(c => c.PostCode != null && c.PostCode.IndexOf(postCode, StringComparison.OrdinalIgnoreCase) >= 0)
+                .ToList();
+
+            // Update the collection with the filtered results
+            CustomerList = filteredList;
         }
 
         void PopulateArray(clsDataConnection DB)

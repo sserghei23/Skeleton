@@ -26,4 +26,9 @@ public partial class TeamMainMenu : System.Web.UI.Page
     {
         Response.Redirect("StaffManagementList.aspx");  
     }
+
+    protected void btnCustomer_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerManagementList.aspx");
+    }
 }

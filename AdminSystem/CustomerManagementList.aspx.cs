@@ -25,7 +25,7 @@ public partial class _1_List : System.Web.UI.Page
         //set the name of the primary key
         lstCustomerList.DataValueField = "CustomerId";
         //set the data field to display
-        lstCustomerList.DataTextField = "FullName";
+        lstCustomerList.DataTextField = "PostCode";
         //blind the data to the list
         lstCustomerList.DataBind();
 
@@ -85,46 +85,65 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnApplyFilter_Click(object sender, EventArgs e)
     {
-        //Create an Instance of the address object
-        clsCustomerCollection AnCustomer = new clsCustomerCollection();
-        //Retrieve the value of PostCode from the presenattion layer
-        AnCustomer.ReportByPostCode(TxtPostCode.Text);
-        //set the Data source to the list of Customer in the collection
-        lstCustomerList.DataSource = AnCustomer.CustomerList;
-        //Set the name of the primary key
-        lstCustomerList.DataValueField = "CustomerId";
-        //Set the name of the field to display
-        lstCustomerList.DataTextField = "PostCode";
-        //Bind the data to the list
-        lstCustomerList.DataBind();
+        // Get the value from the PostCode textbox
+        string postCode = TxtPostCode.Text.Trim();  // Remove leading/trailing spaces
+
+        if (!string.IsNullOrEmpty(postCode))
+        {
+            // Create an instance of the customer collection
+            clsCustomerCollection AnCustomer = new clsCustomerCollection();
+
+            // Apply the filter by the PostCode, including partial matches
+            AnCustomer.ReportByPostCode(postCode);
+
+            // Set the data source to the filtered list of customers
+            lstCustomerList.DataSource = AnCustomer.CustomerList;
+
+            // Set the name of the primary key and the field to display
+            lstCustomerList.DataValueField = "CustomerId";
+            lstCustomerList.DataTextField = "PostCode";
+
+            // Bind the filtered data to the list box
+            lstCustomerList.DataBind();
+        }
+        else
+        {
+            // If no filter is applied, show an error message
+            lblError.Text = "Please enter a PostCode to filter.";
+        }
     }
-
-
-    protected void btnClearFilter_Click(object sender, EventArgs e)
-    {
-        //Create an instance of the customer object
-        clsCustomerCollection AnCustomer = new clsCustomerCollection();
-        //Set an empty string
-        //Clear any existing filter to tidy up the interface
-        TxtPostCode.Text = "";
-        //Set the data source to the list of Customer in the collection
-        lstCustomerList.DataSource = AnCustomer.CustomerList;
-        //Set the name of the primary Key
-        lstCustomerList.DataValueField = "CustomerId";
-        //Set the name of the field to display
-        lstCustomerList.DataTextField = "PostCode";
-        //Bind the data to the list
-        lstCustomerList.DataBind();
-    }
-
-
-
-
-
-
 
     protected void btnStatisticsPage_Click(object sender, EventArgs e)
     {
+        Response.Redirect("CustomerManagementStatistics.aspx");
+    }
 
+
+    protected void btnReturntoMM_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void btnClearFilter_Click1(object sender, EventArgs e)
+    {
+        // Create an instance of the customer collection
+        clsCustomerCollection AnCustomer = new clsCustomerCollection();
+
+        // Clear the filter input
+        TxtPostCode.Text = "";
+
+
+        // Set the data source to the unfiltered list
+        lstCustomerList.DataSource = AnCustomer.CustomerList;
+
+        // Set the name of the primary key and the field to display
+        lstCustomerList.DataValueField = "CustomerId";
+        lstCustomerList.DataTextField = "PostCode";
+
+        // Bind the data to the list
+        lstCustomerList.DataBind();
+
+        // Optionally, clear any error messages
+        lblError.Text = "";
     }
 }

@@ -16,8 +16,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="container-fluid p-5 bg-primary text-white text-center">
-            <h1><i class="bi bi-house-fill me-2"></i>Web Watch Main Menu</h1>
+        <div class="container-fluid p-4 bg-primary text-white text-center">
+            <h1><i class="bi bi-watch"></i> Web Watch Main Menu</h1>
         </div>
         <div class="container mt-5">
             <div class="row justify-content-center g-3">
@@ -26,28 +26,26 @@
                         <i class="bi bi-people-fill me-2"></i>Staff
                     </button>
                 </div>
-                <div class="col-auto">
-                    <button id="btnOrders" runat="server" class="btn btn-secondary px-4 py-2" onserverclick="btnOrders_Click">
+                <div class="col p-2">
+                    <button id="btnOrders" runat="server" class="btn btn-primary btn-lg w-100" onserverclick="btnOrders_Click">
                         <i class="bi bi-bag-fill me-2"></i>Orders
                     </button>
                 </div>
-                <div class="col-auto">
-                    <button id="Button3" runat="server" class="btn btn-secondary px-4 py-2">
+                <div class="col p-2">
+                    <button id="Button3" runat="server" class="btn btn-primary btn-lg w-100">
                         <i class="bi bi-box-seam me-2"></i>Inventory
                     </button>
                 </div>
-                <div class="col-auto">
-                    <button id="Button4" runat="server" class="btn btn-secondary px-4 py-2">
-                        <i class="bi bi-person-fill me-2"></i>Customer
-                    </button>
-                </div>
-                <div class="col-auto">
-                    <button id="Button5" runat="server" class="btn btn-secondary px-4 py-2" onserverclick="Button5_Click">
+                <div class="col p-2">
+                    <button id="Button5" runat="server" class="btn btn-primary btn-lg w-100" onserverclick="Button5_Click">
                         <i class="bi bi-cart-fill me-2"></i>Checkout
                     </button>
                 </div>
             </div>
         </div>
+        <div class="col p-2">
+            <button id="btnCustomer" runat="server" class="btn btn-primary btn-lg w-100" onserverclick="btnCustomer_Click">
+                <i class="bi bi-person-fill me-2"></i>Customer</button>
     </form>
 </body>
 </html>
